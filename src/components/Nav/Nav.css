@@ -6,17 +6,11 @@
     padding-left: 10px;
 }
 
-.nav {
-  overflow: hidden;
-  background-color: #00acb0;
-}
-
 .nav-link {
-  float: left;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #239956;
   text-align: center;
-  padding: 24px 10px;
+  padding: 10px 10px;
   text-decoration: none;
   font-size: 15px;
 
@@ -28,9 +22,12 @@
 }
 
 .nav-link:hover {
-  background-color: #008183;
+  background-color: #01632C;
 }
 
-.nav-right {
-  float: right;
+.nav {
+  overflow: hidden;
+  text-align: center;
+  background-color: #239956;
+  
 }
