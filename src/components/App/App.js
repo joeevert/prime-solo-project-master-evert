@@ -17,6 +17,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import Home from '../Home/Home';
 import AddSeeds from '../AddSeeds/AddSeeds';
 import MapView from '../MapView/MapView'
+import Profile from '../Profile/Profile'
 
 import './App.css';
 
@@ -49,12 +50,16 @@ class App extends Component {
               path="/home"
               component={Home}
             />
-            {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
+            {/* protected route */}
             <ProtectedRoute
               exact
               path="/addseeds"
               component={AddSeeds}
+            />
+            <ProtectedRoute
+              exact
+              path="/profile"
+              component={Profile}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
@@ -65,4 +70,8 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(App);

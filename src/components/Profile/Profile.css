@@ -1,0 +1,42 @@
+.container {
+    background-color: #eee;
+    width: 85%;
+    margin: auto;
+}
+
+.profilePic {
+    display: inline-block;
+    border-radius: 25px;
+}
+
+.seedTable {
+    border-collapse: collapse;
+    margin: auto;
+    width: 75%;
+}
+
+.seedTable td, .seedTable th {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.seedTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.seedTable tr:hover {
+    background-color: #ddd;
+}
+
+.seedTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #239956;
+    color: white;
+}
+
+.tablePosition {
+    display: inline;
+    margin: auto;
+}
