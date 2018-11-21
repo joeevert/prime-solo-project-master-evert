@@ -23,3 +23,7 @@
     padding: 10px;
     border-radius: 22px 22px 0px 0px;
 }
+
+.currentLocationBtn {
+    margin: 0;
+}

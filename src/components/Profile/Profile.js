@@ -16,10 +16,10 @@ class Profile extends Component {
       <section className="container">
 
         <h1 id="welcome">
-          Welcome, { this.props.user.username }!
+          Welcome, { this.props.reduxState.user.username }!
         </h1>
 
-        <p>Your ID is: { this.props.user.id }</p>
+        <p>Your ID is: { this.props.reduxState.user.id }</p>
 
         <div>
           <p>profile view --- remove</p>
@@ -66,12 +66,6 @@ class Profile extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
-});
+const mapStateToProps = reduxState => ({ reduxState });
 
-// this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(Profile);

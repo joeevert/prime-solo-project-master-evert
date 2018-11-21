@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import MapContainer from './MapContainer'
+import { connect } from 'react-redux';
+import MapContainer from './MapContainer';
 
 class MapView extends Component {
 
@@ -14,10 +15,10 @@ class MapView extends Component {
     console.log('Home state CDM:', this.state);
   }
 
-  componentDidUpdate() {
-    this.getGeoLocation();
-    console.log('Home state C.D.U.:', this.state.latitude, this.state.longitude);
-  }
+  // componentDidUpdate() {
+  //   this.getGeoLocation();
+  //   console.log('Home state C.D.U.:', this.state.latitude, this.state.longitude);
+  // }
 
   // get user's location
   // getGeoLocation() {
@@ -66,4 +67,6 @@ class MapView extends Component {
   }
 }
 
-export default MapView;
+const mapStateToProps = reduxState => ({ reduxState });
+
+export default connect(mapStateToProps)(MapView);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Map from './Map'
+import { connect } from 'react-redux'
+import Map from './Map';
+import './MapContainer.css';
 
 class MapContainer extends Component {
 
@@ -27,7 +29,8 @@ class MapContainer extends Component {
             mapElement={ <div style={ { height: `100%` } } />}
             activeMarker={this.state.activeMarker}
           />
-          <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}>
+          {/* <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}> */}
+          <div className="seedList">
             <h4>SEEDS AVAILABLE</h4>
           </div>
         </section>
@@ -36,4 +39,6 @@ class MapContainer extends Component {
   }
 }
 
-export default MapContainer;
+const mapStateToProps = reduxState => ({ reduxState });
+
+export default connect(mapStateToProps)(MapContainer);

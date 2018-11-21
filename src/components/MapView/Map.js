@@ -1,5 +1,6 @@
 // import React, { Component } from 'react';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 // import { Marker, InfoWindow } from 'react-google-maps';
@@ -79,5 +80,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
     ))
 
 
+const mapStateToProps = reduxState => ({ reduxState });
 
-export default Map;
+export default connect(mapStateToProps)(Map);
+

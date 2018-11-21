@@ -70,8 +70,6 @@ class App extends Component {
   )}
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-});
+const mapStateToProps = reduxState => ({ reduxState });
 
 export default connect(mapStateToProps)(App);
