@@ -1,0 +1,17 @@
+.center {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    /* background-color: aquamarine; */
+}
+
+.displayBox {
+    width: 400px;
+    height: 400px;
+    margin: 50px;
+    /* margin: 0 10px; */
+    color: #fff;
+    background-color: #67C28F;
+    display: inline-block;
+    border-radius: 25px;
+}

@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './UserPage.css';
+
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
-const UserPage = (props) => (
-  <div>
-    <h1 id="welcome">
-      Welcome, { props.user.username }!
-    </h1>
-    <p>Your ID is: {props.user.id}</p>
-    <LogOutButton className="log-in" />
-  </div>
-);
+class UserPage extends Component {
+  // Renders the entire app on the DOM
+
+  shareSeedsBtn = () => {
+    console.log('share seeds button clicked');
+  }
+
+  searchBtn = () => {
+    console.log('search button clicked');
+  }
+
+  render() {
+    return (
+      <section className="center">
+
+        <h1 id="welcome">
+          Welcome, { this.props.user.username }!
+        </h1>
+
+        <p>Your ID is: { this.props.user.id }</p>
+        {/* <LogOutButton className="log-in" /> */}
+
+        <div className="displayBox">
+          <h2>FIND SEEDS</h2>
+          <input placeholder="Enter Your Location"></input>
+          <button onClick={this.searchBtn}>SEARCH</button>
+        </div>
+
+        <div className="displayBox">
+          <h2>SHARE SEEDS</h2>
+          <button onClick={this.shareSeedsBtn}>SHARE SEEDS</button>
+        </div>
+        
+      </section>
+    );
+  }
+}
 
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:
@@ -24,3 +51,4 @@ const mapStateToProps = state => ({
 
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(UserPage);
+
