@@ -1,0 +1,25 @@
+.center {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    /* background-color: aquamarine; */
+}
+
+.displayBox {
+    width: 400px;
+    height: 400px;
+    margin: 50px;
+    background-color: #67C28F;
+    display: inline-block;
+    border-radius: 25px;
+    border: 2px solid #01632C;
+    /* background-image: url("/public/images/seeds.jpg"); */
+}
+
+.displayBox h2 {
+    margin: 0;
+    color: #fff;
+    background-color: #01632C;
+    padding: 10px;
+    border-radius: 25px 25px 0px 0px;
+}
