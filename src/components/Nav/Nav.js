@@ -16,7 +16,7 @@ const Nav = (props) => (
       <h2 className="nav-title">SEED SHARE</h2>
     </Link>
 
-    <div className="nav-center">
+    <div>
 
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
