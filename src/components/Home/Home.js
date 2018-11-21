@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './UserPage.css';
+import './Home.css';
 
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-class UserPage extends Component {
+class Home extends Component {
   // Renders the entire app on the DOM
 
   shareSeedsBtn = () => {
@@ -50,5 +50,5 @@ const mapStateToProps = state => ({
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(Home);
 
