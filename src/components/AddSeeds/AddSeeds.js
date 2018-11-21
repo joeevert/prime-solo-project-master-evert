@@ -17,7 +17,7 @@ class AddSeeds extends Component {
   }
 
   // adds seed to user's seed inventory table
-  addSeed = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log('adding seed', this.state);
     this.props.dispatch({ type: 'ADD_SEED', payload: this.state });
@@ -49,7 +49,7 @@ class AddSeeds extends Component {
 
         <div className="addSeeds">
           <h2>ADD SEEDS</h2>
-          <form onSubmit={this.addSeed}>
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text" 
               placeholder="Seed Name"

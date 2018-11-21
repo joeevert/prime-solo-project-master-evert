@@ -32,7 +32,7 @@ class MapView extends Component {
   getGeoLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           console.log(position.coords);
           this.setState({
               ...this.state,
