@@ -9,10 +9,12 @@ class Home extends Component {
 
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
+    this.props.history.push('/addseeds');
   }
 
   searchBtn = () => {
     console.log('search button clicked');
+    this.props.history.push('/map');
   }
 
   render() {
