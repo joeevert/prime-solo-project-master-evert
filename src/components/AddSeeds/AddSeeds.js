@@ -7,6 +7,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddSeeds.css';
 
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+
+
 class AddSeeds extends Component {
 
   state = {
@@ -50,28 +55,28 @@ class AddSeeds extends Component {
         <div className="addSeeds">
           <h2>ADD SEEDS</h2>
           <form onSubmit={this.handleSubmit}>
-            <input
+            <TextField
               type="text" 
               placeholder="Seed Name"
               name="seed_name"
               value={this.state.seed_name}
               onChange={this.handleChangeFor('seed_name')}
             />
-            <input 
+            <TextField 
               type="text" 
               placeholder="Description"
               name="description"
               value={this.state.description}
               onChange={this.handleChangeFor('description')}
             />
-            <input 
+            <TextField 
               type="number" 
               placeholder="Quantity"
               name="quantity"
               value={this.state.quantity}
               onChange={this.handleChangeFor('quantity')}
             />
-            <input 
+            <TextField 
               type="text" 
               placeholder="Location"
               name="location"
@@ -79,7 +84,10 @@ class AddSeeds extends Component {
               onChange={this.handleChangeFor('location')}
             />
             {/* <input placeholder="Image"/> */}
-            <input type="submit"/>
+
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
           </form>
         </div>
 
