@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 
 class MapMarker extends Component {
@@ -71,4 +72,6 @@ class MapMarker extends Component {
   }
 }
 
-export default MapMarker;
+const mapStateToProps = reduxState => ({ reduxState });
+
+export default connect(mapStateToProps)(MapMarker);
