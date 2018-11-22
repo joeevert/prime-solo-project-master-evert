@@ -13,7 +13,7 @@ class AddSeeds extends Component {
     seed_name: '',
     description: '',
     quantity: '',
-    // location: '', // will be updated based on user's location or input address???
+    location: '', // will be updated based on user's location or input address???
   }
 
   // adds seed to user's seed inventory table
