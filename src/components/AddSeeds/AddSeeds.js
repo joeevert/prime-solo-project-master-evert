@@ -12,7 +12,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
   button: {
@@ -60,10 +64,18 @@ const styles = theme => ({
 class AddSeeds extends Component {
 
   state = {
-    seed_name: '',
+    seed_category: '',
     description: '',
     quantity: '',
     location: '', // will be updated based on user's location or input address???
+  }
+
+  componentDidMount() {
+    this.getCategories();
+  }
+
+  getCategories = () => {
+    this.props.dispatch({ type: 'GET_CATEGORIES' });
   }
 
   // adds seed to user's seed inventory table
@@ -73,7 +85,7 @@ class AddSeeds extends Component {
     this.props.dispatch({ type: 'ADD_SEED', payload: this.state });
         this.setState({
             ...this.state,
-            seed_name: '',
+            seed_category: '',
             description: '',
             quantity: '',
             location: '',
@@ -92,7 +104,7 @@ class AddSeeds extends Component {
     const { classes } = this.props;
     return (
       <section className="center">
-
+        {JSON.stringify(this.props.reduxState.category)}
         <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
         </h1>
@@ -106,14 +118,36 @@ class AddSeeds extends Component {
             ADD SEEDS
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
-            <TextField
+
+            <FormControl>    
+              <InputLabel>Category</InputLabel>
+                <Select
+                  value={this.state.seed_category}
+                  onChange={this.handleChangeFor('seed_category')}
+                  inputProps={{
+                    name: 'category_id',
+                    id: '',
+                  }}>
+                  {/* <MenuItem value=""><em>None</em></MenuItem> */}
+                  {this.props.reduxState.category.map( seed => 
+                  <MenuItem 
+                    key={seed.id} 
+                    value={seed.id}
+                  >
+                    {seed.seed_category}
+                  </MenuItem>)}
+                </Select>
+              </FormControl>
+              <br/>
+
+            {/* <TextField
               className={classes.textField}
               type="text" 
-              placeholder="Seed Name"
-              name="seed_name"
+              placeholder="Seed Category"
+              name="seed_category"
               value={this.state.seed_name}
-              onChange={this.handleChangeFor('seed_name')}
-            />
+              onChange={this.handleChangeFor('seed_category')}
+            /> */}
             <TextField
               className={classes.textField}
               type="text" 

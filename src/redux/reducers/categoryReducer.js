@@ -1,11 +1,11 @@
-const seed = (state = [], action) => {
+const category = (state = [], action) => {
     switch (action.type) {
-      case 'SET_SEEDS':
+      case 'SET_CATEGORIES':
         return action.payload;
       default:
         return state;
     }
   }
   
-export default seed;
+export default category;
   
