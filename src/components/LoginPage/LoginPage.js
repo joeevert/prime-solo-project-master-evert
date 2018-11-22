@@ -24,22 +24,23 @@ const styles = theme => ({
       margin: "auto",
       marginTop: theme.spacing.unit * 10,
       padding: 35,
+      backgroundColor: '#67C28F'
   },
   form: {
-      backgroundColor: "white",
       textAlign: "center",
       padding: 15,
       marginTop: theme.spacing.unit * 4,
   },
   textField: {
       width: 300,
-      backgroundColor: "rgba(255, 255, 255, 0.3)",
       borderRadius: 5,
       margin: theme.spacing.unit,
+      backgroundColor: '#fff'
+
   },
   avatar: {
     margin: "auto",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#01632C'
   },
 });
 
@@ -87,60 +88,62 @@ class LoginPage extends Component {
           </h2>
         )}
 
-        <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>
-        <form className={classes.form} onSubmit={this.login}>
-          <Typography component="h1" variant="h5">
-            Log In
-          </Typography>
-          <div>
-            
-              <TextField
-                className={classes.textField}
-                required
-                id="username"
-                label="Username"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-                margin="normal"
-                variant="outlined"
-              />
-            
-          </div>
-
-          <div>
-              <TextField
-                className={classes.textField}
-                required
-                id="password"
-                label="Password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-                margin="normal"
-                variant="outlined"
-
-              />
-          </div>
-          <div>
-            <Button
-              type="submit"
-              name="submit"
-              // value="Log In"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-
+        <Paper 
+          className={classes.paper}
+        >
+          <Avatar 
+            className={classes.avatar}
+          >
+            <LockIcon />
+          </Avatar>
+          <form className={classes.form} onSubmit={this.login}>
+            <Typography 
+              variant="h4"
+              style={{color: '#fff', fontWeight: 'bold'}}
             >
               Log In
-            </Button>
-          </div>
-        </form>
+            </Typography>
+            <div>
+                <TextField
+                  className={classes.textField}
+                  required
+                  id="username"
+                  label="Username"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                  margin="normal"
+                  variant="outlined"
+                />
+            </div>
+            <div>
+                <TextField
+                  className={classes.textField}
+                  required
+                  id="password"
+                  label="Password"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                  margin="normal"
+                  variant="outlined"
+                />
+            </div>
+            <div>
+              <Button
+                type="submit"
+                name="submit"
+                // value="Log In"
+                variant="contained"
+                className={classes.button}
+                style={{ backgroundColor: '#239956', color: '#fff' }}
+              >
+                Log In
+              </Button>
+            </div>
+          </form>
         </Paper>
         <div className="center">
           <Button
@@ -167,4 +170,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(LoginPage));
-// export default connect(mapStateToProps)(withStyles(styles)(ProjectPage))

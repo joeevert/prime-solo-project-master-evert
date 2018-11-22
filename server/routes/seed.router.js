@@ -16,6 +16,7 @@ router.post('/', (req, res) => {
 
 });
 
+// POST route for user's seeds inventory
 router.post('/', async (req, res) => {
     console.log(`in seed.router.js POST for '/'`);
     const client = await pool.connect();

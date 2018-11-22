@@ -5,7 +5,7 @@
     /* background-color: aquamarine; */
 }
 
-.addSeeds {
+/* .addSeeds {
     width: 400px;
     height: 400px;
     margin: 50px;
@@ -13,22 +13,20 @@
     display: inline-block;
     border-radius: 25px;
     border: 2px solid #01632C;
-    /* background-image: url("/public/images/seeds.jpg"); */
-}
+    background-image: url("/public/images/seeds.jpg");
+} */
 
-.addSeeds h2 {
+/* .addSeeds h2 {
     margin: 0;
     color: #fff;
     background-color: #01632C;
     padding: 10px;
     border-radius: 22px 22px 0px 0px;
-}
+} */
 
-.addSeeds form {
-    background-color: #dbd5d5;
-    width: 30%;
+/* .addSeeds form {
+    width: 50%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
-    border-radius: 2px;
-}
+} */
