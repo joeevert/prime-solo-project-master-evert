@@ -149,24 +149,6 @@ class AddSeeds extends Component {
                   </MenuItem>)}
                 </Select>
               </FormControl>
-              {/* <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-simple">Age</InputLabel>
-                <Select
-                  value={this.state.age}
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: 'age',
-                    id: 'age-simple',
-                  }}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl> */}
               <br/>
 
             {/* <TextField
