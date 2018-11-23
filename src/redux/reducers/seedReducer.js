@@ -5,7 +5,6 @@ const seed = (state = [], action) => {
       default:
         return state;
     }
-  }
+}
   
 export default seed;
-  

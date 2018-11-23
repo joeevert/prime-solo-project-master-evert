@@ -2,13 +2,19 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// GET Route for user's seeds inventory
 router.get('/', (req, res) => {
-    
+    const queryText = `SELECT * FROM user_seed_inventory;`;
+    pool.query(queryText)
+        .then((result) => {
+            console.log(`Got user's seeds back from the db`);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log(`GET error ${queryText}`, error);
+            res.sendStatus(500);
+        })
 });
-
 
 // POST route for adding seeds to user's seed inventory
 router.post('/', (req, res) => {
