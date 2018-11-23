@@ -13,6 +13,8 @@ import categorySaga from './categorySaga';
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
+  console.log('rootSaga fired');
+  
   yield all([
     loginSaga(),
     registrationSaga(),

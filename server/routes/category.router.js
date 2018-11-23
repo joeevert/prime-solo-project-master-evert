@@ -4,14 +4,14 @@ const router = express.Router();
 
 // GET for seed categories
 router.get('/', (req, res) => {
-    const sqlText = `SELECT * FROM seeds;`;
-    pool.query(sqlText)
+    const queryText = `SELECT * FROM seeds;`;
+    pool.query(queryText)
         .then((result) => {
             console.log('Got seed categories back from the db');
             res.send(result.rows);
         })
         .catch((error) => {
-            console.log(`GET error ${sqlText}`, error);
+            console.log(`GET error ${queryText}`, error);
             res.sendStatus(500);
         })
 });
