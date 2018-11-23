@@ -97,7 +97,7 @@ class SeedTable extends Component {
             <TableBody>
               {this.props.reduxState.seed.map( seed =>
                 <TableRow key={seed.id}>
-                  <CustomTableCell>{seed.seed_id}</CustomTableCell>
+                  <CustomTableCell>{seed.category}</CustomTableCell>
                   <CustomTableCell>{seed.description}</CustomTableCell>
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
                   <CustomTableCell>
