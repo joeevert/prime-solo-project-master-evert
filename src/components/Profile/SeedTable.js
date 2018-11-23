@@ -91,6 +91,7 @@ class SeedTable extends Component {
                 <CustomTableCell>Category</CustomTableCell>
                 <CustomTableCell>Description</CustomTableCell>
                 <CustomTableCell>Quantity</CustomTableCell>
+                <CustomTableCell>Date Added</CustomTableCell>
                 <CustomTableCell>Actions</CustomTableCell>
               </TableRow>
             </TableHead>
@@ -100,6 +101,8 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.category}</CustomTableCell>
                   <CustomTableCell>{seed.description}</CustomTableCell>
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
+                  <CustomTableCell>{seed.date_added}</CustomTableCell>
+
                   <CustomTableCell>
                     <Button
                       color="primary"

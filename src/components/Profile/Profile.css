@@ -7,6 +7,9 @@
 .profilePic {
     display: inline-block;
     border-radius: 25px;
+    border: 2px solid #01632C;
+    height: 250px;
+    width: 250px;
 }
 
 .seedTable {

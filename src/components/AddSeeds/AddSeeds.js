@@ -23,7 +23,7 @@ const styles = theme => ({
       width: 300,
       padding: 10,
       backgroundColor: '#239956',
-      margin: theme.spacing.unit,
+      // margin: theme.spacing.unit,
   },
   paper: {
       width: 400,

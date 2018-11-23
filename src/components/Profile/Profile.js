@@ -31,7 +31,7 @@ class Profile extends Component {
           <p>profile view --- remove</p>
           {/* display user's profile pic */}
           <div className="tablePosition">
-          <img className="profilePic" src="/images/profile_pic01.jpg" alt="profile pic"/>
+          <img className="profilePic" src={ this.props.reduxState.user.profile_pic } alt="profile pic"/>
           <SeedTable />
           </div>
           <Button onClick={this.shareSeedsBtn}>Add Seeds</Button>
