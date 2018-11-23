@@ -64,14 +64,20 @@ const styles = theme => ({
 class AddSeeds extends Component {
 
   state = {
-    seed_category: '',
+    seed_id: '',
     description: '',
     quantity: '',
     location: '', // will be updated based on user's location or input address???
+    user_id: null
   }
 
   componentDidMount() {
     this.getCategories();
+    // set user id to current user
+    this.setState({
+      ...this.state,
+      user_id: this.props.reduxState.user.id
+    })
   }
 
   getCategories = () => {
@@ -85,7 +91,7 @@ class AddSeeds extends Component {
     this.props.dispatch({ type: 'ADD_SEED', payload: this.state });
         this.setState({
             ...this.state,
-            seed_category: '',
+            seed_id: '',
             description: '',
             quantity: '',
             location: '',
@@ -122,10 +128,10 @@ class AddSeeds extends Component {
             <FormControl>    
               <InputLabel>Category</InputLabel>
                 <Select
-                  value={this.state.seed_category}
-                  onChange={this.handleChangeFor('seed_category')}
+                  value={this.state.seed_id}
+                  onChange={this.handleChangeFor('seed_id')}
                   inputProps={{
-                    name: 'category_id',
+                    name: 'seed_id',
                     id: '',
                   }}>
                   {/* <MenuItem value=""><em>None</em></MenuItem> */}
