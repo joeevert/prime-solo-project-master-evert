@@ -26,14 +26,9 @@ class Profile extends Component {
           Welcome, { this.props.reduxState.user.username }!
         </h1>
 
-        <p>Your ID is: { this.props.reduxState.user.id }</p>
         <div>
-          <p>profile view --- remove</p>
-          {/* display user's profile pic */}
-          <div className="tablePosition">
           <img className="profilePic" src={ this.props.reduxState.user.profile_pic } alt="profile pic"/>
           <SeedTable />
-          </div>
           <Button onClick={this.shareSeedsBtn}>Add Seeds</Button>
         </div>
 

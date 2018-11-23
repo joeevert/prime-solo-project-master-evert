@@ -72,7 +72,7 @@ class SeedTable extends Component {
     this.props.dispatch({ type: 'DELETE_SEED', payload: id})
   }
 
-  // edit table row cells
+  // edit table cells in row
   editSeed = (id) => {
     console.log('in editSeed, id:', id);
     this.props.dispatch({ type: 'EDIT_SEED', payload: id})
