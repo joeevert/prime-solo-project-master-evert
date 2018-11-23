@@ -76,9 +76,7 @@ class LoginPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-
       <div>
-
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -88,12 +86,8 @@ class LoginPage extends Component {
           </h2>
         )}
 
-        <Paper 
-          className={classes.paper}
-        >
-          <Avatar 
-            className={classes.avatar}
-          >
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
             <LockIcon />
           </Avatar>
           <form className={classes.form} onSubmit={this.login}>
@@ -133,11 +127,11 @@ class LoginPage extends Component {
             </div>
             <div>
               <Button
+                className={classes.button}
                 type="submit"
                 name="submit"
                 // value="Log In"
                 variant="contained"
-                className={classes.button}
                 style={{ backgroundColor: '#239956', color: '#fff' }}
               >
                 Log In
@@ -147,8 +141,8 @@ class LoginPage extends Component {
         </Paper>
         <div className="center">
           <Button
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
             className={classes.button}
+            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
           >
             Register
           </Button>
