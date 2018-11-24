@@ -108,7 +108,6 @@ class Home extends Component {
           Welcome, { this.props.reduxState.user.username }!
         </h1>
 
-        <p>Your ID is: { this.props.reduxState.user.id }</p>
         {/* <LogOutButton className="log-in" /> */}
 
         <Paper className={classes.paper}>
