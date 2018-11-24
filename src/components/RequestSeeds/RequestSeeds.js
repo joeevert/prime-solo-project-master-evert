@@ -1,10 +1,6 @@
-// TODO
-// -figure out the location state
-
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './AddSeeds.css';
+// import './AddSeeds.css';
 
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
@@ -64,7 +60,7 @@ const styles = theme => ({
 })
 
 
-class AddSeeds extends Component {
+class RequestSeeds extends Component {
 
   state = {
     seed_id: '',
@@ -123,7 +119,7 @@ class AddSeeds extends Component {
             className={classes.header}
             variant="h4"
           >
-            ADD SEEDS
+            REQUEST SEEDS
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
 
@@ -202,10 +198,10 @@ class AddSeeds extends Component {
   }
 }
 
-AddSeeds.propTypes = {
+RequestSeeds.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(withStyles(styles)(AddSeeds));
+export default connect(mapStateToProps)(withStyles(styles)(RequestSeeds));
