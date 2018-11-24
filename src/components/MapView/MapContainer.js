@@ -32,6 +32,7 @@ class MapContainer extends Component {
           {/* <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}> */}
           <div className="seedList">
             <h4>SEEDS AVAILABLE</h4>
+            {JSON.stringify(this.props.reduxState.seed)}
           </div>
         </section>
       </div>

@@ -23,7 +23,7 @@ const styles = theme => ({
       width: 300,
       padding: 10,
       backgroundColor: '#239956',
-      margin: theme.spacing.unit,
+      // margin: theme.spacing.unit,
   },
   paper: {
       width: 400,
@@ -53,7 +53,12 @@ const styles = theme => ({
     margin: '0', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
-  }
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    backgroundColor: '#fff',
+    minWidth: 300,
+  },
   // avatar: {
   //   margin: "auto",
   //   backgroundColor: '#01632C'
@@ -110,7 +115,7 @@ class AddSeeds extends Component {
     const { classes } = this.props;
     return (
       <section className="center">
-        {JSON.stringify(this.props.reduxState.category)}
+        {/* {JSON.stringify(this.props.reduxState.category)} */}
         <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
         </h1>
@@ -125,7 +130,7 @@ class AddSeeds extends Component {
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
 
-            <FormControl>    
+            <FormControl className={classes.formControl}>    
               <InputLabel>Category</InputLabel>
                 <Select
                   value={this.state.seed_id}
@@ -134,7 +139,7 @@ class AddSeeds extends Component {
                     name: 'seed_id',
                     id: '',
                   }}>
-                  {/* <MenuItem value=""><em>None</em></MenuItem> */}
+                  <MenuItem value=""><em>None</em></MenuItem>
                   {this.props.reduxState.category.map( seed => 
                   <MenuItem 
                     key={seed.id} 
