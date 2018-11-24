@@ -57,18 +57,16 @@ const Map = withScriptjs(withGoogleMap((props) => {
 
           {JSON.stringify(props.reduxState.allSeeds)}
 
-
             {/* Mapping over testMarks */}
             {props.reduxState.allSeeds.map( marker => 
             <MapMarker
-            key={marker.id} 
-            position={{lat: Number(marker.lat), lng: Number(marker.lng)}}
-            // content={marker.description}
-            content={props.reduxState.allSeeds.map( item => 
-              <p>{item.description}</p>)}
+              key={marker.id} 
+              position={{lat: Number(marker.lat), lng: Number(marker.lng)}}
+              // content={marker.description}
+              content={props.reduxState.allSeeds.map( item => 
+               <p>{item.description}</p>)}
             />
             )}
-
             
             {/* Mapping over testMarks */}
             {/* {testMarks.map( marker => 
