@@ -4,10 +4,10 @@ import Map from './Map';
 import './MapContainer.css';
 
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+// import TextField from '@material-ui/core/TextField';
+// import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -43,7 +43,7 @@ const styles = theme => ({
     backgroundColor: '#01632C', 
     margin: '0', 
     padding: '10px',
-    borderRadius: '22px 22px 0px 0px',
+    // borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
       width: 300,
@@ -61,7 +61,7 @@ class MapContainer extends Component {
 		activeMarker: null
   }
   
-  componentDidUpdate() {
+  componentDidMount() {
     console.log('MapContainer state', this.props.location);
   }
   
@@ -82,15 +82,31 @@ class MapContainer extends Component {
             activeMarker={this.state.activeMarker}
           />
           {/* <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}> */}
-          <div className="seedList">
-            <h4>SEEDS AVAILABLE</h4>
-            {JSON.stringify(this.props.reduxState.seed)}
-          </div>
+          <section className="seedList">
+            <Typography
+              className={classes.header} 
+              variant="h6"
+            >
+              SEEDS AVAILABLE
+            </Typography>
+            <ul style={{textAlign: 'left'}}>
+              {this.props.reduxState.allSeeds.map( item =>
+                <li key={item.id}>
+                  <p>
+                    <b>{item.category}:</b> {item.description}
+                  </p>
+                </li>)}
+            </ul>
+          </section>
         </section>
       </div>
     );
   }
 }
+
+MapContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = reduxState => ({ reduxState });
 

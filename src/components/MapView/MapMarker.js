@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 
+// material UI
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  button: {
+      width: 200,
+      padding: 10,
+      margin: theme.spacing.unit,
+  },
+  div: {
+      width: 350,
+      height: 350,
+      borderRadius: 25,
+      margin: "auto",
+      marginTop: theme.spacing.unit * 10,
+      padding: 35,
+      backgroundColor: '#67C28F'
+  }
+});
+
 class MapMarker extends Component {
 
   state = {
@@ -20,6 +42,7 @@ class MapMarker extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="App">
         <Marker
@@ -29,44 +52,22 @@ class MapMarker extends Component {
           {this.state.isOpen &&
           <InfoWindow>
             <div>
-              <p>{this.props.content}</p>
-              <button onClick={this.infoButton}>test</button>
+              <Typography>
+                {this.props.content}
+              </Typography>
+              <Button
+                size= "small" 
+                className={classes.button}
+                onClick={this.infoButton}
+                style={{ backgroundColor: '#239956', color: '#fff' }}
+              >
+                Make Request
+              </Button>
               <p>lat: {this.props.position.lat}</p>
               <p>lng: {this.props.position.lng} </p>
             </div>
           </InfoWindow> }
         </Marker>
-
-        {/* HARD CODED MARKERS FOR TESTING */}
-        {/* <Marker
-          position={ { lat: 44.977, lng: -93.263 } }
-          onClick={this.markerClick}  
-        >
-          { this.state.isOpen && 
-          <InfoWindow>
-            <div>
-              <p>AAAAAAAAAA</p>
-              <button>test</button>
-              <p>lat: 44.977</p>
-              <p>lng: -93.263 </p>
-            </div>
-          </InfoWindow> }
-        </Marker>
-
-        <Marker
-          position={ { lat: 44.975, lng: -93.255 } }
-          onClick={this.markerClick}  
-        >
-          { this.state.markerVisible && 
-          <InfoWindow>
-            <div>
-              <p>BBBBBBBBBB</p>
-              <button>test</button>
-              <p>lat: 44.975</p>
-              <p>lng: -93.255 </p>
-            </div>
-          </InfoWindow> }
-        </Marker> */}
       </div>
     );
   }
@@ -74,4 +75,4 @@ class MapMarker extends Component {
 
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(MapMarker);
+export default connect(mapStateToProps)(withStyles(styles)(MapMarker));
