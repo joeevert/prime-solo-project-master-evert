@@ -42,8 +42,6 @@ import MapMarker from './MapMarker'
 //   }
 // ]
 
-
-
 const Map = withScriptjs(withGoogleMap((props) => {
 
       return (
@@ -65,7 +63,9 @@ const Map = withScriptjs(withGoogleMap((props) => {
             <MapMarker
             key={marker.id} 
             position={{lat: Number(marker.lat), lng: Number(marker.lng)}}
-            content={marker.description}
+            // content={marker.description}
+            content={props.reduxState.allSeeds.map( item => 
+              <p>{item.description}</p>)}
             />
             )}
 

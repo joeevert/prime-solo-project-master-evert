@@ -47,12 +47,7 @@ const styles = theme => ({
         borderRadius: 5,
         margin: theme.spacing.unit,
         backgroundColor: '#fff'
-  
-    },
-    avatar: {
-      margin: "auto",
-      backgroundColor: '#01632C'
-    },
+    }
   });
 
 class SeedTable extends Component {
