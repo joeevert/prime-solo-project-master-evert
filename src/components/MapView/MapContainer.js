@@ -43,7 +43,7 @@ const styles = theme => ({
     backgroundColor: '#01632C', 
     margin: '0', 
     padding: '10px',
-    borderRadius: '22px 22px 0px 0px',
+    // borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
       width: 300,
@@ -89,14 +89,29 @@ class MapContainer extends Component {
           />
           {/* <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}> */}
           <div className="seedList">
-            <h4>SEEDS AVAILABLE</h4>
-            {JSON.stringify(this.props.reduxState.seed)}
+            <Typography
+              className={classes.header} 
+              variant="h6"
+            >
+              SEEDS AVAILABLE
+            </Typography>
+            {JSON.stringify(this.props.reduxState.allSeeds)}
+            <ul>
+              {this.props.reduxState.allSeeds.map( item =>
+                <li>
+                  <p>{item.description}</p>
+                </li>)}
+            </ul>
           </div>
         </section>
       </div>
     );
   }
 }
+
+MapContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = reduxState => ({ reduxState });
 
