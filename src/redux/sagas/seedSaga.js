@@ -25,9 +25,22 @@ function* fetchSeeds(action) {
     }
 }
 
+// gets all seeds inventory
+function* fetchAllSeeds(action) {
+    console.log('fetching all seeds generator: ', action);
+    try {
+      const response = yield call(axios.get, '/api/all_seeds');
+      yield put( { type: 'SET_ALL_SEEDS', payload: response.data } ); 
+    }
+    catch(error) {
+      console.log('error in fetch all seeds generator', error);
+    }
+}
+
 function* seedSaga() {
     yield takeEvery( 'ADD_SEED', addSeed);
     yield takeEvery( 'GET_SEEDS', fetchSeeds);
+    yield takeEvery( 'GET_ALL_SEEDS', fetchAllSeeds);
 }
 
 export default seedSaga;

@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const seed = (state = [], action) => {
     switch (action.type) {
       case 'SET_SEEDS':
@@ -6,5 +8,17 @@ const seed = (state = [], action) => {
         return state;
     }
 }
-  
-export default seed;
+
+const allSeeds = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_ALL_SEEDS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({
+  seed,
+  allSeeds,
+});

@@ -61,8 +61,14 @@ class MapContainer extends Component {
 		activeMarker: null
   }
   
-  componentDidUpdate() {
+  componentDidMount() {
     console.log('MapContainer state', this.props.location);
+    this.getAllSeeds();
+  }
+
+   // dispatch to rootSaga
+   getAllSeeds = () => {
+    this.props.dispatch({ type: 'GET_ALL_SEEDS' });
   }
   
   render() {
