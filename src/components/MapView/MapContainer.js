@@ -89,7 +89,7 @@ class MapContainer extends Component {
             >
               SEEDS AVAILABLE
             </Typography>
-            <ul>
+            <ul style={{textAlign: 'left'}}>
               {this.props.reduxState.allSeeds.map( item =>
                 <li key={item.id}>
                   <p>
