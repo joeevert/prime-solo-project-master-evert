@@ -13,6 +13,7 @@ class MapView extends Component {
   componentDidMount() {
     this.getGeoLocation();
     console.log('Home state CDM:', this.state);
+    this.props.dispatch({ type: 'GET_ALL_SEEDS' });
   }
 
   // componentDidUpdate() {
