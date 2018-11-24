@@ -23,11 +23,10 @@ const styles = theme => ({
       width: 300,
       padding: 10,
       backgroundColor: '#239956',
-      // margin: theme.spacing.unit,
+      margin: theme.spacing.unit,
   },
   paper: {
       width: 400,
-      height: 400,
       borderRadius: 25,
       margin: "auto",
       marginTop: theme.spacing.unit * 10,
@@ -44,7 +43,6 @@ const styles = theme => ({
       borderRadius: 5,
       margin: theme.spacing.unit,
       backgroundColor: '#fff'
-
   },
   header: {
     color: '#fff', 
@@ -55,9 +53,10 @@ const styles = theme => ({
     borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
-    // margin: theme.spacing.unit,
-    backgroundColor: '#fff',
-    minWidth: 300,
+      width: 300,
+      borderRadius: 5,
+      margin: theme.spacing.unit,
+      backgroundColor: '#fff'
   },
   // avatar: {
   //   margin: "auto",
@@ -133,59 +132,69 @@ class AddSeeds extends Component {
             <FormControl className={classes.formControl}>    
               <InputLabel>Category</InputLabel>
                 <Select
+                  required
                   value={this.state.seed_id}
                   onChange={this.handleChangeFor('seed_id')}
                   inputProps={{
                     name: 'seed_id',
-                    id: '',
-                  }}>
-                  <MenuItem value=""><em>None</em></MenuItem>
-                  {this.props.reduxState.category.map( seed => 
-                  <MenuItem 
-                    key={seed.id} 
-                    value={seed.id}
-                  >
-                    {seed.seed_category}
-                  </MenuItem>)}
-                </Select>
-              </FormControl>
+                    id: 'seed_id',
+                  }}
+                  variant="outlined"
+                > 
+                <MenuItem value=""><em>None</em></MenuItem>
+                {this.props.reduxState.category.map( seed => 
+                <MenuItem 
+                  key={seed.id} 
+                  value={seed.id}
+                >
+                  {seed.seed_category}
+                </MenuItem>)}
+              </Select>
+            </FormControl>
               <br/>
-
-            {/* <TextField
-              className={classes.textField}
-              type="text" 
-              placeholder="Seed Category"
-              name="seed_category"
-              value={this.state.seed_name}
-              onChange={this.handleChangeFor('seed_category')}
-            /> */}
             <TextField
               className={classes.textField}
-              type="text" 
-              placeholder="Description"
+              required
+              id="description"
+              label="Description"
+              type="text"
               name="description"
               value={this.state.description}
               onChange={this.handleChangeFor('description')}
+              margin="normal"
+              variant="outlined"
             />
             <TextField 
               className={classes.textField}
+              required
+              id="quantity"
+              label="Quantity"
               type="number" 
-              placeholder="Quantity"
               name="quantity"
               value={this.state.quantity}
               onChange={this.handleChangeFor('quantity')}
+              margin="normal"
+              variant="outlined"
             />
             <TextField 
               className={classes.textField}
+              required
+              id="location"
+              label="Location"
               type="text" 
-              placeholder="Location"
               name="location"
               value={this.state.location}
               onChange={this.handleChangeFor('location')}
+              margin="normal"
+              variant="outlined"
             />
-            {/* <input placeholder="Image"/> */}
-
-            <Button type="submit" variant="contained" className={classes.button}>
+            <Button 
+              className={classes.button}
+              type="submit" 
+              name="submit"
+              variant="contained" 
+              style={{ backgroundColor: '#239956', color: '#fff' }}
+            >
               Submit
             </Button>
           </form>
