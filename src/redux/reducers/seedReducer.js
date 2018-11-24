@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 const seed = (state = [], action) => {
     switch (action.type) {
       case 'SET_SEEDS':

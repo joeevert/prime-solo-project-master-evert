@@ -23,7 +23,8 @@ import './App.css';
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_USER'});
+    this.props.dispatch({ type: 'GET_ALL_SEEDS' });
   }
 
   render() {
@@ -64,7 +65,7 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
   )}

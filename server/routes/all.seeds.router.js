@@ -15,8 +15,9 @@ router.get('/', (req, res) => {
     WHERE "user_id" !=$1;`;
     pool.query(queryText, [req.user.id])
         .then((result) => {
-            console.log(`Got all user's seeds back from the db`);
             res.send(result.rows);
+            console.log(`Got all user's seeds back from the db`, result.rows);
+
         })
         .catch((error) => {
             console.log(`GET error ${queryText}`, error);

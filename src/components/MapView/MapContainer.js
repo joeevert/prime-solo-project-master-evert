@@ -4,10 +4,10 @@ import Map from './Map';
 import './MapContainer.css';
 
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+// import TextField from '@material-ui/core/TextField';
+// import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -63,12 +63,6 @@ class MapContainer extends Component {
   
   componentDidMount() {
     console.log('MapContainer state', this.props.location);
-    this.getAllSeeds();
-  }
-
-   // dispatch to rootSaga
-   getAllSeeds = () => {
-    this.props.dispatch({ type: 'GET_ALL_SEEDS' });
   }
   
   render() {
@@ -95,7 +89,6 @@ class MapContainer extends Component {
             >
               SEEDS AVAILABLE
             </Typography>
-            {JSON.stringify(this.props.reduxState.allSeeds)}
             <ul>
               {this.props.reduxState.allSeeds.map( item =>
                 <li key={item.id}>
