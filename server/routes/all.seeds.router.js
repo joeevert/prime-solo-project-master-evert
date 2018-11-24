@@ -4,8 +4,11 @@ const router = express.Router();
 
 // GET Route for all seeds inventory
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM user_seed_inventory;`;
-    pool.query(queryText)
+    console.log('req.user.id:', req.user.id);
+    const queryText = `SELECT "user_seed_inventory".*, "seeds"."seed_category" AS category FROM "user_seed_inventory"
+    JOIN "seeds" ON "user_seed_inventory"."seed_id" = "seeds"."id"
+    WHERE "user_id" !=$1;`;
+    pool.query(queryText, [req.user.id])
         .then((result) => {
             console.log(`Got all user's seeds back from the db`);
             res.send(result.rows);
