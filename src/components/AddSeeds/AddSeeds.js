@@ -123,7 +123,6 @@ class AddSeeds extends Component {
           <Typography 
             className={classes.header}
             variant="h4"
-            // style={{color: '#fff', fontWeight: 'bold', backgroundColor: '#01632C', margin: '0', padding: '10px'}}
           >
             ADD SEEDS
           </Typography>

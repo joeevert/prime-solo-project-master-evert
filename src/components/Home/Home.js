@@ -4,10 +4,55 @@ import './Home.css';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+  button: {
+      width: 300,
+      padding: 10,
+      backgroundColor: '#239956',
+      margin: theme.spacing.unit,
+  },
+  paper: {
+      width: 400,
+      height: 400,
+      borderRadius: 25,
+      margin: "auto",
+      marginTop: theme.spacing.unit * 10,
+      backgroundColor: '#67C28F',
+      border: '2px solid #01632C'
+  },
+  form: {
+      textAlign: "center",
+      padding: 15,
+      marginTop: theme.spacing.unit * 4,
+  },
+  textField: {
+      width: 300,
+      borderRadius: 5,
+      margin: theme.spacing.unit,
+      backgroundColor: '#fff'
+  },
+  header: {
+    color: '#fff', 
+    fontWeight: 'bold', 
+    backgroundColor: '#01632C', 
+    margin: '0', 
+    padding: '10px',
+    borderRadius: '22px 22px 0px 0px',
+  },
+  formControl: {
+      width: 300,
+      borderRadius: 5,
+      margin: theme.spacing.unit,
+      backgroundColor: '#fff'
+  },
+})
 
 class Home extends Component {
 
@@ -55,6 +100,7 @@ class Home extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <section className="center">
 
@@ -65,10 +111,15 @@ class Home extends Component {
         <p>Your ID is: { this.props.reduxState.user.id }</p>
         {/* <LogOutButton className="log-in" /> */}
 
-        <div className="displayBox">
-          <Typography component="h1" variant="h5">FIND SEEDS</Typography>
+        <Paper className={classes.paper}>
+          <Typography
+            className={classes.header}
+            variant="h4"
+          >
+            FIND SEEDS
+          </Typography>
           <TextField 
-            // className={classes.textField}
+            className={classes.textField}
             required
             id="search"
             label="Search"
@@ -80,36 +131,49 @@ class Home extends Component {
             variant="outlined"
           />
           <Button
-            className="currentLocationBtn" 
+            className={classes.button}            
             onClick={this.useCurrentLocation}
             variant="contained"
-            color="primary"
+            style={{ backgroundColor: '#239956', color: '#fff' }}
           >
-            @
+            @ Current Location
           </Button>
-          <Button 
+          <Button
+            className={classes.button}
             onClick={this.searchBtn}
             variant="contained"
-            color="primary"
+            style={{ backgroundColor: '#239956', color: '#fff' }}
           >
             SEARCH
           </Button>
-        </div>
+        </Paper>
 
-        <div className="displayBox">
-          <Typography component="h1" variant="h5">SHARE SEEDS</Typography>
-          <Button 
+        <Paper className={classes.paper}>
+          <Typography 
+            className={classes.header} 
+            variant="h4"
+          >
+            SHARE SEEDS
+          </Typography>
+          <Button
+            className={classes.button}
+            variant="contained" 
             onClick={this.shareSeedsBtn}
+            style={{ backgroundColor: '#239956', color: '#fff' }}
           >
             SHARE SEEDS
           </Button>
-        </div>
+        </Paper>
         
       </section>
     );
   }
 }
 
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(withStyles(styles)(Home));
