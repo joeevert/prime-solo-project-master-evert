@@ -88,7 +88,7 @@ class MapContainer extends Component {
             activeMarker={this.state.activeMarker}
           />
           {/* <div style={{height: '600px', width: '25%', backgroundColor: '#ddd'}}> */}
-          <div className="seedList">
+          <section className="seedList">
             <Typography
               className={classes.header} 
               variant="h6"
@@ -98,11 +98,13 @@ class MapContainer extends Component {
             {JSON.stringify(this.props.reduxState.allSeeds)}
             <ul>
               {this.props.reduxState.allSeeds.map( item =>
-                <li>
-                  <p>{item.description}</p>
+                <li key={item.id}>
+                  <p>
+                    <b>{item.category}:</b> {item.description}
+                  </p>
                 </li>)}
             </ul>
-          </div>
+          </section>
         </section>
       </div>
     );

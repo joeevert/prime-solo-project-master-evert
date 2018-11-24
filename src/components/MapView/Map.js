@@ -1,7 +1,6 @@
 // import React, { Component } from 'react';
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 // import { Marker, InfoWindow } from 'react-google-maps';
 
@@ -20,7 +19,7 @@ import MapMarker from './MapMarker'
 let testMarks = [
   {
     id: 1,
-    position: {lat: 44.97, lng: -93.26},
+    position: {lat: 44.87, lng: -93.28},
     content: 'CCCCC'
   },
 
