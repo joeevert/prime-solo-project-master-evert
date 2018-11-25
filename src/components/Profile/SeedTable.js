@@ -104,18 +104,19 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.description}</CustomTableCell>
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
                   <CustomTableCell>{moment(seed.date_added).format("MMM Do, YYYY")}</CustomTableCell>
-                  {/* moment(this.props.project.date_completed).format("MMM Do, YYYY") */}
                   <CustomTableCell>
                     <Button
                       color="primary"
                       variant="contained" 
-                      onClick={() => this.editSeed()}>
+                      onClick={() => this.editSeed()}
+                    >
                       EDIT
                     </Button>
                     <Button
                       color="secondary"
                       variant="contained" 
-                      onClick={() => this.deleteSeed()}>
+                      onClick={() => this.deleteSeed(seed.id)}
+                    >
                       DELETE
                     </Button>
                   </CustomTableCell>

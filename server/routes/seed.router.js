@@ -36,6 +36,21 @@ router.post('/', (req, res) => {
         })
 });
 
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete request for seed id', reqId);
+    let sqlText = `DELETE FROM user_seed_inventory WHERE id=$1;`;
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('seed deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error in deleting ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
+
 
 // POST route for adding seeds to user's seed inventory
 // router.post('/', async (req, res) => {

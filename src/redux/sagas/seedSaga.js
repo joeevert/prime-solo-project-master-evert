@@ -37,10 +37,24 @@ function* fetchAllSeeds(action) {
     }
 }
 
+// saga to deletes items from server
+function* deleteSeed (action) {
+    console.log('delete seed generator', action.payload);
+    const seedid = action.payload
+    try {
+        yield call(axios.delete, `/api/seed_inventory/${seedid}`);
+        yield put( { type: 'GET_SEEDS' } );
+    }
+    catch(error) {
+        console.log('error with delete request', error);
+    }
+}
+
 function* seedSaga() {
     yield takeEvery( 'ADD_SEED', addSeed);
     yield takeEvery( 'GET_SEEDS', fetchSeeds);
     yield takeEvery( 'GET_ALL_SEEDS', fetchAllSeeds);
+    yield takeEvery( 'DELETE_SEED', deleteSeed);
 }
 
 export default seedSaga;
