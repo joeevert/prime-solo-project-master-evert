@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log('req.user.id:', req.user.id);
     const queryText = `SELECT "user_seed_inventory".*, 
-    "seeds"."seed_category" AS category, 
+    "seeds"."seed_category" AS category,
+    "user_info"."username", 
     "user_info"."latitude" AS lat,
     "user_info"."longitude" AS lng
     FROM "user_seed_inventory"

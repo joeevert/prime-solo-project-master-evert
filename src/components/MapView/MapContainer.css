@@ -4,3 +4,8 @@
     background-color: #ddd;
     text-align: center;
 }
+
+.mapList {
+    text-align: left;
+    list-style: none;
+}

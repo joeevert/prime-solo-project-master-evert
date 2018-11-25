@@ -47,9 +47,10 @@ class MapSeedList extends Component {
           >
             SEEDS AVAILABLE
           </Typography>
-          <ul style={{textAlign: 'left'}}>
+          <ul className="mapList">
             {this.props.reduxState.allSeeds.map( item =>
               <li key={item.id}>
+                <p>{item.username}</p>
                 <p>
                   <b>{item.category}:</b> {item.description}
                 </p>
