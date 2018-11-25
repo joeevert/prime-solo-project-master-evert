@@ -1,45 +1,62 @@
 .container {
-    background-color: #eee;
+    /* background-color: #eee; */
     width: 85%;
     margin: auto;
 }
 
-.profilePic {
-    display: inline-block;
-    border-radius: 25px;
-    border: 2px solid #01632C;
-    height: 250px;
-    width: 250px;
+.flexContainer {
+    display: flex;
+    margin-top: 75px;
 }
 
-.seedTable {
+.flexContainer > div {
+    margin-left: 25px;
+    /* padding: 20px; */
+}
+
+.profilePic {
+    display: inline-block;
+    border-radius: 25px 25px 0px 0px;
+    /* border: 2px solid #01632C; */
+    height: 250px;
+    width: 250px;
+    margin-bottom: 0px;
+}
+
+.info {
+    margin-top: 0px;
+    padding: 10px;
+    background-color: #239956;    
+}
+
+/* .seedTable {
     border-collapse: collapse;
     margin: auto;
     width: 75%;
-}
+} */
 
-.seedTable td, .seedTable th {
+/* .seedTable td, .seedTable th {
     border: 1px solid #ddd;
     padding: 5px;
-}
+} */
 
-.seedTable tr:nth-child(even) {
+/* .seedTable tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+} */
 
-.seedTable tr:hover {
+/* .seedTable tr:hover {
     background-color: #ddd;
-}
+} */
 
-.seedTable th {
+/* .seedTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #239956;
     color: white;
-}
+} */
 
-.tablePosition {
+/* .tablePosition {
     display: inline;
     margin: auto;
-}
+} */

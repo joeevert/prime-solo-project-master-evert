@@ -5,7 +5,7 @@
     /* background-color: aquamarine; */
 }
 
-.displayBox {
+/* .displayBox {
     width: 400px;
     height: 400px;
     margin: 50px;
@@ -13,16 +13,18 @@
     display: inline-block;
     border-radius: 25px;
     border: 2px solid #01632C;
-    /* background-image: url("/public/images/seeds.jpg"); */
-}
+} */
 
-.displayBox h2 {
+/* background-image: url("/public/images/seeds.jpg"); */
+
+
+/* .displayBox h2 {
     margin: 0;
     color: #fff;
     background-color: #01632C;
     padding: 10px;
     border-radius: 22px 22px 0px 0px;
-}
+} */
 
 .currentLocationBtn {
     margin: 0;

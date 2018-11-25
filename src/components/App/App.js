@@ -16,8 +16,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 // import AboutPage from '../AboutPage/AboutPage';
 import Home from '../Home/Home';
 import AddSeeds from '../AddSeeds/AddSeeds';
-import MapView from '../MapView/MapView'
-import Profile from '../Profile/Profile'
+import MapView from '../MapView/MapView';
+import Profile from '../Profile/Profile';
+import RequestSeeds from '../RequestSeeds/RequestSeeds';
 
 import './App.css';
 
@@ -61,6 +62,11 @@ class App extends Component {
               exact
               path="/profile"
               component={Profile}
+            />
+            <ProtectedRoute
+              exact
+              path="/requestseeds"
+              component={RequestSeeds}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

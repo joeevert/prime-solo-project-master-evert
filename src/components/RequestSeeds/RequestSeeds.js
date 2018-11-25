@@ -1,10 +1,6 @@
-// TODO
-// -figure out the location state
-
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './AddSeeds.css';
+// import './AddSeeds.css';
 
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
@@ -64,16 +60,14 @@ const styles = theme => ({
 })
 
 
-class AddSeeds extends Component {
+class RequestSeeds extends Component {
 
   state = {
     seed_id: '',
     description: '',
     quantity: '',
-    // location: '', // will be updated based on user's location or input address???
-    user_id: null,
-    lat: 0,
-    lng: 0
+    message: '', // will be updated based on user's location or input address???
+    user_id: null
   }
 
   componentDidMount() {
@@ -87,7 +81,6 @@ class AddSeeds extends Component {
 
   getCategories = () => {
     this.props.dispatch({ type: 'GET_CATEGORIES' });
-    this.getGeoLocation();
   }
 
   // adds seed to user's seed inventory table
@@ -100,7 +93,7 @@ class AddSeeds extends Component {
             seed_id: '',
             description: '',
             quantity: '',
-            location: '',
+            message: '',
         })
   }
 
@@ -110,24 +103,6 @@ class AddSeeds extends Component {
         ...this.state,
         [propertyName]: event.target.value
     })
-  }
-
-  getGeoLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // console.log('add seeds location:', position.coords);
-          this.setState({
-              ...this.state,
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-          })
-        }
-      )
-    }
-    else {
-			alert('Location services not supported by your browser');
-    }
   }
 
   render() {
@@ -144,7 +119,7 @@ class AddSeeds extends Component {
             className={classes.header}
             variant="h4"
           >
-            ADD SEEDS
+            REQUEST SEEDS
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
 
@@ -195,18 +170,18 @@ class AddSeeds extends Component {
               margin="normal"
               variant="outlined"
             />
-            {/* <TextField 
+            <TextField 
               className={classes.textField}
               required
-              id="location"
-              label="Location"
+              id="message"
+              label="Message"
               type="text" 
-              name="location"
-              value={this.state.location}
-              onChange={this.handleChangeFor('location')}
+              name="message"
+              value={this.state.message}
+              onChange={this.handleChangeFor('message')}
               margin="normal"
               variant="outlined"
-            /> */}
+            />
             <Button 
               className={classes.button}
               type="submit" 
@@ -214,7 +189,7 @@ class AddSeeds extends Component {
               variant="contained" 
               style={{ backgroundColor: '#239956', color: '#fff' }}
             >
-              Submit
+              Submit Request
             </Button>
           </form>
         </Paper>
@@ -223,10 +198,10 @@ class AddSeeds extends Component {
   }
 }
 
-AddSeeds.propTypes = {
+RequestSeeds.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(withStyles(styles)(AddSeeds));
+export default connect(mapStateToProps)(withStyles(styles)(RequestSeeds));

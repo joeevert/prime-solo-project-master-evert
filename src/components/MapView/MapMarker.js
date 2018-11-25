@@ -61,7 +61,7 @@ class MapMarker extends Component {
                 onClick={this.infoButton}
                 style={{ backgroundColor: '#239956', color: '#fff' }}
               >
-                Make Request
+                Request
               </Button>
               <p>lat: {this.props.position.lat}</p>
               <p>lng: {this.props.position.lng} </p>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+import moment from 'moment';
 
 // material UI
 import Typography from '@material-ui/core/Typography';
@@ -73,13 +75,18 @@ class SeedTable extends Component {
     this.props.dispatch({ type: 'EDIT_SEED', payload: id})
   }
 
+  shareSeedsBtn = () => {
+    console.log('share seeds button clicked');
+    this.props.history.push('/addseeds');
+  }
+
   render() {
     const { classes } = this.props;
-    return (      
+    return (
+      <div>
+        <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
         <Paper>
-        {JSON.stringify(this.props.reduxState.seed)}
-
-          <Typography variant="h6">Seeds:</Typography>
+        {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
@@ -96,8 +103,8 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.category}</CustomTableCell>
                   <CustomTableCell>{seed.description}</CustomTableCell>
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
-                  <CustomTableCell>{seed.date_added}</CustomTableCell>
-
+                  <CustomTableCell>{moment(seed.date_added).format("MMM Do, YYYY")}</CustomTableCell>
+                  {/* moment(this.props.project.date_completed).format("MMM Do, YYYY") */}
                   <CustomTableCell>
                     <Button
                       color="primary"
@@ -117,10 +124,12 @@ class SeedTable extends Component {
             </TableBody>
           </Table>
         </Paper>
+        <Button onClick={this.shareSeedsBtn}>Add Seeds</Button> 
+      </div> 
     );
   }
 }
 
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(withStyles(styles)(SeedTable));
+export default connect(mapStateToProps)(withStyles(styles)(withRouter(SeedTable)));
