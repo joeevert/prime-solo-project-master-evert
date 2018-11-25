@@ -53,10 +53,6 @@ const styles = theme => ({
       margin: theme.spacing.unit,
       backgroundColor: '#fff'
   },
-  // avatar: {
-  //   margin: "auto",
-  //   backgroundColor: '#01632C'
-  // },
 })
 
 
@@ -109,7 +105,7 @@ class RequestSeeds extends Component {
     const { classes } = this.props;
     return (
       <section className="center">
-        {/* {JSON.stringify(this.props.reduxState.category)} */}
+        {JSON.stringify(this.props.reduxState.request)}
         <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
         </h1>

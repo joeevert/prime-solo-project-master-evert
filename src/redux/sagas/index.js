@@ -4,6 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import seedSaga from './seedSaga';
 import categorySaga from './categorySaga';
+import requestSaga from './requestSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -12,14 +13,13 @@ import categorySaga from './categorySaga';
 // some sagas trigger other sagas, as an example
 // the registration triggers a login
 // and login triggers setting the user
-export default function* rootSaga() {
-  console.log('rootSaga fired');
-  
+export default function* rootSaga() {  
   yield all([
     loginSaga(),
     registrationSaga(),
     userSaga(),
     seedSaga(),
     categorySaga(),
+    requestSaga(),
   ]);
 }
