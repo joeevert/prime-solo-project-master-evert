@@ -48,7 +48,13 @@ class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    latitude: null,
+    longitude: null,
   };
+
+  componentDidMount() {
+    this.getGeoLocation();
+  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -59,6 +65,8 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          latitude: Number(this.state.latitude),
+          longitude: Number(this.state.longitude)
         },
       });
     } else {
@@ -70,6 +78,24 @@ class RegisterPage extends Component {
     this.setState({
       [propertyName]: event.target.value,
     });
+  }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // console.log('add seeds location:', position.coords);
+          this.setState({
+              ...this.state,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+          })
+        }
+      )
+    }
+    else {
+			alert('Location services not supported by your browser');
+    }
   }
 
   render() {

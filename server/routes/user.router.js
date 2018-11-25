@@ -18,9 +18,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {  
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
 
-  const queryText = 'INSERT INTO user_info (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
+  // const queryText = 'INSERT INTO user_info (username, password) VALUES ($1, $2) RETURNING id'; // original
+  const queryText = 'INSERT INTO user_info (username, password, latitude, longitude) VALUES ($1, $2, $3, $4) RETURNING id'; // geolocation test
+
+  pool.query(queryText, [username, password, latitude, longitude])
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });

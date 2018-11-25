@@ -70,8 +70,10 @@ class AddSeeds extends Component {
     seed_id: '',
     description: '',
     quantity: '',
-    location: '', // will be updated based on user's location or input address???
-    user_id: null
+    // location: '', // will be updated based on user's location or input address???
+    user_id: null,
+    lat: 0,
+    lng: 0
   }
 
   componentDidMount() {
@@ -85,6 +87,7 @@ class AddSeeds extends Component {
 
   getCategories = () => {
     this.props.dispatch({ type: 'GET_CATEGORIES' });
+    this.getGeoLocation();
   }
 
   // adds seed to user's seed inventory table
@@ -107,6 +110,24 @@ class AddSeeds extends Component {
         ...this.state,
         [propertyName]: event.target.value
     })
+  }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // console.log('add seeds location:', position.coords);
+          this.setState({
+              ...this.state,
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+          })
+        }
+      )
+    }
+    else {
+			alert('Location services not supported by your browser');
+    }
   }
 
   render() {
@@ -174,7 +195,7 @@ class AddSeeds extends Component {
               margin="normal"
               variant="outlined"
             />
-            <TextField 
+            {/* <TextField 
               className={classes.textField}
               required
               id="location"
@@ -185,7 +206,7 @@ class AddSeeds extends Component {
               onChange={this.handleChangeFor('location')}
               margin="normal"
               variant="outlined"
-            />
+            /> */}
             <Button 
               className={classes.button}
               type="submit" 

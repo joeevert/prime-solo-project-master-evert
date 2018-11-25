@@ -25,7 +25,7 @@ const styles = theme => ({
       margin: "auto",
       marginTop: theme.spacing.unit * 10,
       backgroundColor: '#67C28F',
-      border: '2px solid #01632C'
+      border: '2px solid #01632C',
   },
   form: {
       textAlign: "center",

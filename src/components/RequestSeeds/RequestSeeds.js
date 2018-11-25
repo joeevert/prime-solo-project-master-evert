@@ -66,7 +66,7 @@ class RequestSeeds extends Component {
     seed_id: '',
     description: '',
     quantity: '',
-    location: '', // will be updated based on user's location or input address???
+    message: '', // will be updated based on user's location or input address???
     user_id: null
   }
 
@@ -93,7 +93,7 @@ class RequestSeeds extends Component {
             seed_id: '',
             description: '',
             quantity: '',
-            location: '',
+            message: '',
         })
   }
 
@@ -173,12 +173,12 @@ class RequestSeeds extends Component {
             <TextField 
               className={classes.textField}
               required
-              id="location"
-              label="Location"
+              id="message"
+              label="Message"
               type="text" 
-              name="location"
-              value={this.state.location}
-              onChange={this.handleChangeFor('location')}
+              name="message"
+              value={this.state.message}
+              onChange={this.handleChangeFor('message')}
               margin="normal"
               variant="outlined"
             />
@@ -189,7 +189,7 @@ class RequestSeeds extends Component {
               variant="contained" 
               style={{ backgroundColor: '#239956', color: '#fff' }}
             >
-              Submit
+              Submit Request
             </Button>
           </form>
         </Paper>
