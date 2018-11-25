@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
+import seedMarker from './seed_marker.png'
 
 // material UI
 import Button from '@material-ui/core/Button';
@@ -47,7 +48,8 @@ class MapMarker extends Component {
       <div className="App">
         <Marker
           position={this.props.position}
-          onClick={this.markerClick} 
+          onClick={this.markerClick}
+          icon={seedMarker} 
         >
           {this.state.isOpen &&
           <InfoWindow>
