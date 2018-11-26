@@ -11,27 +11,28 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-      width: 300,
-      padding: 10,
+      width: '300px',
+      padding: '10px',
       backgroundColor: '#239956',
       margin: theme.spacing.unit,
   },
   paper: {
-      width: 400,
-      borderRadius: 25,
-      margin: "auto",
-      marginTop: theme.spacing.unit * 10,
+      width: '400px',
+      borderRadius: '25px',
+      margin: 'auto',
+      // marginTop: theme.spacing.unit * 10,
       backgroundColor: '#67C28F',
       border: '2px solid #01632C'
   },
   form: {
       textAlign: "center",
       padding: 15,
-      marginTop: theme.spacing.unit * 4,
+      // marginTop: theme.spacing.unit * 4,
+      margin: 'auto',
   },
   textField: {
-      width: 300,
-      borderRadius: 5,
+      width: '300px',
+      borderRadius: '5px',
       margin: theme.spacing.unit,
       backgroundColor: '#fff'
   },
@@ -42,6 +43,15 @@ const styles = theme => ({
     margin: '0', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
+  },
+  request: {
+    width: '300px',
+    margin: 'auto', 
+
+    backgroundColor: '#fff',
+    borderRadius: '25px',
+    textAlign: 'left', 
+    paddingLeft: '20px', 
   }
 })
 
@@ -92,11 +102,13 @@ class RequestSeeds extends Component {
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
             {this.props.reduxState.request.map( item =>
-            <div key={item.id} style={{padding: '25px', textAlign: 'left'}}>
+            <div className={classes.request} key={item.id}>
               <Typography variant="h6">TO: {item.recipient}</Typography>
               <Typography variant="h6">FROM: {this.props.reduxState.user.username}</Typography>
               <Typography variant="h6">CATEGORY: {item.category}</Typography>
               <Typography variant="h6">DESCRIPTION: {item.description}</Typography>
+            </div>
+            )}
             <TextField 
               className={classes.textField}
               required
@@ -121,8 +133,6 @@ class RequestSeeds extends Component {
               margin="normal"
               variant="outlined"
             />
-            </div>
-            )}
             <Button 
               className={classes.button}
               type="submit" 
