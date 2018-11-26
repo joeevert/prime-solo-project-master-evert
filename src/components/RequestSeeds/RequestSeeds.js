@@ -68,28 +68,17 @@ class RequestSeeds extends Component {
     message: '',
   }
 
-  componentDidMount(){
-    // console.log('state', this.state);
-    
-    // this.setState({
-    //   ...this.state,
-    //   line_item: this.props.reduxState.request.id,
-    //   received_by: this.props.reduxState.request.user_id,
-    //   sent_by: this.props.reduxState.user.id,
-    // })
-  }
-
   // adds seed to user's seed inventory table
   handleRequest = (event) => {
     event.preventDefault();
     console.log('requesting seed', this.state);
-    const payload = {
+    const seedRequest = {
       ...this.state,
         line_item: this.props.reduxState.request.id,
         received_by: this.props.reduxState.request.user_id,
         sent_by: this.props.reduxState.user.id,
     }
-    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: payload });
+    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: seedRequest });
   }
 
   // handles input changes

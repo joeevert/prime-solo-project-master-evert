@@ -5,7 +5,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 function* submitRequest(action) {
     console.log('submitting request:', action);
     try {
-        yield call(axios.post, '/api/request', action.payload);
+        yield call(axios.post, '/api/messages', action.payload);
         yield put( { type: 'GET_MESSAGES' } );
     }
     catch (error) {
