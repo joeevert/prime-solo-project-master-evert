@@ -1,4 +1,4 @@
-const request = (state = [], action) => {
+const request = (state = {}, action) => {
     switch (action.type) {
       case 'FETCH_SEED_REQUEST':
         return action.payload;

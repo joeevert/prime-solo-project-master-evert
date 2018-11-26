@@ -20,8 +20,7 @@ const styles = theme => ({
     backgroundColor: '#01632C', 
     margin: '0', 
     padding: '10px',
-  },
-  
+  }, 
 })
 
 class MapSeedList extends Component {
@@ -45,10 +44,10 @@ class MapSeedList extends Component {
           <ul className="mapList">
             {this.props.reduxState.allSeeds.map( item =>
               <li key={item.id}>
-                <p>{item.username}</p>
-                <p>
+                <Typography variant='h6'>{item.username}</Typography>
+                <span>
                   <b>{item.category}:</b> {item.description}
-                </p>
+                </span>
                 <Button
                   className={classes.button}
                   onClick={() => this.requestBtn(item.id)}
@@ -58,8 +57,6 @@ class MapSeedList extends Component {
                 </Button>
               </li>)}
           </ul>
-          {JSON.stringify(this.props.reduxState.request)}
-
       </div>
     );
   }
