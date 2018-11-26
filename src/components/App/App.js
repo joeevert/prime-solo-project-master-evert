@@ -13,12 +13,12 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-// import AboutPage from '../AboutPage/AboutPage';
 import Home from '../Home/Home';
 import AddSeeds from '../AddSeeds/AddSeeds';
 import MapView from '../MapView/MapView';
 import Profile from '../Profile/Profile';
 import RequestSeeds from '../RequestSeeds/RequestSeeds';
+import Messages from'../Messages/Messages';
 
 import './App.css';
 
@@ -67,6 +67,11 @@ class App extends Component {
               exact
               path="/requestseeds"
               component={RequestSeeds}
+            />
+            <ProtectedRoute
+              exact
+              path="/messages"
+              component={Messages}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
