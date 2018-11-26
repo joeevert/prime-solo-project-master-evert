@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
     pool.query(queryText, [reqId])
         .then((result) => {
             console.log(`Got seed requested back from user's inventory`, result.rows);
-            res.send(result.rows);
+            res.send(result.rows[0]);
         })
         .catch((error) => {
             console.log(`GET error ${queryText}`, error);

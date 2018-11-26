@@ -27,13 +27,12 @@ const styles = theme => ({
   form: {
       textAlign: "center",
       padding: 15,
-      // marginTop: theme.spacing.unit * 4,
       margin: 'auto',
   },
   textField: {
       width: '300px',
       borderRadius: '5px',
-      margin: theme.spacing.unit,
+      margin: '0px 0px 10px 0px',
       backgroundColor: '#fff'
   },
   header: {
@@ -46,12 +45,15 @@ const styles = theme => ({
   },
   request: {
     width: '300px',
-    margin: 'auto', 
-
-    backgroundColor: '#fff',
-    borderRadius: '25px',
+    margin: 'auto',
+  },
+  populatedItems: {
+    width: '280px',
+    padding: '10px',
     textAlign: 'left', 
-    paddingLeft: '20px', 
+    borderRadius: '5px',
+    margin: '0px 0px 10px 0px',
+    backgroundColor: '#fff',
   }
 })
 
@@ -59,21 +61,35 @@ const styles = theme => ({
 class RequestSeeds extends Component {
 
   state = {
+    line_item: '',
+    received_by: '',
+    sent_by: '',
     quantity: '',
     message: '',
-    user_id: null
+  }
+
+  componentDidMount(){
+    // console.log('state', this.state);
+    
+    // this.setState({
+    //   ...this.state,
+    //   line_item: this.props.reduxState.request.id,
+    //   received_by: this.props.reduxState.request.user_id,
+    //   sent_by: this.props.reduxState.user.id,
+    // })
   }
 
   // adds seed to user's seed inventory table
   handleRequest = (event) => {
     event.preventDefault();
     console.log('requesting seed', this.state);
-    this.props.dispatch({ type: 'REQUEST_SEED', payload: this.state });
-        this.setState({
-            ...this.state,
-            quantity: '',
-            message: '',
-        })
+    const payload = {
+      ...this.state,
+        line_item: this.props.reduxState.request.id,
+        received_by: this.props.reduxState.request.user_id,
+        sent_by: this.props.reduxState.user.id,
+    }
+    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: payload });
   }
 
   // handles input changes
@@ -89,6 +105,9 @@ class RequestSeeds extends Component {
     return (
       <section className="center">
         {JSON.stringify(this.props.reduxState.request)}
+        {JSON.stringify(this.props.reduxState.user)}
+        <p>state: {JSON.stringify(this.state)}</p>
+
         <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
         </h1>
@@ -100,15 +119,42 @@ class RequestSeeds extends Component {
           >
             REQUEST SEEDS
           </Typography>
-          <form className={classes.form} onSubmit={this.handleSubmit}>
-            {this.props.reduxState.request.map( item =>
-            <div className={classes.request} key={item.id}>
-              <Typography variant="h6">TO: {item.recipient}</Typography>
-              <Typography variant="h6">FROM: {this.props.reduxState.user.username}</Typography>
-              <Typography variant="h6">CATEGORY: {item.category}</Typography>
-              <Typography variant="h6">DESCRIPTION: {item.description}</Typography>
-            </div>
-            )}
+          <form className={classes.form} onSubmit={this.handleRequest}>
+            
+            <div className={classes.request}>
+              <Typography className={classes.populatedItems} variant="h6">To: {this.props.reduxState.request.recipient}</Typography>
+              <Typography className={classes.populatedItems} variant="h6">ID: {this.props.reduxState.request.user_id}</Typography>
+
+              {/* <Typography variant="h6">FROM: {this.props.reduxState.user.username}</Typography> */}
+              <Typography className={classes.populatedItems} variant="h6">Category: {this.props.reduxState.request.category}</Typography>
+              <Typography className={classes.populatedItems} variant="h6">Description: {this.props.reduxState.request.description}</Typography>
+            </div> 
+              {/* <TextField
+              className={classes.textField}
+              disabled
+              label="Recipient"
+              value={item.recipient}
+              margin="normal"
+              variant="outlined"
+              />
+              <TextField
+              className={classes.textField}
+              disabled
+              label="Category"
+              value={item.category}
+              margin="normal"
+              variant="outlined"
+              />
+              <TextField
+              className={classes.textField}
+              disabled
+              label="Description"
+              value={item.description}
+              margin="normal"
+              variant="outlined"
+              />
+            */}
+
             <TextField 
               className={classes.textField}
               required
