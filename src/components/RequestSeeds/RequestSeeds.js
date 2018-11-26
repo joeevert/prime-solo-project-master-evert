@@ -93,9 +93,9 @@ class RequestSeeds extends Component {
           <form className={classes.form} onSubmit={this.handleSubmit}>
             {this.props.reduxState.request.map( item =>
             <div key={item.id} style={{padding: '25px', textAlign: 'left'}}>
-              <Typography variant="h6">TO: {item.user_id}</Typography>
+              <Typography variant="h6">TO: {item.recipient}</Typography>
               <Typography variant="h6">FROM: {this.props.reduxState.user.username}</Typography>
-              <Typography variant="h6">CATEGORY: {item.seed_id}</Typography>
+              <Typography variant="h6">CATEGORY: {item.category}</Typography>
               <Typography variant="h6">DESCRIPTION: {item.description}</Typography>
             <TextField 
               className={classes.textField}

@@ -23,7 +23,10 @@ router.get('/',  rejectUnauthenticated, (req, res) => {
 router.get('/:id', (req, res) => {
     const reqId = req.params.id;
     console.log('GET request for user requesting line item', reqId);
-    const queryText = `SELECT "user_seed_inventory".* FROM "user_seed_inventory" WHERE "id"=$1;`;
+    const queryText = `SELECT user_info.username AS recipient, user_seed_inventory.*, seeds.seed_category AS category FROM user_info
+    JOIN user_seed_inventory ON user_info.id = user_seed_inventory.user_id
+    JOIN seeds ON user_seed_inventory.seed_id = seeds.id
+    WHERE user_seed_inventory.id=$1`;
     pool.query(queryText, [reqId])
         .then((result) => {
             console.log(`Got seed requested back from user's inventory`, result.rows);
