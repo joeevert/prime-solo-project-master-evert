@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Home.css';
+import seeds from './seeds.jpg';
+import share_seeds from './share_seeds.jpg';
+
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -18,38 +21,47 @@ const styles = theme => ({
       backgroundColor: '#239956',
       margin: theme.spacing.unit,
   },
+  // paper: {
+  //     width: 400,
+  //     height: 400,
+  //     borderRadius: 25,
+  //     margin: "auto",
+  //     marginTop: theme.spacing.unit * 10,
+  //     // backgroundColor: '#67C28F',
+  //     border: '2px solid #01632C',
+  // },
   paper: {
-      width: 400,
-      height: 400,
-      borderRadius: 25,
-      margin: "auto",
-      marginTop: theme.spacing.unit * 10,
-      backgroundColor: '#67C28F',
-      border: '2px solid #01632C',
+    width: '400px',
+    height: '400px',
+    margin: '50px',
+    // background-color: #67C28F;
+    display: 'inline-block',
+    borderRadius: '25px',
+    border: '2px solid #01632C',
   },
   form: {
       textAlign: "center",
       padding: 15,
-      marginTop: theme.spacing.unit * 4,
+      margin: 0,
   },
   textField: {
       width: 300,
       borderRadius: 5,
-      margin: theme.spacing.unit,
+      margin: 0,
       backgroundColor: '#fff'
   },
   header: {
     color: '#fff', 
     fontWeight: 'bold', 
     backgroundColor: '#01632C', 
-    margin: '0', 
+    marginBottom: '50px', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
       width: 300,
       borderRadius: 5,
-      margin: theme.spacing.unit,
+      margin: 0,
       backgroundColor: '#fff'
   },
 })
@@ -87,9 +99,9 @@ class Home extends Component {
         (position) => {
           console.log(position.coords);
           this.setState({
-              ...this.state,
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
+            ...this.state,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
           })
         }
       )
@@ -110,7 +122,10 @@ class Home extends Component {
 
         {/* <LogOutButton className="log-in" /> */}
 
-        <Paper className={classes.paper}>
+        <Paper 
+          className={classes.paper}
+          style={{ backgroundImage: `url(${seeds})`}}
+        >
           <Typography
             className={classes.header}
             variant="h4"
@@ -126,7 +141,6 @@ class Home extends Component {
             name="search"
             // value={this.state.search}
             // onChange={this.handleInputChangeFor('search')}
-            margin="normal"
             variant="outlined"
           />
           <Button
@@ -146,8 +160,11 @@ class Home extends Component {
             SEARCH
           </Button>
         </Paper>
-
-        <Paper className={classes.paper}>
+        OR
+        <Paper 
+          className={classes.paper}
+          style={{ backgroundImage: `url(${share_seeds})`}}
+        >
           <Typography 
             className={classes.header} 
             variant="h4"
