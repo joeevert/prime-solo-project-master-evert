@@ -54,13 +54,24 @@ const styles = theme => ({
       display: 'inline-block',
       backgroundColor: '#01632C',
       color: '#fff',
-      padding: '15px'
+      padding: '15px',
+      cursor: 'pointer'
     }
   });
 
 class Messages extends Component {
 
   componentDidMount() {
+  }
+
+  sentView = () => {
+    console.log('sent view');
+    
+  }
+
+  receivedView = () => {
+    console.log('received view');
+    
   }
 
   // deletes table row and message from message table
@@ -74,8 +85,8 @@ class Messages extends Component {
     return (
       <div>
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
-        <Typography className={classes.tabs}>SENT</Typography>
-        <Typography className={classes.tabs}>RECEIVED</Typography>
+        <Typography className={classes.tabs} onClick={this.sentView}>SENT</Typography>
+        <Typography className={classes.tabs} onClick={this.receivedView}>RECEIVED</Typography>
         <Paper>
         {/* {JSON.stringify(this.props.reduxState.message)} */}
         <div>

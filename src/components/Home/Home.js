@@ -160,7 +160,6 @@ class Home extends Component {
             SEARCH
           </Button>
         </Paper>
-        OR
         <Paper 
           className={classes.paper}
           style={{ backgroundImage: `url(${share_seeds})`}}
