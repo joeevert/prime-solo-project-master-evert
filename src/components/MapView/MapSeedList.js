@@ -25,15 +25,10 @@ const styles = theme => ({
 })
 
 class MapSeedList extends Component {
-
-  state = {
-    location: this.props.location,
-    activeMarker: null,
-    request: ''
-  }
   
   requestBtn = (id) => {
-    console.log('request button clicked', id);
+    console.log('request button clicked');
+    this.props.dispatch({ type: 'GET_SEED_REQUEST',  payload: id});
     this.props.history.push('/requestseeds');
   }
   
@@ -63,6 +58,8 @@ class MapSeedList extends Component {
                 </Button>
               </li>)}
           </ul>
+          {JSON.stringify(this.props.reduxState.request)}
+
       </div>
     );
   }

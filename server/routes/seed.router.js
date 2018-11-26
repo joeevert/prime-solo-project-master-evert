@@ -20,6 +20,21 @@ router.get('/',  rejectUnauthenticated, (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    const reqId = req.params.id;
+    console.log('GET request for user requesting line item', reqId);
+    const queryText = `SELECT "user_seed_inventory".* FROM "user_seed_inventory" WHERE "id"=$1;`;
+    pool.query(queryText, [reqId])
+        .then((result) => {
+            console.log(`Got seed requested back from user's inventory`, result.rows);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log(`GET error ${queryText}`, error);
+            res.sendStatus(500);
+        })
+});
+
 // POST route for adding seeds to user's seed inventory
 router.post('/', (req, res) => {
     const seed = req.body;
@@ -37,9 +52,9 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    let reqId = req.params.id;
-    console.log('Delete request for seed id', reqId);
-    let sqlText = `DELETE FROM user_seed_inventory WHERE id=$1;`;
+    const reqId = req.params.id;
+    console.log('DELETE request for seed id', reqId);
+    const sqlText = `DELETE FROM user_seed_inventory WHERE id=$1;`;
     pool.query(sqlText, [reqId])
         .then((result) => {
             console.log('seed deleted');

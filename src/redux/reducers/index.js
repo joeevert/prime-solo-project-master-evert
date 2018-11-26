@@ -3,8 +3,9 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 import seed from './seedReducer';
-import allSeeds from './allSeedsReducer'
+import allSeeds from './allSeedsReducer';
 import category from './categoryReducer';
+import request from './requestReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   seed,
   category,
-  allSeeds
+  allSeeds,
+  request
 });
 
 export default rootReducer;
