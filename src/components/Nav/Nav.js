@@ -5,8 +5,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 // TODO
-// -update the Links for Messages and Profile
-// -fix the logout button's position
+// -update the Links for Messages
 // -fix Links to match wireframe styling
 
 const Nav = (props) => (
@@ -34,7 +33,7 @@ const Nav = (props) => (
           <Link className="nav-link" to="/addseeds">
             Add Seeds
           </Link>
-          <Link className="nav-link" to="/addseeds">
+          <Link className="nav-link" to="/messages">
             Messages
           </Link>
           <Link className="nav-link" to="/profile">
