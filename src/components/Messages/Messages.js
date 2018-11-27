@@ -24,9 +24,16 @@ const styles = theme => ({
         padding: 35,
         backgroundColor: '#67C28F'
     },
-    tabs: {
+    tab: {
       display: 'inline-block',
       backgroundColor: '#01632C',
+      color: '#fff',
+      padding: '15px',
+      cursor: 'pointer'
+    },
+    toggleTab: {
+      display: 'inline-block',
+      backgroundColor: '#239956',
       color: '#fff',
       padding: '15px',
       cursor: 'pointer'
@@ -37,19 +44,22 @@ class Messages extends Component {
 
   state = {
     toggleRequests: true,
+    toggleTab: false,
   }
 
   sentView = () => {
-    console.log('sent view');
+    console.log('sent view', this.state);
     this.setState({
-      toggleRequests: true
+      toggleRequests: true,
+      toggleTab: false
     })
   }
 
   receivedView = () => {
-    console.log('received view');
+    console.log('received view', this.state);
     this.setState({
-      toggleRequests: false
+      toggleRequests: false,
+      toggleTab: true
     })
   }
 
@@ -58,10 +68,10 @@ class Messages extends Component {
     const toggleRequests = this.state.toggleRequests;
 
     return (
-      <div>
+      <div style={{ width: '85%', margin: 'auto'}}>
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
-        <Typography className={classes.tabs} onClick={this.sentView}>SENT</Typography>
-        <Typography className={classes.tabs} onClick={this.receivedView}>RECEIVED</Typography>
+        <Typography className={this.state.toggleTab ? classes.tab : classes.toggleTab} onClick={this.sentView}>SENT</Typography>
+        <Typography className={this.state.toggleTab ? classes.toggleTab : classes.tab} onClick={this.receivedView}>RECEIVED</Typography>
         <Paper>
         {/* <p>SENT: {JSON.stringify(this.props.reduxState.sentRequests.sent)}</p> */}
         {/* <p>RECEIVED: {JSON.stringify(this.props.reduxState.sentRequests.received)}</p> */}

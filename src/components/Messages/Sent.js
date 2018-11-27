@@ -88,7 +88,7 @@ class Sent extends Component {
           )}
         </TableBody>
         ) : (
-        <div />)}
+        <TableBody />)}
       </Table>
     );
   }

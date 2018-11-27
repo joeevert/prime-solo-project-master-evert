@@ -88,7 +88,7 @@ class Received extends Component {
           )}
         </TableBody>
         ) : (
-        <div />)}
+        <TableBody />)}
       </Table>
     );
   }
