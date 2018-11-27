@@ -47,6 +47,14 @@ class Messages extends Component {
     toggleTab: false,
   }
 
+  componentDidMount() {
+    this.getInbox();
+  }
+
+  getInbox = () => {
+    this.props.dispatch({ type: 'GET_INBOX' });
+  }
+
   sentView = () => {
     console.log('sent view', this.state);
     this.setState({
@@ -69,12 +77,12 @@ class Messages extends Component {
 
     return (
       <div style={{ width: '85%', margin: 'auto'}}>
+        <p>RECEIVED: {JSON.stringify(this.props.reduxState.inbox.received)}</p>
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
         <Typography className={this.state.toggleTab ? classes.tab : classes.toggleTab} onClick={this.sentView}>SENT</Typography>
         <Typography className={this.state.toggleTab ? classes.toggleTab : classes.tab} onClick={this.receivedView}>RECEIVED</Typography>
         <Paper>
-        {/* <p>SENT: {JSON.stringify(this.props.reduxState.sentRequests.sent)}</p> */}
-        {/* <p>RECEIVED: {JSON.stringify(this.props.reduxState.sentRequests.received)}</p> */}
+        {/* <p>SENT: {JSON.stringify(this.props.reduxState.inbox.sent)}</p> */}
 
         {toggleRequests ? (
           <Sent />

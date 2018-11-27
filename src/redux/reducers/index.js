@@ -6,7 +6,7 @@ import seed from './seedReducer';
 import allSeeds from './allSeedsReducer';
 import category from './categoryReducer';
 import request from './requestReducer';
-import sentRequests from './sentRequestsReducer';
+import inbox from './inboxReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   category,
   allSeeds,
   request,
-  sentRequests
+  inbox
 });
 
 export default rootReducer;

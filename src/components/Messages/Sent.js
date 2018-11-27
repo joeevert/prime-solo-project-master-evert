@@ -39,15 +39,6 @@ const styles = theme => ({
 
 class Sent extends Component {
 
-  componentDidMount() {
-    this.getSentMessages();
-  }
-
-  // dispatch to rootSaga
-  getSentMessages = () => {
-    this.props.dispatch({ type: 'GET_SENT_REQUESTS' });
-  }
-
   // deletes table row and message from message table
   cancelRequest = (id) => {
     console.log('in deleteMessage, id:', id);
@@ -67,9 +58,9 @@ class Sent extends Component {
             <CustomTableCell>Actions</CustomTableCell>
           </TableRow>
         </TableHead>
-        {this.props.reduxState.sentRequests.sent ? (
+        {this.props.reduxState.inbox.sent ? (
         <TableBody>
-          {this.props.reduxState.sentRequests.sent.map( message =>
+          {this.props.reduxState.inbox.sent.map( message =>
           <TableRow key={message.id}>
             <CustomTableCell>{message.username}</CustomTableCell>
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>

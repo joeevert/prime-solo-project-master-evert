@@ -39,19 +39,23 @@ const styles = theme => ({
 
 class Received extends Component {
 
-  componentDidMount() {
-    this.getReceivedMessages();
+  // confirms request
+  confirm = (id) => {
+    console.log('in confirm, id:', id);
+
+    this.props.dispatch({ type: 'CONFIRM_REQUEST', payload: id})
   }
 
-  // dispatch to rootSaga
-  getReceivedMessages = () => {
-    this.props.dispatch({ type: 'GET_RECEIVED_REQUESTS' });
-  }
-
-  // deletes table row and message from message table
-  cancelRequest = (id) => {
-    console.log('in deleteMessage, id:', id);
-    this.props.dispatch({ type: 'DELETE_MESSAGE', payload: id})
+  handleRequest = (event) => {
+    event.preventDefault();
+    console.log('requesting seed', this.state);
+    const seedRequest = {
+      ...this.state,
+        line_item: this.props.reduxState.request.id,
+        received_by: this.props.reduxState.request.user_id,
+        sent_by: this.props.reduxState.user.id,
+    }
+    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: seedRequest });
   }
 
   render() {
@@ -60,28 +64,32 @@ class Received extends Component {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <CustomTableCell>Request From</CustomTableCell>
-            <CustomTableCell>Date</CustomTableCell>
+            <CustomTableCell>Requested From</CustomTableCell>
+            <CustomTableCell>Date Requested</CustomTableCell>
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
+            <CustomTableCell>Status</CustomTableCell>
+
             <CustomTableCell>Actions</CustomTableCell>
           </TableRow>
         </TableHead>
-        {this.props.reduxState.sentRequests.received ? (
+        {this.props.reduxState.inbox.received ? (
         <TableBody>
-          {this.props.reduxState.sentRequests.received.map( message =>
+          {this.props.reduxState.inbox.received.map( message =>
           <TableRow key={message.id}>
             <CustomTableCell>{message.username}</CustomTableCell>
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
+            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
+
             <CustomTableCell>
               <Button
-                color="secondary"
+                // color="secondary"
                 variant="contained" 
-                onClick={() => this.cancelRequest(message.id)}
+                onClick={() => this.confirm(message.id)}
               >
-                CANCEL
+                CONFIRM
               </Button>
             </CustomTableCell>
           </TableRow> 
