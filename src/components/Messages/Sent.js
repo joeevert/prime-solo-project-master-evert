@@ -49,7 +49,7 @@ class Sent extends Component {
   }
 
   // deletes table row and message from message table
-  deleteMessage = (id) => {
+  cancelRequest = (id) => {
     console.log('in deleteMessage, id:', id);
     this.props.dispatch({ type: 'DELETE_MESSAGE', payload: id})
   }
@@ -57,43 +57,39 @@ class Sent extends Component {
   render() {
     const { classes } = this.props;
     return (
-        <Table className={classes.table}>
+      <Table className={classes.table}>
         <TableHead>
-            <TableRow>
+          <TableRow>
             <CustomTableCell>Sent To</CustomTableCell>
             <CustomTableCell>Date</CustomTableCell>
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Actions</CustomTableCell>
-            </TableRow>
+          </TableRow>
         </TableHead>
+        {this.props.reduxState.sentRequests.sent ? (
         <TableBody>
-            {this.props.reduxState.sentRequests.map( message =>
-            <TableRow key={message.id}>
-                <CustomTableCell>{message.username}</CustomTableCell>
-                <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
-                <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
-                <CustomTableCell>{message.message}</CustomTableCell>
-                <CustomTableCell>
-                {/* <Button
-                    color="primary"
-                    variant="contained" 
-                    onClick={() => this.editMessage()}
-                >
-                    EDIT
-                </Button> */}
-                <Button
-                    color="secondary"
-                    variant="contained" 
-                    onClick={() => this.deleteMessage(message.id)}
-                >
-                    DELETE
-                </Button>
-                </CustomTableCell>
-            </TableRow>
-            )}
+          {this.props.reduxState.sentRequests.sent.map( message =>
+          <TableRow key={message.id}>
+            <CustomTableCell>{message.username}</CustomTableCell>
+            <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
+            <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
+            <CustomTableCell>{message.message}</CustomTableCell>
+            <CustomTableCell>
+              <Button
+                color="secondary"
+                variant="contained" 
+                onClick={() => this.cancelRequest(message.id)}
+              >
+                CANCEL
+              </Button>
+            </CustomTableCell>
+          </TableRow> 
+          )}
         </TableBody>
-        </Table>
+        ) : (
+        <div />)}
+      </Table>
     );
   }
 }

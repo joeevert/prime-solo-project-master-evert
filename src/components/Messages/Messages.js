@@ -44,7 +44,6 @@ class Messages extends Component {
     this.setState({
       toggleRequests: true
     })
-    
   }
 
   receivedView = () => {
@@ -64,10 +63,12 @@ class Messages extends Component {
         <Typography className={classes.tabs} onClick={this.sentView}>SENT</Typography>
         <Typography className={classes.tabs} onClick={this.receivedView}>RECEIVED</Typography>
         <Paper>
-        {/* {JSON.stringify(this.props.reduxState.sentRequests)} */}
+        {/* <p>SENT: {JSON.stringify(this.props.reduxState.sentRequests.sent)}</p> */}
+        {/* <p>RECEIVED: {JSON.stringify(this.props.reduxState.sentRequests.received)}</p> */}
+
         {toggleRequests ? (
           <Sent />
-        ):(
+        ) : (
           <Received />
         )}
         </Paper>

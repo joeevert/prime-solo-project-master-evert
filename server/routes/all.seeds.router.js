@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
     "seeds"."seed_category" AS category,
     "user_info"."username", 
     "user_info"."latitude" AS lat,
-    "user_info"."longitude" AS lng
+    "user_info"."longitude" AS lng,
+    "user_info"."profile_pic"
     FROM "user_seed_inventory"
     JOIN "seeds" ON "user_seed_inventory"."seed_id" = "seeds"."id"
     JOIN "user_info" ON "user_seed_inventory"."user_id" = "user_info"."id"

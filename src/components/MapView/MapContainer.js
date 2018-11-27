@@ -31,7 +31,7 @@ class MapContainer extends Component {
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
 
             loadingElement={ <div style={ { height: `100%` } } />}
-            containerElement={ <div style={ { height: `600px`, width: `75%` } } />}
+            containerElement={ <div style={ { height: `600px`, width: `65%` } } />}
             mapElement={ <div style={ { height: `100%` } } />}
             activeMarker={this.state.activeMarker}
           />

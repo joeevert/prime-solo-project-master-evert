@@ -13,7 +13,6 @@ function* fetchRequests(action) {
     }
 }
 
-
 function* sentRequestsSaga() {
     yield takeEvery( 'GET_SENT_REQUESTS', fetchRequests);
 }

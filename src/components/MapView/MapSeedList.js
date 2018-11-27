@@ -6,6 +6,9 @@ import './MapContainer.css';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import List from '@material-ui/core/List';
+import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -20,6 +23,17 @@ const styles = theme => ({
     backgroundColor: '#01632C', 
     margin: '0', 
     padding: '10px',
+  },
+  card: {
+    textAlign: 'left',
+    padding: '15px',
+    margin: '25px'
+  },
+  avatar: {
+    margin: 10,
+    width: 80,
+    height: 80,
+    backgroundColor: '#ddd'
   }, 
 })
 
@@ -41,9 +55,14 @@ class MapSeedList extends Component {
           >
             SEEDS AVAILABLE
           </Typography>
-          <ul className="mapList">
+          <List className="mapList">
             {this.props.reduxState.allSeeds.map( item =>
-              <li key={item.id}>
+              <Card className={classes.card} key={item.id}>
+                <Avatar 
+                  className={classes.avatar}
+                  alt={item.username}
+                  src={item.profile_pic}
+                />
                 <Typography variant='h6'>{item.username}</Typography>
                 <span>
                   <b>{item.category}:</b> {item.description}
@@ -55,8 +74,9 @@ class MapSeedList extends Component {
                 >
                   REQUEST
                 </Button>
-              </li>)}
-          </ul>
+              </Card>)}
+              {JSON.stringify(this.props.reduxState.allSeeds)}
+          </List>
       </div>
     );
   }

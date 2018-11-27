@@ -12,43 +12,32 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  button: {
-      width: 300,
-      padding: 10,
-      backgroundColor: '#239956',
-      margin: theme.spacing.unit,
+  root: {
+    flexGrow: 1,
   },
-  // paper: {
-  //     width: 400,
-  //     height: 400,
-  //     borderRadius: 25,
-  //     margin: "auto",
-  //     marginTop: theme.spacing.unit * 10,
-  //     // backgroundColor: '#67C28F',
-  //     border: '2px solid #01632C',
-  // },
+  button: {
+    width: '300px',
+    padding: '10px',
+    backgroundColor: '#239956',
+    margin: theme.spacing.unit,
+  },
   paper: {
+    textAlign: 'center',
     width: '400px',
     height: '400px',
-    margin: '50px',
-    // background-color: #67C28F;
-    display: 'inline-block',
+    margin: 'auto',
     borderRadius: '25px',
     border: '2px solid #01632C',
   },
-  form: {
-      textAlign: "center",
-      padding: 15,
-      margin: 0,
-  },
   textField: {
-      width: 300,
-      borderRadius: 5,
-      margin: 0,
-      backgroundColor: '#fff'
+    width: '300px',
+    borderRadius: '5px',
+    margin: 0,
+    backgroundColor: '#fff'
   },
   header: {
     color: '#fff', 
@@ -57,12 +46,6 @@ const styles = theme => ({
     marginBottom: '50px', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
-  },
-  formControl: {
-      width: 300,
-      borderRadius: 5,
-      margin: 0,
-      backgroundColor: '#fff'
   },
 })
 
@@ -114,72 +97,77 @@ class Home extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <section className="center">
-
-        <h1 id="welcome">
-          Welcome, { this.props.reduxState.user.username }!
-        </h1>
-
-        {/* <LogOutButton className="log-in" /> */}
-
-        <Paper 
-          className={classes.paper}
-          style={{ backgroundImage: `url(${seeds})`}}
-        >
-          <Typography
-            className={classes.header}
-            variant="h4"
-          >
-            FIND SEEDS
-          </Typography>
-          <TextField 
-            className={classes.textField}
-            required
-            id="search"
-            label="Search"
-            type="text"
-            name="search"
-            // value={this.state.search}
-            // onChange={this.handleInputChangeFor('search')}
-            variant="outlined"
-          />
-          <Button
-            className={classes.button}            
-            onClick={this.useCurrentLocation}
-            variant="contained"
-            style={{ backgroundColor: '#239956', color: '#fff' }}
-          >
-            @ Current Location
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={this.searchBtn}
-            variant="contained"
-            style={{ backgroundColor: '#239956', color: '#fff' }}
-          >
-            SEARCH
-          </Button>
-        </Paper>
-        <Paper 
-          className={classes.paper}
-          style={{ backgroundImage: `url(${share_seeds})`}}
-        >
-          <Typography 
-            className={classes.header} 
-            variant="h4"
-          >
-            SHARE SEEDS
-          </Typography>
-          <Button
-            className={classes.button}
-            variant="contained" 
-            onClick={this.shareSeedsBtn}
-            style={{ backgroundColor: '#239956', color: '#fff' }}
-          >
-            SHARE SEEDS
-          </Button>
-        </Paper>
-        
+      <section className={classes.root}>
+        <div style={{textAlign: 'center'}}>
+          <h1 id="welcome">
+            Welcome, { this.props.reduxState.user.username }!
+          </h1>
+        </div>
+        <Grid container spacing={24}>
+          
+          {/* <LogOutButton className="log-in" /> */}
+          <Grid item xs={12} sm={6}>
+            <Paper 
+              className={classes.paper}
+              style={{ backgroundImage: `url(${seeds})`}}
+            >
+              <Typography
+                className={classes.header}
+                variant="h4"
+              >
+                FIND SEEDS
+              </Typography>
+              <TextField 
+                className={classes.textField}
+                required
+                id="search"
+                label="Search"
+                type="text"
+                name="search"
+                // value={this.state.search}
+                // onChange={this.handleInputChangeFor('search')}
+                variant="outlined"
+              />
+              <Button
+                className={classes.button}            
+                onClick={this.useCurrentLocation}
+                variant="contained"
+                style={{ backgroundColor: '#239956', color: '#fff' }}
+              >
+                @ Current Location
+              </Button>
+              <Button
+                className={classes.button}
+                onClick={this.searchBtn}
+                variant="contained"
+                style={{ backgroundColor: '#239956', color: '#fff' }}
+              >
+                SEARCH
+              </Button>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Paper 
+              className={classes.paper}
+              style={{ backgroundImage: `url(${share_seeds})`}}
+            >
+              <Typography 
+                className={classes.header} 
+                variant="h4"
+              >
+                SHARE SEEDS
+              </Typography>
+              <Button
+                className={classes.button}
+                variant="contained" 
+                onClick={this.shareSeedsBtn}
+                style={{ backgroundColor: '#239956', color: '#fff' }}
+              >
+                SHARE SEEDS
+              </Button>
+            </Paper>
+          </Grid>
+        </Grid>  
       </section>
     );
   }

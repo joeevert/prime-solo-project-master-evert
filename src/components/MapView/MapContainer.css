@@ -1,11 +1,7 @@
 .seedList {
     height: 600px; 
-    width: 25%; 
+    width: 35%; 
     background-color: #ddd;
     text-align: center;
-}
-
-.mapList {
-    text-align: left;
-    list-style: none;
+    overflow: scroll;
 }

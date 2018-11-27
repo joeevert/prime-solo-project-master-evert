@@ -1,4 +1,4 @@
-const sentRequests = (state = [], action) => {
+const sentRequests = (state = {}, action) => {
     switch (action.type) {
       case 'SET_SENT_REQUESTS':
         return action.payload;
