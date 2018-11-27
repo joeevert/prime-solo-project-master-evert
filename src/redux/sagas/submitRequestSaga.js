@@ -13,8 +13,8 @@ function* submitRequest(action) {
     }
 }
 
-function* seedSaga() {
+function* submitRequestSaga() {
     yield takeEvery( 'SUBMIT_REQUEST', submitRequest);
 }
 
-export default seedSaga;
+export default submitRequestSaga;

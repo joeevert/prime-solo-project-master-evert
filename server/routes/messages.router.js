@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 // POST route for adding seeds to user's seed inventory
 router.post('/', (req, res) => {
@@ -17,5 +18,65 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         })
 });
+
+// // GET Route for user's messages
+// router.get('/',  rejectUnauthenticated, (req, res) => {
+//     console.log('req.user.id:', req.user.id);
+//     const sentQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
+//         JOIN user_info ON messages.received_by = user_info.id
+//         JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
+//         JOIN seeds ON user_seed_inventory.seed_id = seeds.id
+//         WHERE sent_by=$1;`;
+//     const requestedQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
+//         JOIN user_info ON messages.sent_by = user_info.id
+//         JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
+//         JOIN seeds ON user_seed_inventory.seed_id = seeds.id
+//         WHERE received_by=3;`;
+//     pool.query(sentQuery, [req.user.id])
+//         .then((rows) => {
+//             sent = rows.rows;
+//     pool.query(requestedQuery, [req.user.id])
+//         .then((rows) => {
+//             requested = rows.rows;
+//             result = {sent: sent, requested: requested}
+//         })
+            
+//             console.log(`Got user's sent messages back from the db`);
+//             res.send(result);
+//         })
+//         .catch((error) => {
+//             // console.log(`GET error ${queryText}`, error);
+//             res.sendStatus(500);
+//         })
+// });
+
+router.get('/', rejectUnauthenticated, (req, res) => {
+    // console.log(req.params);
+    console.log('req.user.id:', req.user.id);
+    const messagesSentQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
+        JOIN user_info ON messages.received_by = user_info.id
+        JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
+        JOIN seeds ON user_seed_inventory.seed_id = seeds.id
+        WHERE sent_by=$1;`;
+    const messagesReceivedQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
+        JOIN user_info ON messages.sent_by = user_info.id
+        JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
+        JOIN seeds ON user_seed_inventory.seed_id = seeds.id
+        WHERE received_by=$1;`;
+    pool.query(messagesSentQuery, [req.user.id])
+        .then( rows => {
+            sent = rows.rows
+    pool.query(messagesReceivedQuery, [req.user.id])
+        .then( rows => {
+            received = rows.rows
+            result = {sent: sent, received: received}
+            res.send(result);
+    })})
+    .catch((error) => {
+    console.log('GET error from the server', error);
+    res.sendStatus(500);
+    })
+});
+
 
 module.exports = router;
