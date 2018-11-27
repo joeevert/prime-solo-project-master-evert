@@ -6,6 +6,7 @@ import seedSaga from './seedSaga';
 import categorySaga from './categorySaga';
 import requestSaga from './requestSaga';
 import submitRequestSaga from './submitRequestSaga';
+import sentRequestsSaga from './sentRequestsSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     categorySaga(),
     requestSaga(),
     submitRequestSaga(),
+    sentRequestsSaga(),
   ]);
 }

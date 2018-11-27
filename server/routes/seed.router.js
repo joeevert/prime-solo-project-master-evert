@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-// GET Route for user's seeds inventory
+// GET Route for user's seed inventory
 router.get('/',  rejectUnauthenticated, (req, res) => {
     console.log('req.user.id:', req.user.id);
     const queryText = `SELECT "user_seed_inventory".*, "seeds"."seed_category" AS category FROM "user_seed_inventory"
@@ -20,6 +20,7 @@ router.get('/',  rejectUnauthenticated, (req, res) => {
         })
 });
 
+// GET Route for line item from user's seed inventory
 router.get('/:id', (req, res) => {
     const reqId = req.params.id;
     console.log('GET request for user requesting line item', reqId);

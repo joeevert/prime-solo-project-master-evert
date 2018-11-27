@@ -62,6 +62,12 @@ const styles = theme => ({
 class Messages extends Component {
 
   componentDidMount() {
+    this.getSentMessages();
+  }
+
+  // dispatch to rootSaga
+  getSentMessages = () => {
+    this.props.dispatch({ type: 'GET_SENT_REQUESTS' });
   }
 
   sentView = () => {
@@ -88,7 +94,7 @@ class Messages extends Component {
         <Typography className={classes.tabs} onClick={this.sentView}>SENT</Typography>
         <Typography className={classes.tabs} onClick={this.receivedView}>RECEIVED</Typography>
         <Paper>
-        {/* {JSON.stringify(this.props.reduxState.message)} */}
+        {JSON.stringify(this.props.reduxState.sentRequests)}
         <div>
         
         </div>
@@ -104,11 +110,11 @@ class Messages extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {this.props.reduxState.messages.map( message =>
+              {this.props.reduxState.sentRequests.map( message =>
                 <TableRow key={message.id}>
-                  <CustomTableCell>{message.category}</CustomTableCell>
+                  <CustomTableCell>{message.username}</CustomTableCell>
                   <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
-                  <CustomTableCell>{message.request}</CustomTableCell>
+                  <CustomTableCell>{message.description}</CustomTableCell>
                   <CustomTableCell>{message.message}</CustomTableCell>
                   <CustomTableCell>
                     <Button
@@ -127,7 +133,7 @@ class Messages extends Component {
                     </Button>
                   </CustomTableCell>
                 </TableRow>
-                )} */}
+                )}
             </TableBody>
           </Table>
         </Paper>
