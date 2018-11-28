@@ -21,7 +21,7 @@ router.get('/',  rejectUnauthenticated, (req, res) => {
 });
 
 // GET Route for line item from user's seed inventory
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     const reqId = req.params.id;
     console.log('GET request for user requesting line item', reqId);
     const queryText = `SELECT user_info.username AS recipient, user_seed_inventory.*, seeds.seed_category AS category FROM user_info
