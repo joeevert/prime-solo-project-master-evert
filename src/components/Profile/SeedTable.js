@@ -26,27 +26,27 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
     button: {
-        width: 300,
-        padding: 10,
+        width: '300px',
+        padding: '10px',
         margin: theme.spacing.unit,
     },
     paper: {
-        width: 350,
-        height: 350,
-        borderRadius: 25,
+        width: '350px',
+        height: '350px',
+        borderRadius: '25px',
         margin: "auto",
         marginTop: theme.spacing.unit * 10,
-        padding: 35,
+        padding: '35px',
         backgroundColor: '#67C28F'
     },
     form: {
-        textAlign: "center",
-        padding: 15,
+        textAlign: 'center',
+        padding: '15px',
         marginTop: theme.spacing.unit * 4,
     },
     textField: {
-        width: 300,
-        borderRadius: 5,
+        width: '300px',
+        borderRadius: '5px',
         margin: theme.spacing.unit,
         backgroundColor: '#fff'
     }

@@ -55,7 +55,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
               content="YOU ARE HERE"
             />
 
-          {JSON.stringify(props.reduxState.allSeeds)}
+            {/* {JSON.stringify(props.reduxState.allSeeds)} */}
 
             {/* Mapping over testMarks */}
             {props.reduxState.allSeeds.map( marker => 
