@@ -22,14 +22,15 @@ const styles = theme => ({
     color: '#fff', 
     fontWeight: 'bold', 
     backgroundColor: '#01632C', 
-    margin: 'auto', 
+    marginBottom: '10px', 
     padding: '10px',
   },
   card: {
-    width: '475px',
+    width: '600px',
     textAlign: 'left',
-    margin: '15px',
-    overflow: 'scroll',
+    margin: 'auto',
+    marginBottom: '15px'
+    // overflow: 'scroll',
   },
   avatar: {
     margin: '20px',
@@ -109,7 +110,7 @@ class MapSeedList extends Component {
                 />
                 {/* <Typography variant='h6' style={{textAlign: 'center'}}>{item.username}</Typography> */}
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={9} style={{padding: '20px'}}>
                 <section style={{margin: 'auto'}}>
                   <div style={{display: 'inline-block', marginRight:'20px'}}>
                     {item.category.map((category, index) =>
