@@ -6,7 +6,7 @@ function* submitRequest(action) {
     console.log('submitting request:', action);
     try {
         yield call(axios.post, '/api/messages', action.payload);
-        yield put( { type: 'GET_MESSAGES' } );
+        yield put( { type: 'GET_INBOX' } );
     }
     catch (error) {
         console.log('error with add seed POST request', error);

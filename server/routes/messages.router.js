@@ -19,37 +19,7 @@ router.post('/', (req, res) => {
         })
 });
 
-// // GET Route for user's messages
-// router.get('/',  rejectUnauthenticated, (req, res) => {
-//     console.log('req.user.id:', req.user.id);
-//     const sentQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
-//         JOIN user_info ON messages.received_by = user_info.id
-//         JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
-//         JOIN seeds ON user_seed_inventory.seed_id = seeds.id
-//         WHERE sent_by=$1;`;
-//     const requestedQuery = `SELECT messages.*, user_info.username, user_seed_inventory.description, seeds.seed_category FROM messages
-//         JOIN user_info ON messages.sent_by = user_info.id
-//         JOIN user_seed_inventory ON messages.line_item = user_seed_inventory.id
-//         JOIN seeds ON user_seed_inventory.seed_id = seeds.id
-//         WHERE received_by=3;`;
-//     pool.query(sentQuery, [req.user.id])
-//         .then((rows) => {
-//             sent = rows.rows;
-//     pool.query(requestedQuery, [req.user.id])
-//         .then((rows) => {
-//             requested = rows.rows;
-//             result = {sent: sent, requested: requested}
-//         })
-            
-//             console.log(`Got user's sent messages back from the db`);
-//             res.send(result);
-//         })
-//         .catch((error) => {
-//             // console.log(`GET error ${queryText}`, error);
-//             res.sendStatus(500);
-//         })
-// });
-
+// GET route for user's messages
 router.get('/', rejectUnauthenticated, (req, res) => {
     // console.log(req.params);
     console.log('req.user.id:', req.user.id);
@@ -78,5 +48,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// PUT route to confirm seed request
+router.put('/:id', (req, res) => {
+    const itemId = req.params.id;
+    console.log('itemId', itemId);
+    
+    const sqlText = `UPDATE messages SET status = true WHERE id=$1;`;
+    pool.query(sqlText, [itemId])
+        .then((result) => {
+            console.log('Confirmed request', sqlText);
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`PUT error ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
 module.exports = router;
