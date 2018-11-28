@@ -19,27 +19,26 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
   button: {
-      width: 300,
-      padding: 10,
+      width: '300px',
+      padding: '10px',
       backgroundColor: '#239956',
       margin: theme.spacing.unit,
   },
   paper: {
-      width: 400,
-      borderRadius: 25,
-      margin: "auto",
+      width: '400px',
+      borderRadius: '25px',
+      margin: 'auto',
       marginTop: theme.spacing.unit * 10,
       backgroundColor: '#67C28F',
       border: '2px solid #01632C'
   },
   form: {
-      textAlign: "center",
-      padding: 15,
+      padding: '15px',
       marginTop: theme.spacing.unit * 4,
   },
   textField: {
-      width: 300,
-      borderRadius: 5,
+      width: '300px',
+      borderRadius: '5px',
       margin: theme.spacing.unit,
       backgroundColor: '#fff'
   },
@@ -47,20 +46,16 @@ const styles = theme => ({
     color: '#fff', 
     fontWeight: 'bold', 
     backgroundColor: '#01632C', 
-    margin: '0', 
+    // margin: '0', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
-      width: 300,
-      borderRadius: 5,
+      minWidth: '300px',
+      borderRadius: '5px',
       margin: theme.spacing.unit,
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
   },
-  // avatar: {
-  //   margin: "auto",
-  //   backgroundColor: '#01632C'
-  // },
 })
 
 
