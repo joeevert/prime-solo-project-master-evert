@@ -67,7 +67,7 @@ class Sent extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
+            <CustomTableCell>{message.status ? 'Confirmed!' : 'Not Confirmed'}</CustomTableCell>
             {/* <CustomTableCell>
               <Button
                 color="secondary"

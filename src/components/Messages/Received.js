@@ -46,19 +46,6 @@ class Received extends Component {
     this.props.dispatch({ type: 'CONFIRM_REQUEST', payload: id})
   }
 
-  // handles request submit
-  handleRequest = (event) => {
-    event.preventDefault();
-    console.log('requesting seed', this.state);
-    const seedRequest = {
-      ...this.state,
-        line_item: this.props.reduxState.request.id,
-        received_by: this.props.reduxState.request.user_id,
-        sent_by: this.props.reduxState.user.id,
-    }
-    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: seedRequest });
-  }
-
   render() {
     const { classes } = this.props;
     return (
@@ -81,7 +68,7 @@ class Received extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
+            <CustomTableCell>{message.status ? 'Confirmed!' : 'Not Confirmed'}</CustomTableCell>
 
             <CustomTableCell>
               <Button

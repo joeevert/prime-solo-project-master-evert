@@ -4,25 +4,25 @@ import { withRouter } from "react-router";
 import Sent from './Sent';
 import Received from './Received';
 
-// material UI
+// material ui
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 
 const styles = theme => ({
     button: {
-        width: 300,
-        padding: 10,
-        margin: theme.spacing.unit,
+      width: 300,
+      padding: 10,
+      margin: theme.spacing.unit,
     },
     paper: {
-        width: 350,
-        height: 350,
-        borderRadius: 25,
-        margin: "auto",
-        marginTop: theme.spacing.unit * 10,
-        padding: 35,
-        backgroundColor: '#67C28F'
+      width: 350,
+      height: 350,
+      borderRadius: 25,
+      margin: "auto",
+      marginTop: theme.spacing.unit * 10,
+      padding: 35,
+      backgroundColor: '#67C28F'
     },
     tab: {
       display: 'inline-block',
