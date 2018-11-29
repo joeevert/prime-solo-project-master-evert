@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Marker, InfoWindow } from 'react-google-maps';
+import { connect } from 'react-redux'
 import { withRouter } from "react-router";
-import seedMarker from './seed_marker.png';
+import './MapContainer.css';
 
-// material ui
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
-
 const styles = theme => ({
   button: {
-    padding: 10,
-    backgroundColor: '#239956',
-    margin: theme.spacing.unit,
+      padding: 10,
+      backgroundColor: '#239956',
+      margin: theme.spacing.unit,
   },
   header: {
     color: '#fff', 
@@ -30,6 +28,7 @@ const styles = theme => ({
     textAlign: 'left',
     margin: 'auto',
     marginBottom: '15px'
+    // overflow: 'scroll',
   },
   avatar: {
     margin: '20px',
@@ -39,45 +38,19 @@ const styles = theme => ({
   }, 
 })
 
-class MapMarker extends Component {
-
-  state = {
-    isOpen: false,
-    activeMarker: null
-  }
-
-  markerClick = (id) => {
-    console.log('markerClick', this.state);
-    this.setState({
-      isOpen: this.state.activeMarker !== id || !this.state.isOpen,
-      activeMarker: id
-    })
-  }
+class MapCard extends Component {
   
-  infoButton = () => {
-    console.log('infoButton');
-  }
-
   requestBtn = (id) => {
     console.log('request button clicked', id);
     this.props.dispatch({ type: 'GET_SEED_REQUEST',  payload: id});
     this.props.history.push('/requestseeds');
   }
-
+  
   render() {
     const { classes } = this.props;
     return (
-      <div className="App">
+        <div>
             {this.props.reduxState.allSeeds.map( item =>
-
-        <Marker
-          key={item.id}
-          position={{lat: Number(item.latitude), lng: Number(item.longitude)}}
-          onClick={() => this.markerClick(item.id)}
-          icon={seedMarker} 
-        >
-          {(this.state.isOpen && this.state.activeMarker === item.id) &&
-          <InfoWindow onCloseClick={this.props.handleCloseCall}>
               <Card className={classes.card} key={item.id}>
               <Grid container spacing={8}>
                 <Grid item xs={3} style={{backgroundColor: '#239956'}}>
@@ -126,14 +99,16 @@ class MapMarker extends Component {
                   </Grid>
                 </Grid>
               </Card>
-          </InfoWindow>}
-        </Marker>)}
-      </div>
+            )}
+        </div>
     );
   }
 }
 
+MapCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(withStyles(styles)(withRouter(MapMarker)));
-
+export default connect(mapStateToProps)(withStyles(styles)(withRouter(MapCard)));

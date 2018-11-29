@@ -27,7 +27,6 @@ class MapContainer extends Component {
         {/* {JSON.stringify(this.props.reduxState.allSeeds)} */}
 
         <section style={{display: 'flex'}}>
-
           <Map
             location={this.props.location}
             // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBE58Bqi3Gp-oWwWISPHICoQVsuKnNPusg&v=3.exp&libraries=geometry,drawing,places`}
