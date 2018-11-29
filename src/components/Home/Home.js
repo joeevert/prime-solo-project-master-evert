@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Home.css';
 import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
 
-
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
+// material ui
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -27,8 +26,8 @@ const styles = theme => ({
   },
   paper: {
     textAlign: 'center',
-    width: '400px',
-    height: '400px',
+    width: '500px',
+    height: '500px',
     margin: 'auto',
     borderRadius: '25px',
     border: '2px solid #01632C',
@@ -99,7 +98,7 @@ class Home extends Component {
     return (
       <section className={classes.root}>
         <div style={{textAlign: 'center'}}>
-          <h1 id="welcome">
+          <h1>
             Welcome, { this.props.reduxState.user.username }!
           </h1>
         </div>

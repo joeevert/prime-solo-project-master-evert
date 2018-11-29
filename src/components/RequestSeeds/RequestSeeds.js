@@ -93,9 +93,9 @@ class RequestSeeds extends Component {
     const { classes } = this.props;
     return (
       <section className="center">
-        {JSON.stringify(this.props.reduxState.request)}
-        {JSON.stringify(this.props.reduxState.user)}
-        <p>state: {JSON.stringify(this.state)}</p>
+        {/* {JSON.stringify(this.props.reduxState.request)} */}
+        {/* {JSON.stringify(this.props.reduxState.user)} */}
+        {/* <p>state: {JSON.stringify(this.state)}</p> */}
 
         <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
@@ -112,38 +112,10 @@ class RequestSeeds extends Component {
             
             <div className={classes.request}>
               <Typography className={classes.populatedItems} variant="h6">To: {this.props.reduxState.request.recipient}</Typography>
-              <Typography className={classes.populatedItems} variant="h6">ID: {this.props.reduxState.request.user_id}</Typography>
-
-              {/* <Typography variant="h6">FROM: {this.props.reduxState.user.username}</Typography> */}
+              {/* <Typography className={classes.populatedItems} variant="h6">ID: {this.props.reduxState.request.user_id}</Typography> */}
               <Typography className={classes.populatedItems} variant="h6">Category: {this.props.reduxState.request.category}</Typography>
               <Typography className={classes.populatedItems} variant="h6">Description: {this.props.reduxState.request.description}</Typography>
             </div> 
-              {/* <TextField
-              className={classes.textField}
-              disabled
-              label="Recipient"
-              value={item.recipient}
-              margin="normal"
-              variant="outlined"
-              />
-              <TextField
-              className={classes.textField}
-              disabled
-              label="Category"
-              value={item.category}
-              margin="normal"
-              variant="outlined"
-              />
-              <TextField
-              className={classes.textField}
-              disabled
-              label="Description"
-              value={item.description}
-              margin="normal"
-              variant="outlined"
-              />
-            */}
-
             <TextField 
               className={classes.textField}
               required
