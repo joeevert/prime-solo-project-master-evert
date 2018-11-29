@@ -55,7 +55,8 @@ class Sent extends Component {
             <CustomTableCell>Date</CustomTableCell>
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
-            <CustomTableCell>Actions</CustomTableCell>
+            <CustomTableCell>Status</CustomTableCell>
+            {/* <CustomTableCell>Actions</CustomTableCell> */}
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.sent ? (
@@ -66,7 +67,8 @@ class Sent extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>
+            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
+            {/* <CustomTableCell>
               <Button
                 color="secondary"
                 variant="contained" 
@@ -74,7 +76,7 @@ class Sent extends Component {
               >
                 CANCEL
               </Button>
-            </CustomTableCell>
+            </CustomTableCell> */}
           </TableRow> 
           )}
         </TableBody>

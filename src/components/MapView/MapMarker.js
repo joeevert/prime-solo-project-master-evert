@@ -53,10 +53,6 @@ class MapMarker extends Component {
       activeMarker: id
     })
   }
-  
-  infoButton = () => {
-    console.log('infoButton');
-  }
 
   requestBtn = (id) => {
     console.log('request button clicked', id);
@@ -85,7 +81,7 @@ class MapMarker extends Component {
                   className={classes.avatar}
                   alt={item.username}
                   src={item.profile_pic}
-                  style={{display: 'inline-block', marginRight:'20px'}}
+                  // style={{display: 'inline-block', marginRight:'20px'}}
                 />
                 {/* <Typography variant='h6' style={{textAlign: 'center'}}>{item.username}</Typography> */}
                 </Grid>
@@ -103,7 +99,7 @@ class MapMarker extends Component {
                           {description}
                         </p>)}
                     </div>
-                    <div style={{display: 'inline-block'}}>
+                    <div style={{display: 'inline-block', marginRight:'20px'}}>
                       {item.quantity.map((quantity, index) =>
                         <p key={index} style={{height: '30px'}}>
                           {quantity}
@@ -115,7 +111,6 @@ class MapMarker extends Component {
                           <Button
                             size='small'
                             color='primary'
-                            style={{display: 'inline-block', marginLeft:'20px'}} 
                             onClick={() => this.requestBtn(item_id)}
                             >
                             REQUEST

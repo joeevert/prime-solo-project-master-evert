@@ -8,7 +8,7 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    &copy; Joe Evert
+    <p style={{textAlign: 'right', marginRight: '50px'}}>All rights reserved {(new Date().getFullYear())} &copy; Joe Evert</p>
   </footer>
 );
 

@@ -49,58 +49,57 @@ class MapCard extends Component {
   render() {
     const { classes } = this.props;
     return (
-        <div>
-            {this.props.reduxState.allSeeds.map( item =>
-              <Card className={classes.card} key={item.id}>
-              <Grid container spacing={8}>
-                <Grid item xs={3} style={{backgroundColor: '#239956'}}>
-                <Avatar 
-                  className={classes.avatar}
-                  alt={item.username}
-                  src={item.profile_pic}
-                  style={{display: 'inline-block', marginRight:'20px'}}
-                />
-                {/* <Typography variant='h6' style={{textAlign: 'center'}}>{item.username}</Typography> */}
+      <div>
+          {this.props.reduxState.allSeeds.map( item =>
+            <Card className={classes.card} key={item.id}>
+            <Grid container spacing={8}>
+              <Grid item xs={3} style={{backgroundColor: '#239956'}}>
+              <Avatar 
+                className={classes.avatar}
+                alt={item.username}
+                src={item.profile_pic}
+                style={{display: 'inline-block', marginRight:'20px'}}
+              />
+              {/* <Typography variant='h6' style={{textAlign: 'center'}}>{item.username}</Typography> */}
+              </Grid>
+              <Grid item xs={9} style={{padding: '20px'}}>
+                <section style={{margin: 'auto'}}>
+                  <div style={{display: 'inline-block', marginRight:'20px'}}>
+                    {item.category.map((category, index) =>
+                      <p key={index} style={{height: '30px'}}>
+                        {category}
+                      </p>)}
+                  </div>
+                  <div style={{display: 'inline-block', marginRight:'20px'}}>
+                    {item.description.map((description, index) =>
+                      <p key={index} style={{height: '30px'}}>
+                        {description}
+                      </p>)}
+                  </div>
+                  <div style={{display: 'inline-block', marginRight:'20px'}}>
+                    {item.quantity.map((quantity, index) =>
+                      <p key={index} style={{height: '30px'}}>
+                        {quantity}
+                      </p>)}
+                  </div>
+                  <div style={{display: 'inline-block'}}>
+                    {item.item_id.map((item_id, index) =>
+                      <p key={index} style={{height: '30px'}}>
+                        <Button
+                          size='small'
+                          color='primary'
+                          onClick={() => this.requestBtn(item_id)}
+                          >
+                          REQUEST
+                        </Button>
+                      </p>)}
+                  </div>
+                </section>
                 </Grid>
-                <Grid item xs={9} style={{padding: '20px'}}>
-                  <section style={{margin: 'auto'}}>
-                    <div style={{display: 'inline-block', marginRight:'20px'}}>
-                      {item.category.map((category, index) =>
-                        <p key={index} style={{height: '30px'}}>
-                          {category}
-                        </p>)}
-                    </div>
-                    <div style={{display: 'inline-block', marginRight:'20px'}}>
-                      {item.description.map((description, index) =>
-                        <p key={index} style={{height: '30px'}}>
-                          {description}
-                        </p>)}
-                    </div>
-                    <div style={{display: 'inline-block'}}>
-                      {item.quantity.map((quantity, index) =>
-                        <p key={index} style={{height: '30px'}}>
-                          {quantity}
-                        </p>)}
-                    </div>
-                    <div style={{display: 'inline-block'}}>
-                      {item.item_id.map((item_id, index) =>
-                        <p key={index} style={{height: '30px'}}>
-                          <Button
-                            size='small'
-                            color='primary'
-                            style={{display: 'inline-block', marginLeft:'20px'}} 
-                            onClick={() => this.requestBtn(item_id)}
-                            >
-                            REQUEST
-                          </Button>
-                        </p>)}
-                    </div>
-                  </section>
-                  </Grid>
-                </Grid>
-              </Card>
-            )}
-        </div>
+              </Grid>
+            </Card>
+          )}
+      </div>
     );
   }
 }

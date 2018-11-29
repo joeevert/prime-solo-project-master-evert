@@ -10,31 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  button: {
-    padding: 10,
-    backgroundColor: '#239956',
-    margin: theme.spacing.unit,
-  },
+const styles = ({
   header: {
     color: '#fff', 
     fontWeight: 'bold', 
     backgroundColor: '#01632C', 
     marginBottom: '10px', 
     padding: '10px',
-  },
-  card: {
-    width: '600px',
-    textAlign: 'left',
-    margin: 'auto',
-    marginBottom: '15px'
-  },
-  avatar: {
-    margin: '20px',
-    width: 85,
-    height: 85,
-    backgroundColor: '#ddd'
-  }, 
+  }
 })
 
 class MapSeedList extends Component {

@@ -46,6 +46,7 @@ class Received extends Component {
     this.props.dispatch({ type: 'CONFIRM_REQUEST', payload: id})
   }
 
+  // handles request submit
   handleRequest = (event) => {
     event.preventDefault();
     console.log('requesting seed', this.state);
@@ -69,7 +70,6 @@ class Received extends Component {
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
-
             <CustomTableCell>Actions</CustomTableCell>
           </TableRow>
         </TableHead>
