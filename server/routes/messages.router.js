@@ -65,6 +65,21 @@ router.put('/:id', (req, res) => {
             console.log(`PUT error ${sqlText}`, error);
             res.sendStatus(500);
         })
-})
+});
+
+router.delete('/:id', (req, res) => {
+    const reqId = req.params.id;
+    console.log('DELETE request for request id', reqId);
+    const sqlText = `DELETE FROM messages WHERE id=$1;`;
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('request canceled');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error in deleting ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+});
 
 module.exports = router;

@@ -22,6 +22,7 @@ const styles = theme => ({
       width: '300px',
       padding: '10px',
       backgroundColor: '#239956',
+      color: '#fff',
       margin: theme.spacing.unit,
   },
   paper: {
@@ -207,7 +208,7 @@ class AddSeeds extends Component {
               type="submit" 
               name="submit"
               variant="contained" 
-              style={{ backgroundColor: '#239956', color: '#fff' }}
+              // style={{ backgroundColor: '#239956', color: '#fff' }}
             >
               Submit
             </Button>

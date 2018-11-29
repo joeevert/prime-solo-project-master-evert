@@ -41,8 +41,8 @@ class Sent extends Component {
 
   // deletes table row and message from message table
   cancelRequest = (id) => {
-    console.log('in deleteMessage, id:', id);
-    this.props.dispatch({ type: 'DELETE_MESSAGE', payload: id})
+    console.log('in cancelRequest, id:', id);
+    this.props.dispatch({ type: 'CANCEL_REQUEST', payload: id})
   }
 
   render() {
@@ -56,7 +56,7 @@ class Sent extends Component {
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
-            {/* <CustomTableCell>Actions</CustomTableCell> */}
+            <CustomTableCell>Actions</CustomTableCell>
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.sent ? (
@@ -68,7 +68,7 @@ class Sent extends Component {
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
             <CustomTableCell>{message.status ? 'Confirmed!' : 'Not Confirmed'}</CustomTableCell>
-            {/* <CustomTableCell>
+            <CustomTableCell>
               <Button
                 color="secondary"
                 variant="contained" 
@@ -76,7 +76,7 @@ class Sent extends Component {
               >
                 CANCEL
               </Button>
-            </CustomTableCell> */}
+            </CustomTableCell>
           </TableRow> 
           )}
         </TableBody>

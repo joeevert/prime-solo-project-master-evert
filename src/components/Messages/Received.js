@@ -24,9 +24,11 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
     button: {
-        width: 300,
-        padding: 10,
-        margin: theme.spacing.unit,
+      // width: '300px',
+      padding: '10px',
+      backgroundColor: '#239956',
+      color: '#fff',
+      margin: theme.spacing.unit,
     },
     tabs: {
       display: 'inline-block',
@@ -69,10 +71,9 @@ class Received extends Component {
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
             <CustomTableCell>{message.status ? 'Confirmed!' : 'Not Confirmed'}</CustomTableCell>
-
             <CustomTableCell>
               <Button
-                // color="secondary"
+                className={classes.button}
                 variant="contained" 
                 onClick={() => this.confirm(message.id)}
               >

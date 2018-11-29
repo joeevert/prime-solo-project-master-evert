@@ -43,10 +43,6 @@ const styles = theme => ({
 
 class Profile extends Component {
 
-  state = {
-    
-  }
-
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
     this.props.history.push('/addseeds');
