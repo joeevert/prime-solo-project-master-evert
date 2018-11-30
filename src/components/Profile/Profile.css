@@ -1,12 +1,12 @@
 .container {
     /* background-color: #eee; */
-    width: 85%;
+    /* width: 85%; */
     margin: auto;
 }
 
 .flexContainer {
     display: flex;
-    margin-top: 75px;
+    /* margin-top: 75px; */
 }
 
 .flexContainer > div {
@@ -24,7 +24,8 @@
 }
 
 .info {
+    text-align: center;
     margin-top: 0px;
     padding: 10px;
-    background-color: #239956;    
+    /* background-color: #239956; */
 }

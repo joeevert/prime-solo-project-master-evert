@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 // POST route for adding seeds to user's seed inventory
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const newMessage = req.body;
     console.log('message:', newMessage);
     const queryText = `INSERT INTO messages ("line_item", "message", "quantity", "received_by", "sent_by")
@@ -51,7 +51,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // PUT route to confirm seed request
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     const itemId = req.params.id;
     console.log('itemId', itemId);
     
@@ -67,7 +67,7 @@ router.put('/:id', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const reqId = req.params.id;
     console.log('DELETE request for request id', reqId);
     const sqlText = `DELETE FROM messages WHERE id=$1;`;

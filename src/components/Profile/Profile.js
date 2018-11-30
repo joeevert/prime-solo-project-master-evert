@@ -9,15 +9,18 @@ import './Profile.css';
 import SeedTable from './SeedTable';
 
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 
 import { withStyles } from '@material-ui/core/styles';
+import Messages from '../Messages/Messages';
 
-const styles = theme => ({
+const styles = ({
   button: {
-      padding: 10,
-      backgroundColor: '#239956',
-      margin: theme.spacing.unit,
+    padding: '10px',
+    backgroundColor: '#239956',
+    color: '#fff',
+    width: '200px'
   },
   header: {
     color: '#fff', 
@@ -43,32 +46,49 @@ const styles = theme => ({
 
 class Profile extends Component {
 
+  state = {
+    view: true
+  }
+
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
     this.props.history.push('/addseeds');
   }
 
+  toggleView = () => {
+    console.log('profile state', this.state);
+    this.setState({ view: !this.state.view})
+  }
+
   render() {
     const { classes } = this.props;
+    const toggleView = this.state.view;
     return (
       <section className="container">
-        {/* <h1 id="welcome">
-          Welcome, { this.props.reduxState.user.username }!
-        </h1> */}
         <div className="flexContainer">
           <div>
             <Avatar 
                 className={classes.avatar}
                 alt={ this.props.reduxState.user.username }
                 src={ this.props.reduxState.user.profile_pic }
-                style={{display: 'inline-block', marginRight:'20px'}}
               />
             <div className="info">
-              <Typography variant="h6">First Name: {this.props.reduxState.user.first_name}</Typography>
-              <Typography variant="h6">Last Name: {this.props.reduxState.user.last_name}</Typography>
+              <Typography 
+                variant="h6">{this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
+              </Typography>
+              <Button
+                className={classes.button} 
+                onClick={() => this.toggleView()}
+              >
+                {this.state.view ? 'View Requests' : 'View Seeds'}
+              </Button>
             </div>
           </div>
+          {toggleView ? (
           <SeedTable />
+          ) : (
+          <Messages />
+          )}
         </div>
       </section>
     );

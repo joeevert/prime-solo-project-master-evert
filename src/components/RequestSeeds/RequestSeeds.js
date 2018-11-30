@@ -57,7 +57,6 @@ const styles = theme => ({
   }
 })
 
-
 class RequestSeeds extends Component {
 
   state = {
@@ -79,6 +78,7 @@ class RequestSeeds extends Component {
         sent_by: this.props.reduxState.user.id,
     }
     this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: seedRequest });
+    this.props.history.push('/map'); // back to map or somewhere else???
   }
 
   // handles input changes

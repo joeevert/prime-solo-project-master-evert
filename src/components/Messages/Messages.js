@@ -10,35 +10,35 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 
 const styles = theme => ({
-    button: {
-      width: 300,
-      padding: 10,
-      margin: theme.spacing.unit,
-    },
-    paper: {
-      width: 350,
-      height: 350,
-      borderRadius: 25,
-      margin: "auto",
-      marginTop: theme.spacing.unit * 10,
-      padding: 35,
-      backgroundColor: '#67C28F'
-    },
-    tab: {
-      display: 'inline-block',
-      backgroundColor: '#01632C',
-      color: '#fff',
-      padding: '15px',
-      cursor: 'pointer'
-    },
-    toggleTab: {
-      display: 'inline-block',
-      backgroundColor: '#239956',
-      color: '#fff',
-      padding: '15px',
-      cursor: 'pointer'
-    }
-  });
+  button: {
+    width: 300,
+    padding: 10,
+    margin: theme.spacing.unit,
+  },
+  paper: {
+    width: 350,
+    height: 350,
+    borderRadius: 25,
+    margin: "auto",
+    marginTop: theme.spacing.unit * 10,
+    padding: 35,
+    backgroundColor: '#67C28F'
+  },
+  tab: {
+    display: 'inline-block',
+    backgroundColor: '#01632C',
+    color: '#fff',
+    padding: '5px',
+    cursor: 'pointer'
+  },
+  toggleTab: {
+    display: 'inline-block',
+    backgroundColor: '#239956',
+    color: '#fff',
+    padding: '5px',
+    cursor: 'pointer'
+  }
+});
 
 class Messages extends Component {
 
@@ -76,10 +76,20 @@ class Messages extends Component {
     const toggleRequests = this.state.toggleRequests;
 
     return (
-      <div style={{ width: '85%', margin: 'auto'}}>
+      <div style={{marginTop:'25px'}}>      
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
-        <Typography className={this.state.toggleTab ? classes.tab : classes.toggleTab} onClick={this.sentView}>SENT</Typography>
-        <Typography className={this.state.toggleTab ? classes.toggleTab : classes.tab} onClick={this.receivedView}>RECEIVED</Typography>
+        <Typography
+          onClick={this.sentView} 
+          className={this.state.toggleTab ? classes.tab : classes.toggleTab}
+        >
+          SENT
+        </Typography>
+        <Typography 
+          onClick={this.receivedView}
+          className={this.state.toggleTab ? classes.toggleTab : classes.tab}
+        >
+          RECEIVED
+        </Typography>
         <Paper>
         {toggleRequests ? (
           <Sent />

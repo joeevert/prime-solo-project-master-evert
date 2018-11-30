@@ -12,31 +12,29 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-      width: 300,
-      padding: 10,
-      margin: theme.spacing.unit,
+    width: 300,
+    padding: 10,
+    margin: theme.spacing.unit,
   },
   paper: {
-      width: 350,
-      height: 350,
-      borderRadius: 25,
-      margin: "auto",
-      marginTop: theme.spacing.unit * 10,
-      padding: 35,
-      backgroundColor: '#67C28F',
-      border: '2px solid #01632C',
+    width: 350,
+    height: 350,
+    borderRadius: 25,
+    margin: "auto",
+    marginTop: theme.spacing.unit * 10,
+    padding: 35,
+    backgroundColor: '#67C28F',
+    border: '2px solid #01632C',
   },
   form: {
-      textAlign: "center",
-      padding: 15,
-      marginTop: theme.spacing.unit * 4,
+    textAlign: "center",
+    marginTop: '30px'
   },
   textField: {
-      width: 300,
-      borderRadius: 5,
-      margin: theme.spacing.unit,
-      backgroundColor: '#fff'
-
+    width: 300,
+    borderRadius: 5,
+    margin: theme.spacing.unit,
+    backgroundColor: '#fff'
   },
   avatar: {
     margin: "auto",
@@ -121,46 +119,40 @@ class RegisterPage extends Component {
             >
               Register User
             </Typography>
-            <div>
-              <TextField
-                className={classes.textField}
-                required
-                id="username"
-                label="Username"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-                margin="normal"
-                variant="outlined"
-              />
-            </div>
-            <div>
-              <TextField
-                className={classes.textField}
-                required
-                id="password"
-                label="Password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-                margin="normal"
-                variant="outlined"
-              />
-            </div>
-            <div>
-              <Button
-                className={classes.button}
-                type="submit"
-                name="submit"
-                // value="Register"
-                variant="contained"
-                style={{ backgroundColor: '#239956', color: '#fff' }}
-              >
-                Register
-              </Button>
-            </div>
+            <TextField
+              className={classes.textField}
+              required
+              id="username"
+              label="Username"
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              className={classes.textField}
+              required
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInputChangeFor('password')}
+              margin="normal"
+              variant="outlined"
+            />
+            <Button
+              className={classes.button}
+              type="submit"
+              name="submit"
+              // value="Register"
+              variant="contained"
+              style={{ backgroundColor: '#239956', color: '#fff' }}
+            >
+              Register
+            </Button>
           </form>
         </Paper>
         <div className="center">

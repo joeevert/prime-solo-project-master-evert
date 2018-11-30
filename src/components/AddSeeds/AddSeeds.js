@@ -1,9 +1,9 @@
 // TODO
 // -figure out the location state
 
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import share_seeds from './share_seeds.jpg';
 import './AddSeeds.css';
 
 import PropTypes from 'prop-types';
@@ -19,29 +19,29 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
   button: {
-      width: '300px',
-      padding: '10px',
-      backgroundColor: '#239956',
-      color: '#fff',
-      margin: theme.spacing.unit,
+    width: '300px',
+    padding: '10px',
+    backgroundColor: '#239956',
+    color: '#fff',
+    margin: theme.spacing.unit,
   },
   paper: {
-      width: '400px',
-      borderRadius: '25px',
-      margin: 'auto',
-      marginTop: theme.spacing.unit * 10,
-      backgroundColor: '#67C28F',
-      border: '2px solid #01632C'
+    width: '500px',
+    height: '500px',
+    borderRadius: '25px',
+    margin: 'auto',
+    // backgroundColor: '#67C28F',
+    border: '2px solid #01632C'
   },
   form: {
-      padding: '15px',
-      marginTop: theme.spacing.unit * 4,
+    padding: '15px',
+    marginTop: theme.spacing.unit * 4,
   },
   textField: {
-      width: '300px',
-      borderRadius: '5px',
-      margin: theme.spacing.unit,
-      backgroundColor: '#fff'
+    width: '300px',
+    borderRadius: '5px',
+    margin: theme.spacing.unit,
+    backgroundColor: '#fff'
   },
   header: {
     color: '#fff', 
@@ -52,10 +52,10 @@ const styles = theme => ({
     borderRadius: '22px 22px 0px 0px',
   },
   formControl: {
-      minWidth: '300px',
-      borderRadius: '5px',
-      margin: theme.spacing.unit,
-      backgroundColor: '#fff',
+    minWidth: '300px',
+    borderRadius: '5px',
+    margin: theme.spacing.unit,
+    backgroundColor: '#fff',
   },
 })
 
@@ -68,8 +68,8 @@ class AddSeeds extends Component {
     quantity: '',
     // location: '', // will be updated based on user's location or input address???
     user_id: null,
-    lat: 0,
-    lng: 0
+    // lat: 0,
+    // lng: 0
   }
 
   componentDidMount() {
@@ -83,7 +83,7 @@ class AddSeeds extends Component {
 
   getCategories = () => {
     this.props.dispatch({ type: 'GET_CATEGORIES' });
-    this.getGeoLocation();
+    // this.getGeoLocation();
   }
 
   // adds seed to user's seed inventory table
@@ -108,34 +108,34 @@ class AddSeeds extends Component {
     })
   }
 
-  getGeoLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // console.log('add seeds location:', position.coords);
-          this.setState({
-              ...this.state,
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-          })
-        }
-      )
-    }
-    else {
-			alert('Location services not supported by your browser');
-    }
-  }
+  // getGeoLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         // console.log('add seeds location:', position.coords);
+  //         this.setState({
+  //             ...this.state,
+  //             lat: position.coords.latitude,
+  //             lng: position.coords.longitude
+  //         })
+  //       }
+  //     )
+  //   }
+  //   else {
+	// 		alert('Location services not supported by your browser');
+  //   }
+  // }
 
   render() {
     const { classes } = this.props;
     return (
       <section className="center">
         {/* {JSON.stringify(this.props.reduxState.category)} */}
-        <h1 id="welcome">
-          Welcome, { this.props.reduxState.user.username }!
-        </h1>
 
-        <Paper className={classes.paper}>
+        <Paper 
+          className={classes.paper}
+          style={{ backgroundImage: `url(${share_seeds})`, cursor: 'pointer'}}
+        >
           <Typography 
             className={classes.header}
             variant="h4"
@@ -208,7 +208,6 @@ class AddSeeds extends Component {
               type="submit" 
               name="submit"
               variant="contained" 
-              // style={{ backgroundColor: '#239956', color: '#fff' }}
             >
               Submit
             </Button>
