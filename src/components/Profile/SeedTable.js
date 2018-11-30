@@ -87,7 +87,6 @@ class SeedTable extends Component {
     return (
       <div style={{marginTop:'40px'}}>
         <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
-        <Paper>
         {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>
             <TableHead>
@@ -96,7 +95,8 @@ class SeedTable extends Component {
                 <CustomTableCell>Description</CustomTableCell>
                 <CustomTableCell>Quantity</CustomTableCell>
                 <CustomTableCell>Date Added</CustomTableCell>
-                <CustomTableCell>Actions</CustomTableCell>
+                {/* <CustomTableCell>Actions</CustomTableCell> */}
+                <CustomTableCell />
               </TableRow>
             </TableHead>
             <TableBody>
@@ -107,13 +107,14 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
                   <CustomTableCell>{moment(seed.date_added).format("MMM Do, YYYY")}</CustomTableCell>
                   <CustomTableCell>
-                    <Button
+                    {/* <Button
                       color="primary"
                       variant="contained" 
                       onClick={() => this.editSeed()}
+                      style={{marginRight: '15px'}}
                     >
                       EDIT
-                    </Button>
+                    </Button> */}
                     <Button
                       color="secondary"
                       variant="contained" 
@@ -126,7 +127,6 @@ class SeedTable extends Component {
                 )}
             </TableBody>
           </Table>
-        </Paper>
         <Button
           className={classes.button} 
           onClick={this.shareSeedsBtn}

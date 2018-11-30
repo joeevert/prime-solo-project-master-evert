@@ -17,7 +17,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    marginTop: '50px'
   },
   button: {
     width: '300px',
@@ -102,11 +103,11 @@ class Home extends Component {
 
     return (
       <section className={classes.root}>
-        <div style={{textAlign: 'center'}}>
+        {/* <div style={{textAlign: 'center'}}>
           <h1>
             Welcome, { this.props.reduxState.user.username }!
           </h1>
-        </div>
+        </div> */}
         <Grid container spacing={24}>
           
           {/* <LogOutButton className="log-in" /> */}

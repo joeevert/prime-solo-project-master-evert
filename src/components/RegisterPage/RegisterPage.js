@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   paper: {
     width: 350,
-    height: 350,
+    // height: 350,
     borderRadius: 25,
     margin: "auto",
     marginTop: theme.spacing.unit * 10,
@@ -46,6 +46,8 @@ class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    first_name: '',
+    last_name: '',
     latitude: null,
     longitude: null,
   };
@@ -63,6 +65,8 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
           latitude: Number(this.state.latitude),
           longitude: Number(this.state.longitude)
         },
@@ -128,6 +132,30 @@ class RegisterPage extends Component {
               name="username"
               value={this.state.username}
               onChange={this.handleInputChangeFor('username')}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              className={classes.textField}
+              // required
+              id="first_name"
+              label="First Name"
+              type="text"
+              name="first_name"
+              value={this.state.first_name}
+              onChange={this.handleInputChangeFor('first_name')}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              className={classes.textField}
+              // required
+              id="last_name"
+              label="Last Name"
+              type="text"
+              name="last_name"
+              value={this.state.last_name}
+              onChange={this.handleInputChangeFor('last_name')}
               margin="normal"
               variant="outlined"
             />

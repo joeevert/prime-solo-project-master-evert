@@ -7,6 +7,7 @@ import seedMarker from './seed_marker.png';
 // material ui
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -83,7 +84,7 @@ class MapMarker extends Component {
                   src={item.profile_pic}
                   // style={{display: 'inline-block', marginRight:'20px'}}
                 />
-                {/* <Typography variant='h6' style={{textAlign: 'center'}}>{item.username}</Typography> */}
+                <Typography variant='h6' style={{textAlign: 'center', color: '#fff'}}>{item.username}</Typography>
                 </Grid>
                 <Grid item xs={9} style={{padding: '20px'}}>
                   <section style={{margin: 'auto'}}>

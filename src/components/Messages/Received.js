@@ -22,22 +22,13 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const styles = theme => ({
-    button: {
-      // width: '300px',
-      padding: '10px',
-      backgroundColor: '#239956',
-      color: '#fff',
-      margin: theme.spacing.unit,
-    },
-    tabs: {
-      display: 'inline-block',
-      backgroundColor: '#01632C',
-      color: '#fff',
-      padding: '15px',
-      cursor: 'pointer'
-    }
-  });
+const styles = ({
+  button: {
+    padding: '10px',
+    backgroundColor: '#239956',
+    color: '#fff',
+  }
+});
 
 class Received extends Component {
 
@@ -59,7 +50,8 @@ class Received extends Component {
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
-            <CustomTableCell>Actions</CustomTableCell>
+            {/* <CustomTableCell>Actions</CustomTableCell> */}
+            <CustomTableCell />
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.received ? (
@@ -70,7 +62,12 @@ class Received extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>{message.status ? 'Confirmed!' : 'Not Confirmed'}</CustomTableCell>
+            <CustomTableCell>
+              {message.status ? 
+              <strong style={{color: '#fff', backgroundColor: '#01632C', padding: '10px', borderRadius: '5px'}}>
+                Confirmed!
+              </strong> : 'Not Confirmed'}
+            </CustomTableCell>
             <CustomTableCell>
               <Button
                 className={classes.button}
