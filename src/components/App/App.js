@@ -5,23 +5,17 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
-import AddSeeds from '../AddSeeds/AddSeeds';
 import MapView from '../MapView/MapView';
 import Profile from '../Profile/Profile';
 import RequestSeeds from '../RequestSeeds/RequestSeeds';
 import Messages from'../Messages/Messages';
-
-import './App.css';
 import AddSeedsContainer from '../AddSeeds/AddSeedsContainer';
+import './App.css';
 
 class App extends Component {
   componentDidMount () {
