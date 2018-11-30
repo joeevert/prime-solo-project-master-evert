@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-// add seed to user's inventory table
+// adds seed to user's inventory table
 function* addSeed(action) {
     console.log('add seed saga:', action);
     try {
@@ -37,7 +37,7 @@ function* fetchAllSeeds(action) {
     }
 }
 
-// saga to deletes items from server
+// deletes seed
 function* deleteSeed (action) {
     console.log('delete seed generator', action.payload);
     const seedId = action.payload

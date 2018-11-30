@@ -40,7 +40,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 // POST route for adding seeds to user's seed inventory
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const seed = req.body;
     console.log('seed:', seed);
     const queryText = `INSERT INTO user_seed_inventory ("description", "quantity", "seed_id", "user_id")
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const reqId = req.params.id;
     console.log('DELETE request for seed id', reqId);
     const sqlText = `DELETE FROM user_seed_inventory WHERE id=$1;`;

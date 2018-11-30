@@ -22,20 +22,13 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const styles = theme => ({
-    button: {
-        width: 300,
-        padding: 10,
-        margin: theme.spacing.unit,
-    },
-    tabs: {
-      display: 'inline-block',
-      backgroundColor: '#01632C',
-      color: '#fff',
-      padding: '15px',
-      cursor: 'pointer'
-    }
-  });
+const styles = ({
+  button: {
+    padding: '10px',
+    backgroundColor: '#239956',
+    color: '#fff',
+  }
+});
 
 class Received extends Component {
 
@@ -44,19 +37,6 @@ class Received extends Component {
     console.log('in confirm, id:', id);
 
     this.props.dispatch({ type: 'CONFIRM_REQUEST', payload: id})
-  }
-
-  // handles request submit
-  handleRequest = (event) => {
-    event.preventDefault();
-    console.log('requesting seed', this.state);
-    const seedRequest = {
-      ...this.state,
-        line_item: this.props.reduxState.request.id,
-        received_by: this.props.reduxState.request.user_id,
-        sent_by: this.props.reduxState.user.id,
-    }
-    this.props.dispatch({ type: 'SUBMIT_REQUEST', payload: seedRequest });
   }
 
   render() {
@@ -70,7 +50,8 @@ class Received extends Component {
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
-            <CustomTableCell>Actions</CustomTableCell>
+            {/* <CustomTableCell>Actions</CustomTableCell> */}
+            <CustomTableCell />
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.received ? (
@@ -81,11 +62,15 @@ class Received extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
-
+            <CustomTableCell>
+              {message.status ? 
+              <strong style={{color: '#fff', backgroundColor: '#01632C', padding: '10px', borderRadius: '5px'}}>
+                Confirmed!
+              </strong> : 'Not Confirmed'}
+            </CustomTableCell>
             <CustomTableCell>
               <Button
-                // color="secondary"
+                className={classes.button}
                 variant="contained" 
                 onClick={() => this.confirm(message.id)}
               >

@@ -22,27 +22,19 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const styles = theme => ({
-    button: {
-        width: 300,
-        padding: 10,
-        margin: theme.spacing.unit,
-    },
-    tabs: {
-      display: 'inline-block',
-      backgroundColor: '#01632C',
-      color: '#fff',
-      padding: '15px',
-      cursor: 'pointer'
-    }
-  });
+const styles = ({
+  button: {
+    width: 300,
+    padding: 10,
+  }
+});
 
 class Sent extends Component {
 
   // deletes table row and message from message table
   cancelRequest = (id) => {
-    console.log('in deleteMessage, id:', id);
-    this.props.dispatch({ type: 'DELETE_MESSAGE', payload: id})
+    console.log('in cancelRequest, id:', id);
+    this.props.dispatch({ type: 'CANCEL_REQUEST', payload: id})
   }
 
   render() {
@@ -57,6 +49,7 @@ class Sent extends Component {
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
             {/* <CustomTableCell>Actions</CustomTableCell> */}
+            <CustomTableCell />
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.sent ? (
@@ -67,8 +60,13 @@ class Sent extends Component {
             <CustomTableCell>{moment(message.date).format("MMM Do, YYYY")}</CustomTableCell>
             <CustomTableCell>{message.quantity} {message.description} Seeds</CustomTableCell>
             <CustomTableCell>{message.message}</CustomTableCell>
-            <CustomTableCell>{(message.status.toString())}</CustomTableCell>
-            {/* <CustomTableCell>
+            <CustomTableCell>
+              {message.status ? 
+              <strong style={{color: '#fff', backgroundColor: '#01632C', padding: '10px', borderRadius: '5px'}}>
+                Confirmed!
+              </strong> : 'Not Confirmed'}
+            </CustomTableCell>
+            <CustomTableCell>
               <Button
                 color="secondary"
                 variant="contained" 
@@ -76,7 +74,7 @@ class Sent extends Component {
               >
                 CANCEL
               </Button>
-            </CustomTableCell> */}
+            </CustomTableCell>
           </TableRow> 
           )}
         </TableBody>

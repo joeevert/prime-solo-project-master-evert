@@ -25,32 +25,34 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 const styles = theme => ({
-    button: {
-        width: '300px',
-        padding: '10px',
-        margin: theme.spacing.unit,
-    },
-    paper: {
-        width: '350px',
-        height: '350px',
-        borderRadius: '25px',
-        margin: "auto",
-        marginTop: theme.spacing.unit * 10,
-        padding: '35px',
-        backgroundColor: '#67C28F'
-    },
-    form: {
-        textAlign: 'center',
-        padding: '15px',
-        marginTop: theme.spacing.unit * 4,
-    },
-    textField: {
-        width: '300px',
-        borderRadius: '5px',
-        margin: theme.spacing.unit,
-        backgroundColor: '#fff'
-    }
-  });
+  button: {
+    float: 'right',
+    padding: '10px',
+    backgroundColor: '#239956',
+    color: '#fff',
+    marginTop: '20px'
+  },
+  paper: {
+      width: '350px',
+      height: '350px',
+      borderRadius: '25px',
+      // margin: "auto",
+      // marginTop: theme.spacing.unit * 10,
+      padding: '35px',
+      backgroundColor: '#67C28F'
+  },
+  form: {
+      textAlign: 'center',
+      padding: '15px',
+      marginTop: theme.spacing.unit * 4,
+  },
+  textField: {
+      width: '300px',
+      borderRadius: '5px',
+      margin: theme.spacing.unit,
+      backgroundColor: '#fff'
+  }
+});
 
 class SeedTable extends Component {
 
@@ -83,9 +85,8 @@ class SeedTable extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div style={{marginTop:'40px'}}>
         <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
-        <Paper>
         {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>
             <TableHead>
@@ -94,7 +95,8 @@ class SeedTable extends Component {
                 <CustomTableCell>Description</CustomTableCell>
                 <CustomTableCell>Quantity</CustomTableCell>
                 <CustomTableCell>Date Added</CustomTableCell>
-                <CustomTableCell>Actions</CustomTableCell>
+                {/* <CustomTableCell>Actions</CustomTableCell> */}
+                <CustomTableCell />
               </TableRow>
             </TableHead>
             <TableBody>
@@ -105,13 +107,14 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
                   <CustomTableCell>{moment(seed.date_added).format("MMM Do, YYYY")}</CustomTableCell>
                   <CustomTableCell>
-                    <Button
+                    {/* <Button
                       color="primary"
                       variant="contained" 
                       onClick={() => this.editSeed()}
+                      style={{marginRight: '15px'}}
                     >
                       EDIT
-                    </Button>
+                    </Button> */}
                     <Button
                       color="secondary"
                       variant="contained" 
@@ -124,8 +127,12 @@ class SeedTable extends Component {
                 )}
             </TableBody>
           </Table>
-        </Paper>
-        <Button onClick={this.shareSeedsBtn}>Add Seeds</Button> 
+        <Button
+          className={classes.button} 
+          onClick={this.shareSeedsBtn}
+        >
+          Add Seeds
+        </Button> 
       </div> 
     );
   }

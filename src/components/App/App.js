@@ -21,6 +21,7 @@ import RequestSeeds from '../RequestSeeds/RequestSeeds';
 import Messages from'../Messages/Messages';
 
 import './App.css';
+import AddSeedsContainer from '../AddSeeds/AddSeedsContainer';
 
 class App extends Component {
   componentDidMount () {
@@ -56,7 +57,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/addseeds"
-              component={AddSeeds}
+              component={AddSeedsContainer}
             />
             <ProtectedRoute
               exact

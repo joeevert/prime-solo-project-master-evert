@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
+import AddSeeds from '../AddSeeds/AddSeeds';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -16,7 +17,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    marginTop: '50px'
   },
   button: {
     width: '300px',
@@ -53,7 +55,8 @@ class Home extends Component {
   state = {
 		latitude: 0,
 		longitude: 0,
-		// location: "",
+    // location: "",
+    viewForm: true
   }
 
   componentDidMount = () => {
@@ -62,17 +65,18 @@ class Home extends Component {
 
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
-    this.props.history.push('/addseeds');
+    // this.props.history.push('/addseeds');
+    this.setState({ viewForm: !this.state.viewForm})
   }
 
   searchBtn = () => {
     console.log('search button clicked');
-    this.props.history.push('/map');
+    // this.props.history.push('/map');
   }
 
   useCurrentLocation = () => {
     console.log('use current location:', this.state);
-    // this.props.history.push('/map');    
+    this.props.history.push('/map');    
   }
 
   getGeoLocation = () => {
@@ -95,13 +99,15 @@ class Home extends Component {
 
   render() {
     const { classes } = this.props;
+    const toggleForm = this.state.viewForm;
+
     return (
       <section className={classes.root}>
-        <div style={{textAlign: 'center'}}>
+        {/* <div style={{textAlign: 'center'}}>
           <h1>
             Welcome, { this.props.reduxState.user.username }!
           </h1>
-        </div>
+        </div> */}
         <Grid container spacing={24}>
           
           {/* <LogOutButton className="log-in" /> */}
@@ -146,9 +152,11 @@ class Home extends Component {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper 
+            {toggleForm ? (
+            <Paper
+              onClick={this.shareSeedsBtn}
               className={classes.paper}
-              style={{ backgroundImage: `url(${share_seeds})`}}
+              style={{ backgroundImage: `url(${share_seeds})`, cursor: 'pointer'}}
             >
               <Typography 
                 className={classes.header} 
@@ -156,15 +164,18 @@ class Home extends Component {
               >
                 SHARE SEEDS
               </Typography>
-              <Button
+              {/* <Button
                 className={classes.button}
                 variant="contained" 
                 onClick={this.shareSeedsBtn}
                 style={{ backgroundColor: '#239956', color: '#fff' }}
               >
-                SHARE SEEDS
-              </Button>
+                ADD SEEDS
+              </Button> */}
             </Paper>
+            ) : (
+            <AddSeeds />
+            )}
           </Grid>
         </Grid>  
       </section>
