@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import PlacesWithStandaloneSearchBox from '../SearchBox/SearchBox'
+import PlacesWithStandaloneSearchBox from '../SearchBox/SearchBox';
 
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +19,6 @@ const styles = theme => ({
   },
   paper: {
     width: '350px',
-    // height: '350px',
     borderRadius: '25px',
     margin: "auto",
     marginTop: theme.spacing.unit * 10,

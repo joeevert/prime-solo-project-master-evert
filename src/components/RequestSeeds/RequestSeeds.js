@@ -84,7 +84,7 @@ class RequestSeeds extends Component {
   // handles input changes
   handleChangeFor = (propertyName) => (event) => {
     this.setState({
-        ...this.state,
+      ...this.state,
         [propertyName]: event.target.value
     })
   }

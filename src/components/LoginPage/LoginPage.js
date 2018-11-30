@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PlacesWithStandaloneSearchBox from '../SearchBox/SearchBox';
 
+
+// material ui
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -48,6 +51,9 @@ class LoginPage extends Component {
   state = {
     username: '',
     password: '',
+    location: ''
+    // latitude: location.lat(),
+    // longitude: location.lng(),
   };
 
   login = (event) => {
@@ -139,7 +145,10 @@ class LoginPage extends Component {
           >
             Register
           </Button>
+          <PlacesWithStandaloneSearchBox handleInputChangeFor={this.handleInputChangeFor}/>
+
         </div>
+        {JSON.stringify(this.state)}
       </div>
     );
   }

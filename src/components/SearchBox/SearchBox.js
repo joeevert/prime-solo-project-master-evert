@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 
 const { compose, withProps, lifecycle } = require("recompose");
 const {
@@ -7,10 +8,10 @@ const {
 } = require("react-google-maps");
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const PlacesWithStandaloneSearchBox = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBE58Bqi3Gp-oWwWISPHICoQVsuKnNPusg&v=3.exp&libraries=geometry,drawing,places",
-
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
   }),
@@ -27,8 +28,14 @@ const PlacesWithStandaloneSearchBox = compose(
           const places = refs.searchBox.getPlaces();
 
           this.setState({
+            
             places,
           });
+          console.log('places[0].geometry', this.state.places[0].geometry.location.lat());
+          console.log('places[0].geometry', this.state.places[0].geometry.location.lng());
+
+
+          
         },
       })
     },
@@ -41,21 +48,16 @@ const PlacesWithStandaloneSearchBox = compose(
       bounds={props.bounds}
       onPlacesChanged={props.onPlacesChanged}
     >
-      <input
-        type="text"
-        placeholder="Customized your placeholder"
-        style={{
-          boxSizing: `border-box`,
-          border: `1px solid transparent`,
-          width: `240px`,
-          height: `32px`,
-          padding: `0 12px`,
-          borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-          fontSize: `14px`,
-          outline: `none`,
-          textOverflow: `ellipses`,
-        }}
+      <TextField
+        required
+        id="location"
+        label="Location"
+        type="location"
+        name="location"
+        value={props.location}
+        margin="normal"
+        variant="outlined"
+        onChange={props.handleInputChangeFor('location')}
       />
     </StandaloneSearchBox>
     <ol>
@@ -64,13 +66,14 @@ const PlacesWithStandaloneSearchBox = compose(
           {formatted_address}
           {" at "}
           ({location.lat()}, {location.lng()})
+          ({location.lat()}, {location.lng()})
+
         </li>
       )}
     </ol>
   </div>
 );
 
-{/* <PlacesWithStandaloneSearchBox /> */}
 const mapStateToProps = reduxState => ({ reduxState });
 
 export default connect(mapStateToProps)(PlacesWithStandaloneSearchBox);
