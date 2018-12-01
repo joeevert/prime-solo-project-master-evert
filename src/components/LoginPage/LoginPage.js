@@ -34,7 +34,7 @@ const styles = theme => ({
   textField: {
     width: '300px',
     borderRadius: '5px',
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     backgroundColor: '#fff'
   },
   avatar: {
