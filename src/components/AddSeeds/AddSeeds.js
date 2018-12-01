@@ -170,7 +170,7 @@ class AddSeeds extends Component {
               className={classes.button}
               type="submit" 
               name="submit"
-              variant="contained" 
+              variant="contained"
             >
               Submit
             </Button>

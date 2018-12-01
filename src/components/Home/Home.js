@@ -25,6 +25,7 @@ const styles = theme => ({
     width: '300px',
     padding: '10px',
     backgroundColor: '#239956',
+    color: '#fff',
     margin: theme.spacing.unit,
   },
   paper: {
@@ -76,13 +77,12 @@ class Home extends Component {
       longitude: this.props.reduxState.location.lng
     })
     console.log('search button clicked', this.state);
-
     this.props.history.push('/map');
   }
 
   useCurrentLocation = () => {
     console.log('use current location:', this.state);
-    // this.props.history.push('/map');    
+    this.props.history.push('/map');    
   }
 
   // getGeoLocation = () => {
@@ -140,21 +140,19 @@ class Home extends Component {
                 variant="outlined"
               /> */}
               <SearchBox />
-              {/* <Button
-                className={classes.button}            
-                onClick={this.useCurrentLocation}
-                variant="contained"
-                style={{ backgroundColor: '#239956', color: '#fff' }}
-              >
-                @ Current Location
-              </Button> */}
               <Button
                 className={classes.button}
                 onClick={this.searchBtn}
                 variant="contained"
-                style={{ backgroundColor: '#239956', color: '#fff' }}
               >
                 SEARCH
+              </Button>
+              <Button
+                className={classes.button}            
+                onClick={this.useCurrentLocation}
+                variant="contained"
+              >
+                @ Current Location
               </Button>
             </Paper>
           </Grid>
