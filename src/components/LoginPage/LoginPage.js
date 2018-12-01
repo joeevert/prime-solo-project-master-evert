@@ -13,17 +13,17 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    width: 300,
-    padding: 10,
+    width: '300px',
+    padding: '10px',
     margin: theme.spacing.unit,
   },
   paper: {
-    width: 350,
-    height: 350,
-    borderRadius: 25,
+    width: '350px',
+    height: '350px',
+    borderRadius: '25px',
     margin: "auto",
     marginTop: theme.spacing.unit * 10,
-    padding: 35,
+    padding: '35px',
     backgroundColor: '#67C28F',
     border: '2px solid #01632C',
   },
@@ -32,8 +32,8 @@ const styles = theme => ({
     marginTop: '30px'
   },
   textField: {
-    width: 300,
-    borderRadius: 5,
+    width: '300px',
+    borderRadius: '5px',
     margin: theme.spacing.unit,
     backgroundColor: '#fff'
   },
@@ -120,16 +120,16 @@ class LoginPage extends Component {
               margin="normal"
               variant="outlined"
             />
-          <Button
-            className={classes.button}
-            type="submit"
-            name="submit"
-            // value="Log In"
-            variant="contained"
-            style={{ backgroundColor: '#239956', color: '#fff' }}
-          >
-            Log In
-          </Button>
+            <Button
+              className={classes.button}
+              type="submit"
+              name="submit"
+              // value="Log In"
+              variant="contained"
+              style={{ backgroundColor: '#239956', color: '#fff' }}
+            >
+              Log In
+            </Button>
           </form>
         </Paper>
         <div className="center">
