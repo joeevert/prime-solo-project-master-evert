@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
 import AddSeeds from '../AddSeeds/AddSeeds';
+import SearchBox from '../SearchBox/SearchBox';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -53,15 +54,14 @@ const styles = theme => ({
 class Home extends Component {
 
   state = {
-		latitude: 0,
-		longitude: 0,
-    // location: "",
+		latitude: null,
+		longitude: null,
     viewForm: true
   }
 
-  componentDidMount = () => {
-    this.getGeoLocation();
-  }
+  // componentDidMount = () => {
+  //   this.getGeoLocation();
+  // }
 
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
@@ -70,32 +70,38 @@ class Home extends Component {
   }
 
   searchBtn = () => {
-    console.log('search button clicked');
-    // this.props.history.push('/map');
+    // console.log('search button clicked', this.state);
+    this.setState({
+      latitude: this.props.reduxState.location.lat,
+      longitude: this.props.reduxState.location.lng
+    })
+    console.log('search button clicked', this.state);
+
+    this.props.history.push('/map');
   }
 
   useCurrentLocation = () => {
     console.log('use current location:', this.state);
-    this.props.history.push('/map');    
+    // this.props.history.push('/map');    
   }
 
-  getGeoLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position.coords);
-          this.setState({
-            ...this.state,
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          })
-        }
-      )
-    }
-    else {
-			alert('Location services not supported by your browser');
-    }
-  }
+  // getGeoLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         console.log(position.coords);
+  //         this.setState({
+  //           ...this.state,
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude
+  //         })
+  //       }
+  //     )
+  //   }
+  //   else {
+	// 		alert('Location services not supported by your browser');
+  //   }
+  // }
 
   render() {
     const { classes } = this.props;
@@ -122,7 +128,7 @@ class Home extends Component {
               >
                 FIND SEEDS
               </Typography>
-              <TextField 
+              {/* <TextField 
                 className={classes.textField}
                 required
                 id="search"
@@ -132,15 +138,16 @@ class Home extends Component {
                 // value={this.state.search}
                 // onChange={this.handleInputChangeFor('search')}
                 variant="outlined"
-              />
-              <Button
+              /> */}
+              <SearchBox />
+              {/* <Button
                 className={classes.button}            
                 onClick={this.useCurrentLocation}
                 variant="contained"
                 style={{ backgroundColor: '#239956', color: '#fff' }}
               >
                 @ Current Location
-              </Button>
+              </Button> */}
               <Button
                 className={classes.button}
                 onClick={this.searchBtn}
@@ -177,7 +184,8 @@ class Home extends Component {
             <AddSeeds />
             )}
           </Grid>
-        </Grid>  
+        </Grid>
+        {JSON.stringify(this.props.reduxState.location)}  
       </section>
     );
   }

@@ -5,15 +5,42 @@ import MapSeedList from './MapSeedList';
 import './MapContainer.css';
 
 class MapContainer extends Component {
-
+  
   state = {
-    location: this.props.location,
+    lat: this.props.reduxState.location.lat, 
+    lng: this.props.reduxState.location.lng
   }
-  
+
   componentDidMount() {
-    console.log('MapContainer state', this.props.location);
+    console.log('MapContainer state:', this.state);
+    this.props.dispatch({ type: 'GET_ALL_SEEDS' });
+    this.checkLocation();
   }
   
+  checkLocation = () => {
+    if ( this.state.lat === undefined || this.state.lng === undefined) {
+      this.getGeoLocation();
+    }
+  }
+
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords);
+          this.setState({
+            ...this.state,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          })
+        }
+      )
+    }
+    else {
+			alert('Location services not supported by your browser');
+    }
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +48,8 @@ class MapContainer extends Component {
 
         <section style={{display: 'flex'}}>
           <Map
-            location={this.props.location}
+            location={ {lat: this.state.lat, lng: this.state.lng} }
+
             // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBE58Bqi3Gp-oWwWISPHICoQVsuKnNPusg&v=3.exp&libraries=geometry,drawing,places`}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
 

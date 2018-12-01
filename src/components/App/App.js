@@ -10,12 +10,13 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
-import MapView from '../MapView/MapView';
+// import MapView from '../MapView/MapView';
 import Profile from '../Profile/Profile';
 import RequestSeeds from '../RequestSeeds/RequestSeeds';
 import Messages from'../Messages/Messages';
 import AddSeedsContainer from '../AddSeeds/AddSeedsContainer';
 import './App.css';
+import MapContainer from '../MapView/MapContainer';
 
 class App extends Component {
   componentDidMount () {
@@ -36,7 +37,7 @@ class App extends Component {
             <Route
               exact
               path="/map"
-              component={MapView}
+              component={MapContainer}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.

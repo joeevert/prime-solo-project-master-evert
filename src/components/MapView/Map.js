@@ -10,21 +10,14 @@ const Map = withScriptjs(withGoogleMap((props) => {
         defaultZoom={14}
         center={ props.location }
         >
-
-        <MapMarker 
-          position={props.location}
-          content="YOU ARE HERE"
-        />
-
-        {/* {JSON.stringify(props.reduxState.allSeeds)} */}
-
-        {props.reduxState.allSeeds.map( marker => 
+        <MapMarker />
+        {/* {props.reduxState.allSeeds.map( marker => 
         <MapMarker
           key={marker.id} 
           position={{lat: Number(marker.latitude), lng: Number(marker.longitude)}}
           content={marker.description}
         />
-        )}
+        )} */}
       </GoogleMap>
     )
   })

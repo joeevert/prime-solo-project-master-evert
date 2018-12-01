@@ -124,7 +124,6 @@ class LoginPage extends Component {
               className={classes.button}
               type="submit"
               name="submit"
-              // value="Log In"
               variant="contained"
               style={{ backgroundColor: '#239956', color: '#fff' }}
             >
@@ -140,8 +139,6 @@ class LoginPage extends Component {
             Register
           </Button>
         </div>
-        {/* {JSON.stringify(this.state)} */}
-        {/* {JSON.stringify(this.props.location)} */}
       </div>
     );
   }

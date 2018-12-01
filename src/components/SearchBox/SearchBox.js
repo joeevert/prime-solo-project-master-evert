@@ -21,7 +21,7 @@ const {
 } = require("react-google-maps");
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
-const PlacesWithStandaloneSearchBox = compose(
+const SearchBox = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBE58Bqi3Gp-oWwWISPHICoQVsuKnNPusg&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
@@ -46,11 +46,14 @@ const PlacesWithStandaloneSearchBox = compose(
           });
           console.log('places[0].geometry', this.state.places[0].geometry.location.lat());
           console.log('places[0].geometry', this.state.places[0].geometry.location.lng());
+          console.log('places[0].formatted_address', this.state.places[0].formatted_address);
+          
 
           // bundling up user's location
           let userLocation = {
             lat: this.state.places[0].geometry.location.lat(),
-            lng: this.state.places[0].geometry.location.lng()
+            lng: this.state.places[0].geometry.location.lng(),
+            formatted_address: this.state.places[0].formatted_address
           }
           this.props.dispatch({ type: 'SET_LOCATION', payload: userLocation });
         },
@@ -81,9 +84,18 @@ const PlacesWithStandaloneSearchBox = compose(
         }}
       />
     </StandaloneSearchBox>
+    {/* <ol>
+      {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
+        <li key={place_id}>
+          {formatted_address}
+          {" at "}
+          ({location.lat()}, {location.lng()})
+        </li>
+      )}
+    </ol> */}
   </div>
 );
 
 const mapStateToProps = reduxState => ({ reduxState });
 
-export default connect(mapStateToProps)(PlacesWithStandaloneSearchBox);
+export default connect(mapStateToProps)(withStyles(styles)(SearchBox));

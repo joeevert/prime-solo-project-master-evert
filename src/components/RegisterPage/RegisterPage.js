@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import PlacesWithStandaloneSearchBox from '../SearchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 
 // material ui
 import PropTypes from 'prop-types';
@@ -49,6 +49,7 @@ class RegisterPage extends Component {
     password: '',
     first_name: '',
     last_name: '',
+    formatted_address: '',
     latitude: null,
     longitude: null,
   };
@@ -64,11 +65,13 @@ class RegisterPage extends Component {
           password: this.state.password,
           first_name: this.state.first_name,
           last_name: this.state.last_name,
+          formatted_address: this.props.location.formatted_address,
           latitude: this.props.location.lat,
           longitude: this.props.location.lng
         },
       });
-    } else {
+    } 
+    else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
   }
@@ -156,7 +159,7 @@ class RegisterPage extends Component {
               margin="normal"
               variant="outlined"
             />
-            <PlacesWithStandaloneSearchBox />
+            <SearchBox />
             <TextField
               className={classes.textField}
               required
