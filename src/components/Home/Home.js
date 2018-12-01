@@ -55,8 +55,8 @@ const styles = theme => ({
 class Home extends Component {
 
   state = {
-		latitude: null,
-		longitude: null,
+		lat: null,
+		lng: null,
     viewForm: true
   }
 
@@ -73,8 +73,8 @@ class Home extends Component {
   searchBtn = () => {
     // console.log('search button clicked', this.state);
     this.setState({
-      latitude: this.props.reduxState.location.lat,
-      longitude: this.props.reduxState.location.lng
+      lat: this.props.reduxState.location.lat,
+      lng: this.props.reduxState.location.lng
     })
     console.log('search button clicked', this.state);
     this.props.history.push('/map');

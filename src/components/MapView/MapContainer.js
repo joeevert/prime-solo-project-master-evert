@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Map from './Map';
 import MapSeedList from './MapSeedList';
+import SearchBox from '../SearchBox/SearchBox';
 import './MapContainer.css';
 
 class MapContainer extends Component {
@@ -41,10 +42,27 @@ class MapContainer extends Component {
     }
   }
 
+  searchBtn = () => {
+    // console.log('search button clicked', this.state);
+    this.setState({
+      lat: this.props.reduxState.location.lat,
+      lng: this.props.reduxState.location.lng
+    })
+    console.log('search button clicked', this.state);
+  }
+
   render() {
     return (
       <div>
         {/* {JSON.stringify(this.props.reduxState.allSeeds)} */}
+        <SearchBox />
+        <button
+          // className={classes.button}
+          onClick={this.searchBtn}
+          // variant="contained"
+        >
+          SEARCH
+        </button>
 
         <section style={{display: 'flex'}}>
           <Map
