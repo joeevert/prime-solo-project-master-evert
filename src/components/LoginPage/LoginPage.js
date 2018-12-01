@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlacesWithStandaloneSearchBox from '../SearchBox/SearchBox';
-
 
 // material ui
 import PropTypes from 'prop-types';
@@ -12,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import { withStyles } from '@material-ui/core/styles';
-
 
 const styles = theme => ({
   button: {
@@ -51,9 +48,6 @@ class LoginPage extends Component {
   state = {
     username: '',
     password: '',
-    location: ''
-    // latitude: location.lat(),
-    // longitude: location.lng(),
   };
 
   login = (event) => {
@@ -145,10 +139,9 @@ class LoginPage extends Component {
           >
             Register
           </Button>
-          <PlacesWithStandaloneSearchBox handleInputChangeFor={this.handleInputChangeFor}/>
-
         </div>
-        {JSON.stringify(this.state)}
+        {/* {JSON.stringify(this.state)} */}
+        {/* {JSON.stringify(this.props.location)} */}
       </div>
     );
   }

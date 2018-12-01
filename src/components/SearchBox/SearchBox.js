@@ -34,8 +34,12 @@ const PlacesWithStandaloneSearchBox = compose(
           console.log('places[0].geometry', this.state.places[0].geometry.location.lat());
           console.log('places[0].geometry', this.state.places[0].geometry.location.lng());
 
-
-          
+          // bundling up user's location
+          let userLocation = {
+            lat: this.state.places[0].geometry.location.lat(),
+            lng: this.state.places[0].geometry.location.lng()
+          }
+          this.props.dispatch({ type: 'SET_LOCATION', payload: userLocation });
         },
       })
     },
@@ -57,10 +61,9 @@ const PlacesWithStandaloneSearchBox = compose(
         value={props.location}
         margin="normal"
         variant="outlined"
-        onChange={props.handleInputChangeFor('location')}
       />
     </StandaloneSearchBox>
-    <ol>
+    {/* <ol>
       {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
         <li key={place_id}>
           {formatted_address}
@@ -70,7 +73,7 @@ const PlacesWithStandaloneSearchBox = compose(
 
         </li>
       )}
-    </ol>
+    </ol> */}
   </div>
 );
 
