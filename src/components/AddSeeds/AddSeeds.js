@@ -64,6 +64,7 @@ class AddSeeds extends Component {
     description: '',
     quantity: '',
     user_id: null,
+    editProfile: false
   }
 
   componentDidMount() {
