@@ -4,6 +4,7 @@ import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
 import AddSeeds from '../AddSeeds/AddSeeds';
 import SearchBox from '../SearchBox/SearchBox';
+// import AddSeedsButton from './AddSeedsButton';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -11,7 +12,6 @@ import SearchBox from '../SearchBox/SearchBox';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     // flexGrow: 1,
-    marginTop: '50px'
+    marginTop: '50px',
   },
   button: {
     width: '300px',
@@ -60,9 +60,9 @@ class Home extends Component {
     viewForm: true
   }
 
-  // componentDidMount = () => {
-  //   this.getGeoLocation();
-  // }
+  componentDidMount = () => {
+    this.getGeoLocation();
+  }
 
   shareSeedsBtn = () => {
     console.log('share seeds button clicked');
@@ -82,26 +82,31 @@ class Home extends Component {
 
   useCurrentLocation = () => {
     console.log('use current location:', this.state);
+    let userLocation = {
+      lat: this.state.lat,
+      lng: this.state.lng,
+    }
+    this.props.dispatch({ type: 'SET_LOCATION', payload: userLocation });
     this.props.history.push('/map');    
   }
 
-  // getGeoLocation = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         console.log(position.coords);
-  //         this.setState({
-  //           ...this.state,
-  //           latitude: position.coords.latitude,
-  //           longitude: position.coords.longitude
-  //         })
-  //       }
-  //     )
-  //   }
-  //   else {
-	// 		alert('Location services not supported by your browser');
-  //   }
-  // }
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords);
+          this.setState({
+            ...this.state,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          })
+        }
+      )
+    }
+    else {
+			alert('Location services not supported by your browser');
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -183,7 +188,8 @@ class Home extends Component {
             )}
           </Grid>
         </Grid>
-        {JSON.stringify(this.props.reduxState.location)}  
+        {/* <AddSeedsButton /> */}
+        {/* {JSON.stringify(this.props.reduxState.location)}   */}
       </section>
     );
   }

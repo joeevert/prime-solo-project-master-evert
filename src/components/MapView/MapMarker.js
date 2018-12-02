@@ -73,7 +73,7 @@ class MapMarker extends Component {
           icon={seedMarker} 
         >
           {(this.state.isOpen && this.state.activeMarker === item.id) &&
-          <InfoWindow onCloseClick={this.props.handleCloseCall}>
+          <InfoWindow>
               <Card className={classes.card} key={item.id}>
               <Grid container spacing={8}>
                 <Grid item xs={3} style={{backgroundColor: '#239956'}}>

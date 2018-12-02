@@ -71,16 +71,16 @@ const SearchBox = compose(
       <TextField
         required
         id="location"
-        label="Location"
-        type="location"
+        label="Enter Location"
+        type="text"
         name="location"
         value={props.location}
         margin="normal"
         variant="outlined"
         style={{
-            width: '300px',
-            borderRadius: '5px',
-            backgroundColor: '#fff'
+          width: '300px',
+          borderRadius: '5px',
+          backgroundColor: '#fff'
         }}
       />
     </StandaloneSearchBox>
