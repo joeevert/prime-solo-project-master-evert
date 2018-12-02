@@ -49,4 +49,22 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/editProfile/:id', (req, res) => {
+    const reqId = req.body.id
+    const username = req.body.username;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const profile_pic = req.body.profile_pic;
+
+    const sqlText = `UPDATE user_info SET ("username", "first_name", "last_name", "profile_pic") = ($1, $2, $3, $4)
+    WHERE id=$5`;
+    
+    pool.query(sqlText, [username, first_name, last_name, profile_pic, reqId])
+      .then(() => { res.sendStatus(201); })
+      .catch((error) => {
+        console.log(`PUT error ${queryText}`, error);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;

@@ -6,15 +6,15 @@ import './MapContainer.css';
 
 // material ui
 
-const styles = ({
-  button: {
-    width: '300px',
-    padding: '10px',
-    backgroundColor: '#239956',
-    color: '#fff',
-    margin: 0,
-  },
-})
+// const styles = ({
+//   button: {
+//     width: '300px',
+//     padding: '10px',
+//     backgroundColor: '#239956',
+//     color: '#fff',
+//     margin: 0,
+//   },
+// })
 
 class MapContainer extends Component {
   

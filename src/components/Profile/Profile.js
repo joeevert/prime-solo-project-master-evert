@@ -8,19 +8,18 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import SeedTable from './SeedTable';
 import Messages from '../Messages/Messages';
-import SearchBox from '../SearchBox/SearchBox';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
+// import Tooltip from '@material-ui/core/Tooltip';
+// import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 
@@ -29,6 +28,10 @@ const styles = theme => ({
     padding: '10px',
     backgroundColor: '#239956',
     color: '#fff',
+    width: '200px'
+  },
+  editButton: {
+    padding: '10px',
     width: '200px'
   },
   header: {
@@ -60,7 +63,13 @@ class Profile extends Component {
 
   state = {
     view: true,
-    open: false
+    open: false,
+    id: this.props.reduxState.user.id,
+    username: this.props.reduxState.user.username,
+    first_name: this.props.reduxState.user.first_name,
+    last_name: this.props.reduxState.user.last_name,
+    formatted_address: this.props.reduxState.user.formatted_address,
+    profile_pic: this.props.reduxState.user.profile_pic
   }
 
   shareSeedsBtn = () => {
@@ -78,9 +87,17 @@ class Profile extends Component {
     this.setState({ open: true});
   }
 
-  handleEditProfileClose = () => {
+  handleEditProfileSave = () => {
     this.setState({ open: false });
-  };
+    let userEdit = {
+      id: this.state.id,
+      username: this.state.username,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      profile_pic: this.state.profile_pic
+    }
+    this.props.dispatch({ type: 'EDIT_PROFILE', payload: userEdit })
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -88,16 +105,21 @@ class Profile extends Component {
     });
   }
 
+  handleEditProfileClose = () => {
+    this.setState({ open: false });
+  }
+
   render() {
     const { classes } = this.props;
     const toggleView = this.state.view;
     return (
       <section className="container">
+      {JSON.stringify(this.props.reduxState.user)}
         <div className="info">
           <Avatar 
             className={classes.avatar}
-            alt={ this.props.reduxState.user.username }
-            src={ this.props.reduxState.user.profile_pic }
+            alt={this.props.reduxState.user.username}
+            src={this.props.reduxState.user.profile_pic}
           />
           <Typography
             className={classes.header}
@@ -105,21 +127,21 @@ class Profile extends Component {
           >
             {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
           </Typography>
-          <Tooltip title="Edit Profile" placement="right">
-            <IconButton 
-              onClick={this.editProfile}
-            >
-              <Edit fontSize="small"/>
-            </IconButton>
-          </Tooltip>
-          <div>
           <Typography
-            style={{display: 'inline'}}
             className={classes.info}
             variant="h6"
           >
             {this.props.reduxState.user.formatted_address}
           </Typography>
+          <Button 
+            className={classes.editButton}
+            onClick={this.editProfile}
+          >
+          Edit Profile
+            <Edit fontSize="small" className={classes.rightIcon}/>
+          </Button>
+          <div>
+
           <Dialog
             open={this.state.open}
             onClose={this.handleClose}
@@ -183,7 +205,7 @@ class Profile extends Component {
               <Button onClick={this.handleEditProfileClose} color="secondary">
                 Cancel
               </Button>
-              <Button onClick={this.handleEditProfileClose} color="primary" autoFocus>
+              <Button onClick={this.handleEditProfileSave} color="primary" autoFocus>
                 Save
               </Button>
             </DialogActions>

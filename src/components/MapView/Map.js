@@ -1,7 +1,7 @@
 /* global google */
 import React from 'react';
 import { connect } from 'react-redux';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MapMarker from './MapMarker'
 import TextField from '@material-ui/core/TextField';
 
