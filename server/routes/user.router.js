@@ -22,11 +22,14 @@ router.post('/register', (req, res, next) => {
   const last_name = req.body.last_name;
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
+  const formatted_address = req.body.formatted_address;
+
 
   // const queryText = 'INSERT INTO user_info (username, password) VALUES ($1, $2) RETURNING id'; // original
-  const queryText = 'INSERT INTO user_info (username, password, first_name, last_name, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'; // geolocation test
+  const queryText = `INSERT INTO user_info (username, password, first_name, last_name, latitude, longitude, formatted_address) 
+  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;`; // geolocation test
 
-  pool.query(queryText, [username, password, first_name, last_name, latitude, longitude])
+  pool.query(queryText, [username, password, first_name, last_name, latitude, longitude, formatted_address])
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });

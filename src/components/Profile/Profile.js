@@ -7,13 +7,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Profile.css';
 import SeedTable from './SeedTable';
+import Messages from '../Messages/Messages';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles';
-import Messages from '../Messages/Messages';
+import Edit from '@material-ui/icons/Edit';
 
 const styles = ({
   button: {
@@ -23,25 +27,19 @@ const styles = ({
     width: '200px'
   },
   header: {
-    color: '#fff', 
     fontWeight: 'bold', 
-    backgroundColor: '#01632C', 
-    marginBottom: '10px', 
     padding: '10px',
   },
-  card: {
-    width: '600px',
-    textAlign: 'left',
-    margin: 'auto',
-    marginBottom: '15px'
-    // overflow: 'scroll',
-  },
   avatar: {
-    margin: '20px',
+    margin: 'auto',
     width: '200px',
     height: '200px',
-    backgroundColor: '#ddd'
-  }, 
+    backgroundColor: '#ddd',
+    border: '5px solid #239956',
+  },
+  info: {
+    marginBottom: '10px'
+  } 
 })
 
 class Profile extends Component {
@@ -65,7 +63,7 @@ class Profile extends Component {
     const toggleView = this.state.view;
     return (
       <section className="container">
-        <div className="flexContainer">
+        <div>
           <div>
             <Avatar 
                 className={classes.avatar}
@@ -73,9 +71,24 @@ class Profile extends Component {
                 src={ this.props.reduxState.user.profile_pic }
               />
             <div className="info">
-              <Typography 
-                variant="h6">{this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
+              <Typography
+                className={classes.header}
+                variant="h4"
+              >
+                {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
               </Typography>
+              <div>
+              <Typography
+                style={{display: 'inline'}}
+                className={classes.info}
+                variant="h6"
+              >
+                {this.props.reduxState.user.formatted_address}
+              </Typography>
+              <IconButton style={{margin: '0px 0px 5px 5px'}}>
+                <Edit fontSize="small"/>
+              </IconButton>
+              </div>
               <Button
                 className={classes.button} 
                 onClick={() => this.toggleView()}
@@ -84,11 +97,13 @@ class Profile extends Component {
               </Button>
             </div>
           </div>
-          {toggleView ? (
-          <SeedTable />
-          ) : (
-          <Messages />
-          )}
+          <Paper>
+            {toggleView ? (
+            <SeedTable />
+            ) : (
+            <Messages />
+            )}
+          </Paper>
         </div>
       </section>
     );

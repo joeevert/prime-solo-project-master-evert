@@ -66,7 +66,7 @@ class Messages extends Component {
     const toggleRequests = this.state.toggleRequests;
 
     return (
-      <div style={{marginTop:'25px'}}>      
+      <div style={{marginTop:'50px'}}>      
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
         <Typography
           onClick={this.sentView} 

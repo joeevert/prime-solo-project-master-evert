@@ -84,7 +84,7 @@ class SeedTable extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{marginTop:'40px'}}>
+      <div style={{marginTop:'50px'}}>
         <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
         {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>

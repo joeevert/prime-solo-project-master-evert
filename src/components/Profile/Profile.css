@@ -1,31 +1,9 @@
 .container {
-    /* background-color: #eee; */
-    /* width: 85%; */
+    width: 65%;
     margin: auto;
-}
-
-.flexContainer {
-    display: flex;
-    /* margin-top: 75px; */
-}
-
-.flexContainer > div {
-    margin-left: 25px;
-    /* padding: 20px; */
-}
-
-.profilePic {
-    display: inline-block;
-    border-radius: 25px 25px 0px 0px;
-    /* border: 2px solid #01632C; */
-    height: 250px;
-    width: 250px;
-    margin-bottom: 0px;
+    padding: 25px;
 }
 
 .info {
     text-align: center;
-    margin-top: 0px;
-    padding: 10px;
-    /* background-color: #239956; */
 }
