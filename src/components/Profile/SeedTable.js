@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css'
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // material ui
 import Typography from '@material-ui/core/Typography';
@@ -74,7 +74,7 @@ class SeedTable extends Component {
     // console.log('in deleteSeed, id:', id);
     confirmAlert({
       title: 'Confirm to Delete',
-      message: 'Are you sure to do this?',
+      message: 'Are you sure about this?',
       buttons: [
         {
           label: 'Yes',

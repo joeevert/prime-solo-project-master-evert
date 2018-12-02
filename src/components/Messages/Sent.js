@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import moment from 'moment';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // material UI
 import Button from '@material-ui/core/Button';
@@ -10,7 +12,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core';
+
+import Cancel from '@material-ui/icons/Cancel';
+
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -34,7 +41,19 @@ class Sent extends Component {
   // deletes table row and message from message table
   cancelRequest = (id) => {
     console.log('in cancelRequest, id:', id);
-    this.props.dispatch({ type: 'CANCEL_REQUEST', payload: id})
+    confirmAlert({
+      title: 'Confirm to Cancel Request',
+      message: 'Are you sure about this?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.props.dispatch({ type: 'CANCEL_REQUEST', payload: id})
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
   }
 
   render() {
@@ -67,13 +86,14 @@ class Sent extends Component {
               </strong> : 'Not Confirmed'}
             </CustomTableCell>
             <CustomTableCell>
-              <Button
-                color="secondary"
-                variant="contained" 
-                onClick={() => this.cancelRequest(message.id)}
-              >
-                CANCEL
-              </Button>
+              <Tooltip title="Cancel Request" placement="right">
+                <IconButton
+                  color="secondary"
+                  onClick={() => this.cancelRequest(message.id)}
+                >
+                  <Cancel fontSize="medium"/>
+                </IconButton>
+              </Tooltip>
             </CustomTableCell>
           </TableRow> 
           )}
