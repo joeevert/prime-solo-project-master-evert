@@ -10,7 +10,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core';
+
+import ThumbUp from '@material-ui/icons/ThumbUp';
+
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -69,13 +74,14 @@ class Received extends Component {
               </strong> : 'Not Confirmed'}
             </CustomTableCell>
             <CustomTableCell>
-              <Button
-                className={classes.button}
-                variant="contained" 
-                onClick={() => this.confirm(message.id)}
-              >
-                CONFIRM
-              </Button>
+              <Tooltip title="Confirm Request" placement="right">
+                <IconButton
+                  className={classes.button}
+                  onClick={() => this.confirm(message.id)}
+                >
+                  <ThumbUp fontSize="small"/>
+                </IconButton>
+              </Tooltip>
             </CustomTableCell>
           </TableRow> 
           )}

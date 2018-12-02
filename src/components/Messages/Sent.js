@@ -67,8 +67,8 @@ class Sent extends Component {
             <CustomTableCell>Request</CustomTableCell>
             <CustomTableCell>Message</CustomTableCell>
             <CustomTableCell>Status</CustomTableCell>
-            {/* <CustomTableCell>Actions</CustomTableCell> */}
-            <CustomTableCell />
+            <CustomTableCell>Actions</CustomTableCell>
+            {/* <CustomTableCell /> */}
           </TableRow>
         </TableHead>
         {this.props.reduxState.inbox.sent ? (

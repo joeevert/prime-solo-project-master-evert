@@ -111,8 +111,8 @@ class SeedTable extends Component {
                 <CustomTableCell>Description</CustomTableCell>
                 <CustomTableCell>Quantity</CustomTableCell>
                 <CustomTableCell>Date Added</CustomTableCell>
-                {/* <CustomTableCell>Actions</CustomTableCell> */}
-                <CustomTableCell />
+                <CustomTableCell >Actions</CustomTableCell>
+                {/* <CustomTableCell /> */}
               </TableRow>
             </TableHead>
             <TableBody>
