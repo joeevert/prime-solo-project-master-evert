@@ -5,6 +5,7 @@ import moment from 'moment';
 
 // material ui
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,13 +33,8 @@ const styles = theme => ({
     marginTop: '20px'
   },
   paper: {
-      width: '350px',
-      height: '350px',
-      borderRadius: '25px',
-      // margin: "auto",
-      // marginTop: theme.spacing.unit * 10,
-      padding: '35px',
-      backgroundColor: '#67C28F'
+    marginTop:'50px', 
+    overflow: 'scroll'
   },
   form: {
       textAlign: 'center',
@@ -84,7 +80,7 @@ class SeedTable extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{marginTop:'50px'}}>
+      <Paper className={classes.paper}>
         <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
         {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>
@@ -132,7 +128,7 @@ class SeedTable extends Component {
         >
           Add Seeds
         </Button> 
-      </div> 
+      </Paper> 
     );
   }
 }

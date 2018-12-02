@@ -97,13 +97,13 @@ class Profile extends Component {
               </Button>
             </div>
           </div>
-          <Paper>
+          
             {toggleView ? (
             <SeedTable />
             ) : (
             <Messages />
             )}
-          </Paper>
+          
         </div>
       </section>
     );
