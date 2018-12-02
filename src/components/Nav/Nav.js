@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import MessagesButton from '../LogOutButton/MessagesButton';
+// import MessagesButton from '../LogOutButton/MessagesButton';
 import './Nav.css';
 
 // TODO

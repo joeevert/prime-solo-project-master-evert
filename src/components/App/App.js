@@ -5,23 +5,18 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
-import AddSeeds from '../AddSeeds/AddSeeds';
-import MapView from '../MapView/MapView';
+// import MapView from '../MapView/MapView';
 import Profile from '../Profile/Profile';
 import RequestSeeds from '../RequestSeeds/RequestSeeds';
 import Messages from'../Messages/Messages';
-
-import './App.css';
 import AddSeedsContainer from '../AddSeeds/AddSeedsContainer';
+import './App.css';
+import MapContainer from '../MapView/MapContainer';
 
 class App extends Component {
   componentDidMount () {
@@ -38,16 +33,23 @@ class App extends Component {
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
+
             This is a route anyone can see, no login necessary */}
-            <Route
+            {/* <Route
               exact
               path="/map"
-              component={MapView}
-            />
+              component={MapContainer}
+            /> */}
+            
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
+            <ProtectedRoute
+              exact
+              path="/map"
+              component={MapContainer}
+            />
             <ProtectedRoute
               exact
               path="/home"

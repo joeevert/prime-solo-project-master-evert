@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
 import AddSeeds from '../AddSeeds/AddSeeds';
+import SearchBox from '../SearchBox/SearchBox';
+// import AddSeedsButton from './AddSeedsButton';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -10,7 +12,6 @@ import AddSeeds from '../AddSeeds/AddSeeds';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,12 +19,13 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     // flexGrow: 1,
-    marginTop: '50px'
+    marginTop: '50px',
   },
   button: {
     width: '300px',
     padding: '10px',
     backgroundColor: '#239956',
+    color: '#fff',
     margin: theme.spacing.unit,
   },
   paper: {
@@ -53,9 +55,8 @@ const styles = theme => ({
 class Home extends Component {
 
   state = {
-		latitude: 0,
-		longitude: 0,
-    // location: "",
+		lat: null,
+		lng: null,
     viewForm: true
   }
 
@@ -70,12 +71,22 @@ class Home extends Component {
   }
 
   searchBtn = () => {
-    console.log('search button clicked');
-    // this.props.history.push('/map');
+    // console.log('search button clicked', this.state);
+    this.setState({
+      lat: this.props.reduxState.location.lat,
+      lng: this.props.reduxState.location.lng
+    })
+    console.log('search button clicked', this.state);
+    this.props.history.push('/map');
   }
 
   useCurrentLocation = () => {
     console.log('use current location:', this.state);
+    let userLocation = {
+      lat: this.state.lat,
+      lng: this.state.lng,
+    }
+    this.props.dispatch({ type: 'SET_LOCATION', payload: userLocation });
     this.props.history.push('/map');    
   }
 
@@ -86,8 +97,8 @@ class Home extends Component {
           console.log(position.coords);
           this.setState({
             ...this.state,
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
           })
         }
       )
@@ -122,7 +133,7 @@ class Home extends Component {
               >
                 FIND SEEDS
               </Typography>
-              <TextField 
+              {/* <TextField 
                 className={classes.textField}
                 required
                 id="search"
@@ -132,22 +143,21 @@ class Home extends Component {
                 // value={this.state.search}
                 // onChange={this.handleInputChangeFor('search')}
                 variant="outlined"
-              />
-              <Button
-                className={classes.button}            
-                onClick={this.useCurrentLocation}
-                variant="contained"
-                style={{ backgroundColor: '#239956', color: '#fff' }}
-              >
-                @ Current Location
-              </Button>
+              /> */}
+              <SearchBox />
               <Button
                 className={classes.button}
                 onClick={this.searchBtn}
                 variant="contained"
-                style={{ backgroundColor: '#239956', color: '#fff' }}
               >
                 SEARCH
+              </Button>
+              <Button
+                className={classes.button}            
+                onClick={this.useCurrentLocation}
+                variant="contained"
+              >
+                @ Current Location
               </Button>
             </Paper>
           </Grid>
@@ -177,7 +187,9 @@ class Home extends Component {
             <AddSeeds />
             )}
           </Grid>
-        </Grid>  
+        </Grid>
+        {/* <AddSeedsButton /> */}
+        {/* {JSON.stringify(this.props.reduxState.location)}   */}
       </section>
     );
   }

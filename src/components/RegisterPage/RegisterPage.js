@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import SearchBox from '../SearchBox/SearchBox';
 
+// material ui
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -12,17 +14,16 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    width: 300,
-    padding: 10,
+    width: '300px',
+    padding: '10px',
     margin: theme.spacing.unit,
   },
   paper: {
-    width: 350,
-    // height: 350,
-    borderRadius: 25,
+    width: '350px',
+    borderRadius: '25px',
     margin: "auto",
     marginTop: theme.spacing.unit * 10,
-    padding: 35,
+    padding: '35px',
     backgroundColor: '#67C28F',
     border: '2px solid #01632C',
   },
@@ -31,9 +32,9 @@ const styles = theme => ({
     marginTop: '30px'
   },
   textField: {
-    width: 300,
-    borderRadius: 5,
-    margin: theme.spacing.unit,
+    width: '300px',
+    borderRadius: '5px',
+    // margin: theme.spacing.unit,
     backgroundColor: '#fff'
   },
   avatar: {
@@ -48,13 +49,10 @@ class RegisterPage extends Component {
     password: '',
     first_name: '',
     last_name: '',
+    formatted_address: '',
     latitude: null,
     longitude: null,
   };
-
-  componentDidMount() {
-    this.getGeoLocation();
-  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -67,14 +65,16 @@ class RegisterPage extends Component {
           password: this.state.password,
           first_name: this.state.first_name,
           last_name: this.state.last_name,
-          latitude: Number(this.state.latitude),
-          longitude: Number(this.state.longitude)
+          formatted_address: this.props.location.formatted_address,
+          latitude: this.props.location.lat,
+          longitude: this.props.location.lng
         },
       });
-    } else {
+    } 
+    else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
-  } // end registerUser
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -82,23 +82,23 @@ class RegisterPage extends Component {
     });
   }
 
-  getGeoLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // console.log('add seeds location:', position.coords);
-          this.setState({
-              ...this.state,
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-          })
-        }
-      )
-    }
-    else {
-			alert('Location services not supported by your browser');
-    }
-  }
+  // getGeoLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         // console.log('add seeds location:', position.coords);
+  //         this.setState({
+  //             ...this.state,
+  //             latitude: position.coords.latitude,
+  //             longitude: position.coords.longitude
+  //         })
+  //       }
+  //     )
+  //   }
+  //   else {
+	// 		alert('Location services not supported by your browser');
+  //   }
+  // }
 
   render() {
     const { classes } = this.props;
@@ -159,6 +159,7 @@ class RegisterPage extends Component {
               margin="normal"
               variant="outlined"
             />
+            <SearchBox />
             <TextField
               className={classes.textField}
               required
@@ -206,6 +207,7 @@ RegisterPage.propTypes = {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  location: state.location
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(RegisterPage));

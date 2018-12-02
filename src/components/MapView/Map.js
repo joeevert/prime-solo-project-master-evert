@@ -1,7 +1,11 @@
+/* global google */
 import React from 'react';
 import { connect } from 'react-redux';
-import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import MapMarker from './MapMarker'
+import TextField from '@material-ui/core/TextField';
+
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 
 const Map = withScriptjs(withGoogleMap((props) => {
 
@@ -10,21 +14,43 @@ const Map = withScriptjs(withGoogleMap((props) => {
         defaultZoom={14}
         center={ props.location }
         >
-
-        <MapMarker 
-          position={props.location}
-          content="YOU ARE HERE"
-        />
-
-        {/* {JSON.stringify(props.reduxState.allSeeds)} */}
-
-        {props.reduxState.allSeeds.map( marker => 
+        {/* Marker shows your location */}
+        <Marker
+          position={{lat: props.reduxState.location.lat, lng: props.reduxState.location.lng}}
+          // onClick={() => this.markerClick(item.id)}
+          // icon={seedMarker} 
+        >
+        </Marker>
+        <SearchBox
+          ref={props.onSearchBoxMounted}
+          bounds={props.bounds}
+          controlPosition={google.maps.ControlPosition.TOP_RIGHT}
+          onPlacesChanged={props.onPlacesChanged}
+        >
+          <TextField
+            id="location"
+            label="Enter Location"
+            type="text"
+            name="location"
+            // value={props.location}
+            // margin="normal"
+            variant="outlined"
+            style={{
+              margin: '15px',
+              width: '300px',
+              borderRadius: '5px',
+              backgroundColor: '#fff',
+            }}
+          />
+        </SearchBox>
+        <MapMarker />
+        {/* {props.reduxState.allSeeds.map( marker => 
         <MapMarker
           key={marker.id} 
           position={{lat: Number(marker.latitude), lng: Number(marker.longitude)}}
           content={marker.description}
         />
-        )}
+        )} */}
       </GoogleMap>
     )
   })

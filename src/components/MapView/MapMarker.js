@@ -65,8 +65,7 @@ class MapMarker extends Component {
     const { classes } = this.props;
     return (
       <div className="App">
-            {this.props.reduxState.allSeeds.map( item =>
-
+      {this.props.reduxState.allSeeds.map( item =>
         <Marker
           key={item.id}
           position={{lat: Number(item.latitude), lng: Number(item.longitude)}}
@@ -74,7 +73,7 @@ class MapMarker extends Component {
           icon={seedMarker} 
         >
           {(this.state.isOpen && this.state.activeMarker === item.id) &&
-          <InfoWindow onCloseClick={this.props.handleCloseCall}>
+          <InfoWindow>
               <Card className={classes.card} key={item.id}>
               <Grid container spacing={8}>
                 <Grid item xs={3} style={{backgroundColor: '#239956'}}>

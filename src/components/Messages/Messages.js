@@ -6,7 +6,6 @@ import Received from './Received';
 
 // material ui
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 
 const styles = theme => ({
