@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import SeedTable from './SeedTable';
 import Messages from '../Messages/Messages';
+import SearchBox from '../SearchBox/SearchBox';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -21,6 +22,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   button: {
@@ -32,8 +34,6 @@ const styles = theme => ({
   header: {
     fontWeight: 'bold', 
     padding: '10px',
-    display: 'inline',
-    marginLeft: '50px'
   },
   avatar: {
     margin: 'auto',
@@ -44,6 +44,12 @@ const styles = theme => ({
   },
   info: {
     marginBottom: '10px'
+  },
+  textField: {
+    width: '300px',
+    borderRadius: '5px',
+    // margin: theme.spacing.unit,
+    backgroundColor: '#fff'
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
@@ -68,14 +74,19 @@ class Profile extends Component {
   }
 
   editProfile = () => {
-    console.log('edit profile', this.state.editProfileWindow);
+    console.log('edit profile', this.state.open);
     this.setState({ open: true});
-    
   }
 
-  handleClose = () => {
+  handleEditProfileClose = () => {
     this.setState({ open: false });
   };
+
+  handleInputChangeFor = propertyName => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }
 
   render() {
     const { classes } = this.props;
@@ -96,7 +107,6 @@ class Profile extends Component {
           </Typography>
           <Tooltip title="Edit Profile" placement="right">
             <IconButton 
-              style={{margin: '0px 0px 5px 5px'}}
               onClick={this.editProfile}
             >
               <Edit fontSize="small"/>
@@ -118,16 +128,62 @@ class Profile extends Component {
           >
             <DialogContent>
               <DialogTitle style={{textAlign: 'center'}} id="alert-dialog-title">{"Edit Profile"}</DialogTitle>
-              <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending anonymous location data to
-                Google, even when no apps are running.
-              </DialogContentText>
+              <div style={{textAlign: 'center'}}>
+                <TextField
+                  className={classes.textField}
+                  id="username"
+                  label="Username"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  placeholder={this.props.reduxState.user.username}
+                  onChange={this.handleInputChangeFor('username')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textField}
+                  id="first_name"
+                  label="First Name"
+                  type="text"
+                  name="first_name"
+                  value={this.state.first_name}
+                  placeholder={this.props.reduxState.user.first_name}
+                  onChange={this.handleInputChangeFor('first_name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textField}
+                  id="last_name"
+                  label="Last Name"
+                  type="text"
+                  name="last_name"
+                  value={this.state.last_name}
+                  placeholder={this.props.reduxState.user.last_name}
+                  onChange={this.handleInputChangeFor('last_name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textField}
+                  id="profile_pic"
+                  label="Profile Pic"
+                  type="profile_pic"
+                  name="profile_pic"
+                  value={this.state.profile_pic}
+                  placeholder={this.props.reduxState.user.profile_pic}
+                  onChange={this.handleInputChangeFor('profile_pic')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                </div>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="secondary">
-                Cancle
+              <Button onClick={this.handleEditProfileClose} color="secondary">
+                Cancel
               </Button>
-              <Button onClick={this.handleClose} color="primary" autoFocus>
+              <Button onClick={this.handleEditProfileClose} color="primary" autoFocus>
                 Save
               </Button>
             </DialogActions>
