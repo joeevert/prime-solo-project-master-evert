@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import SeedTable from './SeedTable';
 import Messages from '../Messages/Messages';
+import SearchBox from '../SearchBox/SearchBox';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
+import Save from '@material-ui/icons/Save';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -63,6 +65,7 @@ class Profile extends Component {
 
   state = {
     view: true,
+    locationEdit: true,
     open: false,
     id: this.props.reduxState.user.id,
     username: this.props.reduxState.user.username,
@@ -82,6 +85,11 @@ class Profile extends Component {
     this.setState({ view: !this.state.view})
   }
 
+  locationEdit = () => {
+    console.log('profile state', this.state);
+    this.setState({ locationEdit: !this.state.locationEdit})
+  }
+
   editProfile = () => {
     console.log('edit profile', this.state.open);
     this.setState({ open: true});
@@ -99,6 +107,12 @@ class Profile extends Component {
     this.props.dispatch({ type: 'EDIT_PROFILE', payload: userEdit })
   }
 
+  updateLocation = () => {
+    console.log('updating location');
+    // this.setState({ locationEdit: !this.state.locationEdit})
+    
+  }
+
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -112,6 +126,8 @@ class Profile extends Component {
   render() {
     const { classes } = this.props;
     const toggleView = this.state.view;
+    const locationEdit = this.state.locationEdit;
+
     return (
       <section className="container">
       {JSON.stringify(this.props.reduxState.user)}
@@ -127,6 +143,9 @@ class Profile extends Component {
           >
             {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
           </Typography>
+
+
+          {locationEdit ? (
           <div>
             <Typography
               className={classes.info}
@@ -137,19 +156,31 @@ class Profile extends Component {
             </Typography>
             <Tooltip title="Edit Location" placement="right">
               <IconButton
+                onClick={this.locationEdit}
                 color="default"
-                onClick={this.EditLocation}
                 style={{margin: '0px 0px 5px 5px'}}
               >
                 <Edit fontSize="small"/>
               </IconButton>
             </Tooltip>
           </div>
+          ) : (
+          <div>
+            <SearchBox style={{display: 'inline'}}/>
+              <Button
+                onClick={this.updateLocation}
+                color="default"
+              >
+                Save Location
+                <Save fontSize="small" className={classes.rightIcon}/>
+              </Button>
+          </div>
+          )}
           <Button 
             className={classes.editButton}
             onClick={this.editProfile}
           >
-          Edit Profile
+            Edit Profile
             <Edit fontSize="small" className={classes.rightIcon}/>
           </Button>
           <div>

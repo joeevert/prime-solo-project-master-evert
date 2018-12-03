@@ -34,9 +34,9 @@ const Nav = (props) => (
           <Link className="nav-link" to="/addseeds">
             Add Seeds
           </Link>
-          <Link className="nav-link" to="/messages">
+          {/* <Link className="nav-link" to="/messages">
             Messages
-          </Link>
+          </Link> */}
           {/* <MessagesButton /> */}
           <Link className="nav-link" to="/profile">
             Profile
