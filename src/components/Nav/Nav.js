@@ -34,16 +34,18 @@ const Nav = (props) => (
           <Link className="nav-link" to="/addseeds">
             Add Seeds
           </Link>
-          {/* <Link className="nav-link" to="/messages">
-            Messages
-          </Link> */}
+          
           {/* <MessagesButton /> */}
           <Link className="nav-link" to="/profile">
             Profile
           </Link>
+          
           <LogOutButton className="nav-link"/>
         </>
       )}
+      <Link className="nav-link" to="/about">
+        About
+      </Link>
 
     </div>
 

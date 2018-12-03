@@ -1,0 +1,12 @@
+.container {
+    margin: 'auto';
+}
+
+.header {
+    text-align: center;
+}
+
+.list {
+    margin-left: 35%;
+    /* margin-right: 32%; */
+}
