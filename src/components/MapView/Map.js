@@ -15,12 +15,12 @@ const Map = withScriptjs(withGoogleMap((props) => {
         center={ props.location }
         >
         {/* Marker shows your location */}
-        <Marker
+        {/* <Marker
           position={{lat: props.reduxState.location.lat, lng: props.reduxState.location.lng}}
           // onClick={() => this.markerClick(item.id)}
           // icon={seedMarker} 
         >
-        </Marker>
+        </Marker> */}
         <SearchBox
           ref={props.onSearchBoxMounted}
           bounds={props.bounds}

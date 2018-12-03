@@ -6,9 +6,9 @@ import AddSeeds from './AddSeeds'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = ({
-    root: {
-        marginTop: '50px'
-      }
+  root: {
+      marginTop: '50px'
+  }
 })
 
 class AddSeedsContainer extends Component {

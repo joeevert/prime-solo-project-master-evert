@@ -150,7 +150,7 @@ class Profile extends Component {
     return (
       <section className="container">
       {/* {JSON.stringify(this.props.reduxState.user)} */}
-      {JSON.stringify(this.state)}
+      {/* {JSON.stringify(this.state)} */}
 
         <div className="info">
           <Avatar 

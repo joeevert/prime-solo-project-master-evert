@@ -37,7 +37,7 @@ class MapSeedList extends Component {
             className={classes.header} 
             variant="h6"
           >
-            SEEDS AVAILABLE
+            AVAILABLE IN YOUR AREA
           </Typography>
           <List>
             <MapCard />

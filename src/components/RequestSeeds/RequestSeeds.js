@@ -10,30 +10,33 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
+  root: {
+    marginTop: '50px'
+  },
   button: {
-      width: '300px',
-      padding: '10px',
-      backgroundColor: '#239956',
-      margin: theme.spacing.unit,
+    width: '300px',
+    padding: '10px',
+    backgroundColor: '#239956',
+    margin: theme.spacing.unit,
   },
   paper: {
-      width: '400px',
-      borderRadius: '25px',
-      margin: 'auto',
-      // marginTop: theme.spacing.unit * 10,
-      backgroundColor: '#67C28F',
-      border: '2px solid #01632C'
+    width: '400px',
+    borderRadius: '25px',
+    margin: 'auto',
+    // marginTop: theme.spacing.unit * 10,
+    backgroundColor: '#67C28F',
+    border: '2px solid #01632C'
   },
   form: {
-      textAlign: "center",
-      padding: 15,
-      margin: 'auto',
+    textAlign: "center",
+    padding: 15,
+    margin: 'auto',
   },
   textField: {
-      width: '300px',
-      borderRadius: '5px',
-      margin: '0px 0px 10px 0px',
-      backgroundColor: '#fff'
+    width: '300px',
+    borderRadius: '5px',
+    margin: '0px 0px 10px 0px',
+    backgroundColor: '#fff'
   },
   header: {
     color: '#fff', 
@@ -92,14 +95,14 @@ class RequestSeeds extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <section className="center">
+      <section className={classes.root}>
         {/* {JSON.stringify(this.props.reduxState.request)} */}
         {/* {JSON.stringify(this.props.reduxState.user)} */}
         {/* <p>state: {JSON.stringify(this.state)}</p> */}
 
-        <h1 id="welcome">
+        {/* <h1 id="welcome">
           Welcome, { this.props.reduxState.user.username }!
-        </h1>
+        </h1> */}
 
         <Paper className={classes.paper}>
           <Typography 
