@@ -22,11 +22,13 @@ router.post('/register', (req, res, next) => {
   const last_name = req.body.last_name;
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
+  const formatted_address = req.body.formatted_address;
 
   // const queryText = 'INSERT INTO user_info (username, password) VALUES ($1, $2) RETURNING id'; // original
-  const queryText = 'INSERT INTO user_info (username, password, first_name, last_name, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'; // geolocation test
+  const queryText = `INSERT INTO user_info (username, password, first_name, last_name, latitude, longitude, formatted_address) 
+  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;`; // geolocation test
 
-  pool.query(queryText, [username, password, first_name, last_name, latitude, longitude])
+  pool.query(queryText, [username, password, first_name, last_name, latitude, longitude, formatted_address])
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });
@@ -45,5 +47,40 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+router.put('/editProfile/:id', rejectUnauthenticated, (req, res) => {
+    const reqId = req.body.id
+    const username = req.body.username;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const profile_pic = req.body.profile_pic;
+
+    const sqlText = `UPDATE user_info SET ("username", "first_name", "last_name", "profile_pic") = ($1, $2, $3, $4)
+    WHERE id=$5`;
+    
+    pool.query(sqlText, [username, first_name, last_name, profile_pic, reqId])
+      .then(() => { res.sendStatus(201); })
+      .catch((error) => {
+        console.log(`PUT error ${queryText}`, error);
+        res.sendStatus(500);
+      });
+  });
+
+  router.put('/editLocation/:id', rejectUnauthenticated, (req, res) => {
+    const reqId = req.body.id
+    const latitude = req.body.lat;
+    const longitude = req.body.lng;
+    const formatted_address = req.body.formatted_address;
+
+    const sqlText = `UPDATE user_info SET ("latitude", "longitude", "formatted_address") = ($1, $2, $3)
+    WHERE id=$4`;
+    
+    pool.query(sqlText, [latitude, longitude, formatted_address, reqId])
+      .then(() => { res.sendStatus(201); })
+      .catch((error) => {
+        console.log(`PUT error ${queryText}`, error);
+        res.sendStatus(500);
+      });
+  });
 
 module.exports = router;

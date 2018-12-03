@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import Sent from './Sent';
 import Received from './Received';
+import Paper from '@material-ui/core/Paper';
+
 
 // material ui
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +15,10 @@ const styles = theme => ({
     width: 300,
     padding: 10,
     margin: theme.spacing.unit,
+  },
+  paper: {
+    marginTop:'50px', 
+    overflow: 'scroll'
   },
   tab: {
     display: 'inline-block',
@@ -66,7 +72,7 @@ class Messages extends Component {
     const toggleRequests = this.state.toggleRequests;
 
     return (
-      <div style={{marginTop:'25px'}}>      
+      <Paper className={classes.paper}>      
         <Typography variant="h6" style={{textAlign: 'center'}}>SEED REQUESTS</Typography>
         <Typography
           onClick={this.sentView} 
@@ -85,7 +91,7 @@ class Messages extends Component {
         ) : (
           <Received />
         )}
-      </div> 
+      </Paper> 
     );
   }
 }

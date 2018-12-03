@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import moment from 'moment';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // material ui
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import Delete from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit';
+
+
 import { withStyles } from '@material-ui/core';
 
 const CustomTableCell = withStyles(theme => ({
@@ -32,13 +42,8 @@ const styles = theme => ({
     marginTop: '20px'
   },
   paper: {
-      width: '350px',
-      height: '350px',
-      borderRadius: '25px',
-      // margin: "auto",
-      // marginTop: theme.spacing.unit * 10,
-      padding: '35px',
-      backgroundColor: '#67C28F'
+    marginTop:'50px', 
+    overflow: 'scroll'
   },
   form: {
       textAlign: 'center',
@@ -66,9 +71,21 @@ class SeedTable extends Component {
 
   // deletes table row and seed from user's inventory
   deleteSeed = (id) => {
-    console.log('in deleteSeed, id:', id);
-    this.props.dispatch({ type: 'DELETE_SEED', payload: id})
-  }
+    // console.log('in deleteSeed, id:', id);
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure about this?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.props.dispatch({ type: 'DELETE_SEED', payload: id})
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  }  
 
   // edit table cells in row
   editSeed = (id) => {
@@ -84,7 +101,7 @@ class SeedTable extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{marginTop:'40px'}}>
+      <Paper className={classes.paper}>
         <Typography variant="h6" style={{textAlign: 'center'}}>MY SEEDS</Typography>
         {/* {JSON.stringify(this.props.reduxState.seed)} */}
           <Table className={classes.table}>
@@ -94,8 +111,8 @@ class SeedTable extends Component {
                 <CustomTableCell>Description</CustomTableCell>
                 <CustomTableCell>Quantity</CustomTableCell>
                 <CustomTableCell>Date Added</CustomTableCell>
-                {/* <CustomTableCell>Actions</CustomTableCell> */}
-                <CustomTableCell />
+                <CustomTableCell >Actions</CustomTableCell>
+                {/* <CustomTableCell /> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -106,21 +123,22 @@ class SeedTable extends Component {
                   <CustomTableCell>{seed.quantity}</CustomTableCell>
                   <CustomTableCell>{moment(seed.date_added).format("MMM Do, YYYY")}</CustomTableCell>
                   <CustomTableCell>
-                    {/* <Button
-                      color="primary"
-                      variant="contained" 
-                      onClick={() => this.editSeed()}
-                      style={{marginRight: '15px'}}
-                    >
-                      EDIT
-                    </Button> */}
-                    <Button
-                      color="secondary"
-                      variant="contained" 
-                      onClick={() => this.deleteSeed(seed.id)}
-                    >
-                      DELETE
-                    </Button>
+                    <Tooltip title="Edit Seed" placement="left">
+                      <IconButton
+                        color="default"
+                        onClick={() => this.editSeed(seed.id)}
+                      >
+                        <Edit fontSize="small"/>
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Delete Seed" placement="right">
+                      <IconButton
+                        color="secondary"
+                        onClick={() => this.deleteSeed(seed.id)} 
+                      >
+                        <Delete fontSize="small"/>
+                      </IconButton>
+                    </Tooltip>
                   </CustomTableCell>
                 </TableRow>
                 )}
@@ -132,7 +150,7 @@ class SeedTable extends Component {
         >
           Add Seeds
         </Button> 
-      </div> 
+      </Paper> 
     );
   }
 }

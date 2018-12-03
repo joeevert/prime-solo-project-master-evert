@@ -4,7 +4,6 @@ import seeds from './seeds.jpg';
 import share_seeds from './share_seeds.jpg';
 import AddSeeds from '../AddSeeds/AddSeeds';
 import SearchBox from '../SearchBox/SearchBox';
-// import AddSeedsButton from './AddSeedsButton';
 
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -13,6 +12,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -133,17 +133,6 @@ class Home extends Component {
               >
                 FIND SEEDS
               </Typography>
-              {/* <TextField 
-                className={classes.textField}
-                required
-                id="search"
-                label="Search"
-                type="text"
-                name="search"
-                // value={this.state.search}
-                // onChange={this.handleInputChangeFor('search')}
-                variant="outlined"
-              /> */}
               <SearchBox />
               <Button
                 className={classes.button}
@@ -163,32 +152,25 @@ class Home extends Component {
           </Grid>
           <Grid item xs={12} sm={6}>
             {toggleForm ? (
-            <Paper
-              onClick={this.shareSeedsBtn}
-              className={classes.paper}
-              style={{ backgroundImage: `url(${share_seeds})`, cursor: 'pointer'}}
-            >
-              <Typography 
-                className={classes.header} 
-                variant="h4"
-              >
-                SHARE SEEDS
-              </Typography>
-              {/* <Button
-                className={classes.button}
-                variant="contained" 
+            <Tooltip title="Click to Add Seeds" placement="top">
+              <Paper
                 onClick={this.shareSeedsBtn}
-                style={{ backgroundColor: '#239956', color: '#fff' }}
+                className={classes.paper}
+                style={{ backgroundImage: `url(${share_seeds})`, cursor: 'pointer'}}
               >
-                ADD SEEDS
-              </Button> */}
-            </Paper>
+                <Typography 
+                  className={classes.header} 
+                  variant="h4"
+                >
+                  SHARE SEEDS
+                </Typography>
+              </Paper>
+            </Tooltip>
             ) : (
             <AddSeeds />
             )}
           </Grid>
         </Grid>
-        {/* <AddSeedsButton /> */}
         {/* {JSON.stringify(this.props.reduxState.location)}   */}
       </section>
     );
