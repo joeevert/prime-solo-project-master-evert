@@ -164,8 +164,6 @@ class Profile extends Component {
           >
             {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
           </Typography>
-
-
           {locationEdit ? (
           <div>
             <Typography
@@ -188,13 +186,13 @@ class Profile extends Component {
           ) : (
           <div>
             <SearchBox style={{display: 'inline'}}/>
-              <Button
-                onClick={this.updateLocation}
-                color="default"
-              >
-                Save Location
-                <Save fontSize="small" className={classes.rightIcon}/>
-              </Button>
+            <Button
+              onClick={this.updateLocation}
+              color="default"
+            >
+              Save Location
+              <Save fontSize="small" className={classes.rightIcon}/>
+            </Button>
           </div>
           )}
           <Button 
@@ -205,75 +203,74 @@ class Profile extends Component {
             <Edit fontSize="small" className={classes.rightIcon}/>
           </Button>
           <div>
-
-          <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogContent>
-              <DialogTitle style={{textAlign: 'center'}} id="alert-dialog-title">{"Edit Profile"}</DialogTitle>
-              <div style={{textAlign: 'center'}}>
-                <TextField
-                  className={classes.textField}
-                  id="username"
-                  label="Username"
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  placeholder={this.props.reduxState.user.username}
-                  onChange={this.handleInputChangeFor('username')}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  id="first_name"
-                  label="First Name"
-                  type="text"
-                  name="first_name"
-                  value={this.state.first_name}
-                  placeholder={this.props.reduxState.user.first_name}
-                  onChange={this.handleInputChangeFor('first_name')}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  id="last_name"
-                  label="Last Name"
-                  type="text"
-                  name="last_name"
-                  value={this.state.last_name}
-                  placeholder={this.props.reduxState.user.last_name}
-                  onChange={this.handleInputChangeFor('last_name')}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  id="profile_pic"
-                  label="Profile Pic"
-                  type="profile_pic"
-                  name="profile_pic"
-                  value={this.state.profile_pic}
-                  placeholder={this.props.reduxState.user.profile_pic}
-                  onChange={this.handleInputChangeFor('profile_pic')}
-                  margin="normal"
-                  variant="outlined"
-                />
+            <Dialog
+              open={this.state.open}
+              onClose={this.handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogContent>
+                <DialogTitle style={{textAlign: 'center'}} id="alert-dialog-title">{"Edit Profile"}</DialogTitle>
+                <div style={{textAlign: 'center'}}>
+                  <TextField
+                    className={classes.textField}
+                    id="username"
+                    label="Username"
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    placeholder={this.props.reduxState.user.username}
+                    onChange={this.handleInputChangeFor('username')}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    className={classes.textField}
+                    id="first_name"
+                    label="First Name"
+                    type="text"
+                    name="first_name"
+                    value={this.state.first_name}
+                    placeholder={this.props.reduxState.user.first_name}
+                    onChange={this.handleInputChangeFor('first_name')}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    className={classes.textField}
+                    id="last_name"
+                    label="Last Name"
+                    type="text"
+                    name="last_name"
+                    value={this.state.last_name}
+                    placeholder={this.props.reduxState.user.last_name}
+                    onChange={this.handleInputChangeFor('last_name')}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    className={classes.textField}
+                    id="profile_pic"
+                    label="Profile Pic"
+                    type="profile_pic"
+                    name="profile_pic"
+                    value={this.state.profile_pic}
+                    placeholder={this.props.reduxState.user.profile_pic}
+                    onChange={this.handleInputChangeFor('profile_pic')}
+                    margin="normal"
+                    variant="outlined"
+                  />
                 </div>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleEditProfileClose} color="secondary">
-                Cancel
-              </Button>
-              <Button onClick={this.handleEditProfileSave} color="primary" autoFocus>
-                Save
-              </Button>
-            </DialogActions>
-          </Dialog>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handleEditProfileClose} color="secondary">
+                  Cancel
+                </Button>
+                <Button onClick={this.handleEditProfileSave} color="primary" autoFocus>
+                  Save
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
           <Button
             className={classes.button} 
