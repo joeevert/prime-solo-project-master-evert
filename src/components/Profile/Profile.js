@@ -12,8 +12,8 @@ import Messages from '../Messages/Messages';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
 import Dialog from '@material-ui/core/Dialog';
@@ -127,12 +127,24 @@ class Profile extends Component {
           >
             {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
           </Typography>
-          <Typography
-            className={classes.info}
-            variant="h6"
-          >
-            {this.props.reduxState.user.formatted_address}
-          </Typography>
+          <div>
+            <Typography
+              className={classes.info}
+              variant="h6"
+              style={{display: 'inline'}}
+            >
+              {this.props.reduxState.user.formatted_address}
+            </Typography>
+            <Tooltip title="Edit Location" placement="right">
+              <IconButton
+                color="default"
+                onClick={this.EditLocation}
+                style={{margin: '0px 0px 5px 5px'}}
+              >
+                <Edit fontSize="small"/>
+              </IconButton>
+            </Tooltip>
+          </div>
           <Button 
             className={classes.editButton}
             onClick={this.editProfile}
