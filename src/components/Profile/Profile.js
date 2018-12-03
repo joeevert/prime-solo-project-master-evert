@@ -18,6 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
 import Save from '@material-ui/icons/Save';
+import Cancel from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -71,8 +72,10 @@ class Profile extends Component {
     username: this.props.reduxState.user.username,
     first_name: this.props.reduxState.user.first_name,
     last_name: this.props.reduxState.user.last_name,
-    formatted_address: this.props.reduxState.user.formatted_address,
-    profile_pic: this.props.reduxState.user.profile_pic
+    formatted_address: null,
+    profile_pic: this.props.reduxState.user.profile_pic,
+    lat: null,
+		lng: null,
   }
 
   shareSeedsBtn = () => {
@@ -87,7 +90,9 @@ class Profile extends Component {
 
   locationEdit = () => {
     console.log('profile state', this.state);
-    this.setState({ locationEdit: !this.state.locationEdit})
+    this.setState({ 
+      locationEdit: !this.state.locationEdit,
+    })
   }
 
   editProfile = () => {
@@ -110,7 +115,21 @@ class Profile extends Component {
   updateLocation = () => {
     console.log('updating location');
     // this.setState({ locationEdit: !this.state.locationEdit})
-    
+    this.setState({ 
+      locationEdit: !this.state.locationEdit,
+      formatted_address: this.props.reduxState.location.formatted_address,
+      lat: this.props.reduxState.location.lat,
+      lng: this.props.reduxState.location.lng
+    })
+    let userUpdatedLocation = {
+      id: this.state.id,
+      username: this.state.username,
+      formatted_address: this.props.reduxState.location.formatted_address,
+      lat: this.props.reduxState.location.lat,
+      lng: this.props.reduxState.location.lng
+    }
+    this.props.dispatch({ type: 'EDIT_LOCATION', payload: userUpdatedLocation })
+
   }
 
   handleInputChangeFor = propertyName => (event) => {
@@ -130,7 +149,9 @@ class Profile extends Component {
 
     return (
       <section className="container">
-      {JSON.stringify(this.props.reduxState.user)}
+      {/* {JSON.stringify(this.props.reduxState.user)} */}
+      {JSON.stringify(this.state)}
+
         <div className="info">
           <Avatar 
             className={classes.avatar}

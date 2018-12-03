@@ -9,6 +9,7 @@ import submitRequestSaga from './submitRequestSaga';
 import inboxSaga from './inboxSaga';
 import confirmSaga from './confirmSaga';
 import editProfileSaga from './editProfileSaga';
+import updateLocationSage from './updateLocationSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     submitRequestSaga(),
     inboxSaga(),
     confirmSaga(),
-    editProfileSaga()
+    editProfileSaga(),
+    updateLocationSage()
   ]);
 }
