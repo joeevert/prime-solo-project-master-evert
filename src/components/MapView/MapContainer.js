@@ -70,7 +70,7 @@ class MapContainer extends Component {
           <Map
             location={ {lat: this.state.lat, lng: this.state.lng} }
 
-            // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${YOUR API KEY}&v=3.exp&libraries=geometry,drawing,places`}
+            // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${YOUR-API-KEY}&v=3.exp&libraries=geometry,drawing,places`}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
 
             loadingElement={<div style={{height: `100%`}}/>}
