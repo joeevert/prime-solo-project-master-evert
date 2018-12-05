@@ -90,7 +90,7 @@ class SeedTable extends Component {
   // edit table cells in row
   editSeed = (id) => {
     console.log('in editSeed, id:', id);
-    this.props.dispatch({ type: 'EDIT_SEED', payload: id})
+    // this.props.dispatch({ type: 'EDIT_SEED', payload: id}) // will have to go to the update button
   }
 
   shareSeedsBtn = () => {
