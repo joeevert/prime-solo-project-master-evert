@@ -65,13 +65,11 @@ class MapContainer extends Component {
   render() {
     return (
       <div>
-        {/* {JSON.stringify(this.props.reduxState.allSeeds)} */}
         <section style={{display: 'flex'}}>
           <Map
             location={ {lat: this.state.lat, lng: this.state.lng} }
-
-            // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${YOUR-API-KEY}&v=3.exp&libraries=geometry,drawing,places`}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBE58Bqi3Gp-oWwWISPHICoQVsuKnNPusg&v=3.exp&libraries=geometry,drawing,places`}
+            // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
 
             loadingElement={<div style={{height: `100%`}}/>}
             containerElement={<div style={{height: `750px`, width: `65%`}}/>}

@@ -54,8 +54,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     const itemId = req.params.id;
     console.log('itemId', itemId);
-    
-    const sqlText = `UPDATE messages SET status = true WHERE id=$1;`;
+    // UPDATE list SET status = NOT status WHERE id = $1;
+    const sqlText = `UPDATE messages SET status = NOT status WHERE id=$1;`;
     pool.query(sqlText, [itemId])
         .then((result) => {
             console.log('Confirmed request', sqlText);

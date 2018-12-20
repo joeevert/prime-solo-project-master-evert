@@ -27,7 +27,6 @@ const styles = theme => ({
     height: '500px',
     borderRadius: '25px',
     margin: 'auto',
-    // backgroundColor: '#67C28F',
     border: '2px solid #01632C'
   },
   form: {
@@ -44,7 +43,6 @@ const styles = theme => ({
     color: '#fff', 
     fontWeight: 'bold', 
     backgroundColor: '#01632C', 
-    // margin: '0', 
     padding: '10px',
     borderRadius: '22px 22px 0px 0px',
   },
@@ -55,7 +53,6 @@ const styles = theme => ({
     backgroundColor: '#fff',
   },
 })
-
 
 class AddSeeds extends Component {
 
@@ -106,8 +103,6 @@ class AddSeeds extends Component {
     const { classes } = this.props;
     return (
       <section className="center">
-        {/* {JSON.stringify(this.props.reduxState.category)} */}
-
         <Paper 
           className={classes.paper}
           style={{ backgroundImage: `url(${share_seeds})`, cursor: 'pointer'}}
@@ -119,7 +114,6 @@ class AddSeeds extends Component {
             ADD SEEDS
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
-
             <FormControl className={classes.formControl}>    
               <InputLabel>Category</InputLabel>
                 <Select

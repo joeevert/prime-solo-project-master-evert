@@ -1,53 +1,48 @@
-CREATE TABLE "person" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+--seed categories
+CREATE TABLE "seeds" (
+  "id" SERIAL PRIMARY KEY,
+  "seed_category" VARCHAR(50) NOT NULL
 );
-
 
 --user info
-CREATE TABLE user_info (
-	id SERIAL PRIMARY KEY,
-	first_name VARCHAR(25) NOT NULL,
-	last_name VARCHAR(25) NOT NULL,
-	latitude INT,
-	longitude INT,
-	contact_info VARCHAR(150),
-	profile_pic VARCHAR(150)
+CREATE TABLE "user_info" (
+  "id" SERIAL PRIMARY KEY,
+  "username" VARCHAR(100) UNIQUE NOT NULL,
+  "password" VARCHAR(100) NOT NULL,
+  "first_name" VARCHAR(25),
+  "last_name" VARCHAR(25),
+  "latitude" NUMERIC,
+  "longitude" NUMERIC,
+  "formatted_address" VARCHAR(300),
+  "profile_pic" VARCHAR(150)
 );
-
 
 --user's seed inventory
-CREATE TABLE user_seed_inventory (
-	id SERIAL PRIMARY KEY,
-	seed_description VARCHAR(250) NOT NULL,
-	quantity INT NOT NULL,
-	seed_id INT NOT NULL,
-	user_id INT NOT NULL,
-	date_added DATE NOT NULL
+CREATE TABLE "user_seed_inventory" (
+  "id" SERIAL PRIMARY KEY,
+  "description" VARCHAR(250),
+  "quantity" INT DEFAULT 0,
+  "seed_id" INT REFERENCES "seeds",
+  "user_id" INT REFERENCES "user_info",
+  "date_added" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
---seed info
-CREATE TABLE seeds (
-	id SERIAL PRIMARY KEY,
-	seed_category VARCHAR(50) NOT NULL,
-	quantity INT NOT NULL,
-	user_id INT NOT NULL
-);
-
 
 --messages between users
-CREATE TABLE messages (
-	id SERIAL PRIMARY KEY,
-	message VARCHAR(500) NOT NULL,
-	sent_to INT REFERENCES "user_info",
-	received_by INT REFERENCES "user_info",
-	date DATE NOT NULL,
-	status BOOLEAN DEFAULT FALSE
+CREATE TABLE "messages" (
+  "id" SERIAL PRIMARY KEY,
+  "message" VARCHAR(500) NOT NULL,
+  "sent_by" INT REFERENCES user_info,
+  "received_by" INT REFERENCES user_info,
+  "line_item" INT REFERENCES user_seed_inventory,
+  "quantity" INT DEFAULT 0,
+  "date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "status" BOOLEAN DEFAULT FALSE
 );
 
---seed categories for seeds table
+
+--data for seed categories
+INSERT INTO seeds ("seed_category")
+VALUES
 ('Artichoke'),
 ('Arugula'),
 ('Asian Greens'),
@@ -95,4 +90,4 @@ CREATE TABLE messages (
 ('Tomatillo'),
 ('Tomato'),
 ('Turnip'),
-('Watermelon')
+('Watermelon');

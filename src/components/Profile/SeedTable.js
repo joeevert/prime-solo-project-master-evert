@@ -16,11 +16,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
-
-
 import { withStyles } from '@material-ui/core';
 
 const CustomTableCell = withStyles(theme => ({
@@ -46,15 +43,15 @@ const styles = theme => ({
     overflow: 'scroll'
   },
   form: {
-      textAlign: 'center',
-      padding: '15px',
-      marginTop: theme.spacing.unit * 4,
+    textAlign: 'center',
+    padding: '15px',
+    marginTop: theme.spacing.unit * 4,
   },
   textField: {
-      width: '300px',
-      borderRadius: '5px',
-      margin: theme.spacing.unit,
-      backgroundColor: '#fff'
+    width: '300px',
+    borderRadius: '5px',
+    margin: theme.spacing.unit,
+    backgroundColor: '#fff'
   }
 });
 

@@ -15,6 +15,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core';
 
 import ThumbUp from '@material-ui/icons/ThumbUp';
+import ThumbDown from '@material-ui/icons/ThumbDown';
+
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -69,11 +71,26 @@ class Received extends Component {
             <CustomTableCell>{message.message}</CustomTableCell>
             <CustomTableCell>
               {message.status ? 
-              <strong style={{color: '#fff', backgroundColor: '#01632C', padding: '10px', borderRadius: '5px'}}>
-                Confirmed!
-              </strong> : 'Not Confirmed'}
+                <strong style={{color: '#fff', backgroundColor: '#01632C', padding: '10px', borderRadius: '5px'}}>
+                  Confirmed!
+                </strong> 
+              : 
+                <strong style={{color: '#fff', backgroundColor: '#ff0000', padding: '10px', borderRadius: '5px'}}>
+                  Waiting
+                </strong>
+              }
             </CustomTableCell>
             <CustomTableCell>
+              {message.status ? 
+              <Tooltip title="Cancel Request" placement="right">
+                <IconButton
+                  className={classes.button}
+                  onClick={() => this.confirm(message.id)}
+                >
+                  <ThumbDown fontSize="small"/>
+                </IconButton>
+              </Tooltip>
+              :
               <Tooltip title="Confirm Request" placement="right">
                 <IconButton
                   className={classes.button}
@@ -81,7 +98,7 @@ class Received extends Component {
                 >
                   <ThumbUp fontSize="small"/>
                 </IconButton>
-              </Tooltip>
+              </Tooltip>}
             </CustomTableCell>
           </TableRow> 
           )}
