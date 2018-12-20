@@ -18,7 +18,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
 import Save from '@material-ui/icons/Save';
-import Cancel from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -97,6 +96,11 @@ class Profile extends Component {
 
   editProfile = () => {
     console.log('edit profile', this.state.open);
+    if (this.props.reduxState.user.profile_pic === null) {
+      this.setState({
+        profile_pic: 'enter an image url'
+      })
+    }
     this.setState({ open: true});
   }
 
@@ -146,6 +150,7 @@ class Profile extends Component {
     const { classes } = this.props;
     const toggleView = this.state.view;
     const locationEdit = this.state.locationEdit;
+    const user = this.props.reduxState.user;
 
     return (
       <section className="container">
@@ -155,14 +160,14 @@ class Profile extends Component {
         <div className="info">
           <Avatar 
             className={classes.avatar}
-            alt={this.props.reduxState.user.username}
-            src={this.props.reduxState.user.profile_pic}
+            alt={user.username}
+            src={user.profile_pic}
           />
           <Typography
             className={classes.header}
             variant="h4"
           >
-            {this.props.reduxState.user.first_name} {this.props.reduxState.user.last_name}
+            {user.first_name} {user.last_name}
           </Typography>
           {locationEdit ? (
           <div>
@@ -171,7 +176,7 @@ class Profile extends Component {
               variant="h6"
               style={{display: 'inline'}}
             >
-              {this.props.reduxState.user.formatted_address}
+              {user.formatted_address}
             </Typography>
             <Tooltip title="Edit Location" placement="right">
               <IconButton
@@ -219,7 +224,7 @@ class Profile extends Component {
                     type="text"
                     name="username"
                     value={this.state.username}
-                    placeholder={this.props.reduxState.user.username}
+                    placeholder={user.username}
                     onChange={this.handleInputChangeFor('username')}
                     margin="normal"
                     variant="outlined"
@@ -231,7 +236,7 @@ class Profile extends Component {
                     type="text"
                     name="first_name"
                     value={this.state.first_name}
-                    placeholder={this.props.reduxState.user.first_name}
+                    placeholder={user.first_name}
                     onChange={this.handleInputChangeFor('first_name')}
                     margin="normal"
                     variant="outlined"
@@ -243,7 +248,7 @@ class Profile extends Component {
                     type="text"
                     name="last_name"
                     value={this.state.last_name}
-                    placeholder={this.props.reduxState.user.last_name}
+                    placeholder={user.last_name}
                     onChange={this.handleInputChangeFor('last_name')}
                     margin="normal"
                     variant="outlined"
@@ -255,7 +260,7 @@ class Profile extends Component {
                     type="profile_pic"
                     name="profile_pic"
                     value={this.state.profile_pic}
-                    placeholder={this.props.reduxState.user.profile_pic}
+                    placeholder={user.profile_pic}
                     onChange={this.handleInputChangeFor('profile_pic')}
                     margin="normal"
                     variant="outlined"
