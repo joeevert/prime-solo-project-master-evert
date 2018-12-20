@@ -6,7 +6,7 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// Handles Ajax request for user information if user is authenticated
+// Handles axios request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
@@ -23,10 +23,9 @@ router.post('/register', (req, res, next) => {
   const latitude = req.body.latitude;
   const longitude = req.body.longitude;
   const formatted_address = req.body.formatted_address;
-
-  // const queryText = 'INSERT INTO user_info (username, password) VALUES ($1, $2) RETURNING id'; // original
+  
   const queryText = `INSERT INTO user_info (username, password, first_name, last_name, latitude, longitude, formatted_address) 
-  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;`; // geolocation test
+  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;`;
 
   pool.query(queryText, [username, password, first_name, last_name, latitude, longitude, formatted_address])
     .then(() => { res.sendStatus(201); })

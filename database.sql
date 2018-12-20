@@ -31,14 +31,13 @@ CREATE TABLE "user_seed_inventory" (
 CREATE TABLE "messages" (
   "id" SERIAL PRIMARY KEY,
   "message" VARCHAR(500) NOT NULL,
-  "sent_by" INT REFERENCES user_info,
-  "received_by" INT REFERENCES user_info,
-  "line_item" INT REFERENCES user_seed_inventory,
+  "sent_by" INT REFERENCES "user_info",
+  "received_by" INT REFERENCES "user_info",
+  "line_item" INT REFERENCES "user_seed_inventory",
   "quantity" INT DEFAULT 0,
   "date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "status" BOOLEAN DEFAULT FALSE
 );
-
 
 --data for seed categories
 INSERT INTO seeds ("seed_category")
